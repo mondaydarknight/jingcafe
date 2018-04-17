@@ -1,0 +1,22 @@
+{
+    "name": "JingCafe Admin",
+    "type": "JingCafe projects",
+    "description": "Authentication and account management module for JingCafe.",
+    "keywords": ["php user management", "usercake", "bootstrap"],
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Mong Cheng"
+        }
+    ],
+    "require": {
+        "birke/rememberme" : "^2.0",
+        "nikic/php-parser" : "^1",
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "JingCafe\\Admin\\": "server/"
+        }
+    }
+}

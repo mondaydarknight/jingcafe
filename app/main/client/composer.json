@@ -1,0 +1,20 @@
+{
+    "name": "JingCafe Admin",
+    "type": "JingCafe projects",
+    "description": "Client module for JingCafe.",
+    "keywords": ["php user management", "usercake", "bootstrap"],
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Mong Cheng"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "JingCafe\\Client\\": "server/"
+        }
+    }
+}

@@ -1,0 +1,46 @@
+.shop-dropdown {
+    // visibility: hidden;
+    z-index: 400;
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    transition: visibility 0s;
+    transition-delay: .2s;
+    transition-delay: 0.2s; 
+
+    &-menu {
+    	box-shadow: 0 0.1rem 5rem 0 rgba(0,0,0,.2);
+	    background-color: #fff;
+	    width: 240px;
+	    width: 15rem;
+	    border-radius: 2px;
+	    border-top: none;
+	    overflow: hidden;	
+    }
+
+    -item {
+    	@include flex-display();
+    	@include flex-align(center);
+    	height: 64px;
+	    height: 4rem;
+	    padding-left: 24px;
+	    padding-left: 1.5rem;
+	    font-weight: 500;
+	    text-decoration: none;
+	    color: rgba(0,0,0,.8);
+    }
+}
+
+
+
+.dropdown-menu {
+    li {
+        a:hover,
+        a:focus {
+            background-color: $brand-primary;
+            color: $default;
+            font-family: $font-family-base;
+            text-decoration: none;
+        }
+    }
+}

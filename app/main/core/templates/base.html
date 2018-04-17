@@ -1,0 +1,363 @@
+{# JingCafe base layout template application #}
+
+<!DOCTYPE html>
+<html lang="en" data-framework="angularjs">
+	<head>
+		<meta charset="UTF-8">
+  
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="generator" content="JingCafe" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		
+		<title>Jing Cafe</title>
+		<link href="minified.bundle.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro" rel="stylesheet">
+  
+		<style>[ng-cloak] {display: none;}</style>
+	</head>
+
+	<header>
+		<div class="header-main">
+			<div class="container">
+				<div class="row shop-page-wrapper">
+					<div class="col-4">
+						<div class="navbar-brand">
+							<a href=""><h1><span>Jing</span>Cafe</h1></a>
+						</div>
+					</div>
+					<div class="col-8 pull-right">
+						<div class="shop-navbar">
+							<div class="shop-navbar-wrap">
+								<ul class="navbar-links notification">
+									<li class="navbar-link navbar-tap navbar-icon">
+										<a href="" class="message open dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<i class="fa fa-shopping-cart icon-menu"></i>
+											<span class="notification-quantity">4</span>
+											<div class="notification-ring"></div>
+										</a>
+										<div uib-dropdown-menu class="notification-message dropdown-menu">
+										      <i class="dropdown-arr"></i>
+
+										      <div class="message-header clearfix">
+										        <strong>Notifications</strong>
+										        <a href>Mark All as Read</a>
+										        <a href>Settings</a>
+										      </div>
+										      <div class="message-list">
+										        <a href class="clearfix">
+										          <div class="img-area"><img class="photo-message-item"></div>
+										          <div class="message-area">
+										            <div>桐谷尤莉亞</div>
+										            <span>2017/08/25</span>
+										          </div>
+										        </a>
+										      </div>
+										      <a href>See all notifications</a>
+										    </div>
+										<!-- <div class="notification-menu">
+											<i class="dropdown-arr"></i>
+											<div class="header clearfix">
+												<strong>購物清單</strong>
+												<a href="">MARKALL</a>
+												<a href="">setting</a>
+											</div>
+											<div class="list">
+												<a href="" class="clearfix">
+													<div class="img-area">
+														<img src="" class="photo-message-item">
+													</div>
+													<div class="message-area">
+														<div>茶泡飯</div>
+														<span>2017/08/25</span>
+													</div>
+												</a>
+											</div>
+											<a href="">See all</a>
+										</div> -->
+
+									</li>
+									<li class="navbar-link navbar-tap">
+										<div class="shop-drawer" uib-dropdown>
+											<div class="inner-drawer">
+												<div class="shop-avatar">
+													<div class="shop-avatar-placeholder">
+														<svg class="shop-svg-icon icon-headshot" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0"><g><circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10"></circle><path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10"></path></g></svg>
+													</div>		
+												</div>
+												<a href uib-dropdown-toggle>
+													<div class="inner-drawer-text text-normal" title="username">sisp8111</div>
+												</a>											
+											</div>
+											<div uib-dropdown-menu template-url="/templates/shop/user-dropdown-list.html"></div>
+										</div>			
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-9">
+						<nav class="navbar navbar-expand-lg navbar-light rounded">
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+          						<span class="navbar-toggler-icon"></span>
+        					</button>	
+							
+							<div class="main-menu collapse navbar-collapse" id="navbarsExample09">
+          						<ul class="navbar-nav mr-auto mr-auto mt-2 mt-lg-0">
+            						<li class="nav-item active">
+              							<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>              							
+            						</li>
+            						<li class="nav-item">
+              							<a class="nav-link" href="#">大廳
+              								<i class="fa fa-angle-down"></i>
+              							</a>
+              							<ul class="sub-menu">
+              								<li>
+              									<a href="" class="nav-link ">測試</a>
+              									<a href="" class="nav-link">測試</a>
+              									<a href="" class="nav-link">測試</a>
+              									<a href="" class="nav-link">測試</a>
+              								</li>
+              							</ul>
+            						</li>
+            						<li class="nav-item">
+              							<a class="nav-link disabled" href="#">Disabled</a>
+            						</li>
+            						<li class="nav-item dropdown">
+              							<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+              								<div class="dropdown-menu" aria-labelledby="dropdown09">
+                							<a class="dropdown-item" href="#">Action</a>
+                							<a class="dropdown-item" href="#">Another action</a>
+                							<a class="dropdown-item" href="#">Something else here</a>
+              								</div>
+            						</li>
+          						</ul>
+					          <!-- <form class="form-inline my-2 my-md-0">
+					            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+					          </form> -->
+        					</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main class="interface large-panel">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">					
+					<div class="product-category-sidebar">
+						<h2 class="product-title">產品分類</h2>	
+						<div class="panel-group product-category">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										咖啡豆
+										</a>
+									</h4>									
+								</div>
+								<div class="panel-body">
+									<ul>
+										<li><a href="">Nike</a></li>
+										<li><a href="">Nike</a></li>
+										<li><a href="">Nike</a></li>
+										<li><a href="">Nike</a></li>
+										<li><a href="">Nike</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a href="">蛋糕</a>
+									</h4>
+								</div>
+							</div>
+						</div>
+
+						<h2 class="product-title">搜尋結果</h2>
+						<div class="product-category">	
+							<ul class="product-measure-items">
+								<li><a href=""><span class="pull-right">(50)</span>蛋糕</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-9 padding-right">
+					<div class="product-overview">
+						<h2 class="product-title">咖啡</h2>									
+						<div class="row">
+							<div class="col-sm-4 col-12 col-auto text-center">
+								<div class="product-overview-wrapper">
+									<div class="product-info">
+										<img src="1suna9X_mrEZ.png">
+										<h2 class="price">$90</h2>
+										<label class="product-name">戚風蛋糕</label>
+										<a href class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>加入購物車</a>
+									</div>
+									<div class="options">
+										<!-- <ul class="nav nav-pills nav-justified"> -->
+										<a href="#"><i class="fa fa-plus-square"></i>加入收藏</a>
+										<a href="#"><i class="fa fa-plus-square"></i>比較商品</a>
+										<!-- </ul>	 -->
+									</div>		
+								</div>
+							</div>
+
+							<div class="col-sm-4 col-12 col-auto text-center">
+								<div class="product-overview-wrapper">
+									<div class="product-info">
+										<img src="1suna9X_mrEZ.png">
+										<h2 class="price">$90</h2>
+										<label class="product-name">戚風蛋糕</label>
+										<a href class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>加入購物車</a>
+									</div>
+									<div class="options">
+										<!-- <ul class="nav nav-pills nav-justified"> -->
+										<a href="#"><i class="fa fa-plus-square"></i>加入收藏</a>
+										<a href="#"><i class="fa fa-plus-square"></i>比較商品</a>
+										<!-- </ul>	 -->
+									</div>		
+								</div>
+							</div>									
+						</div>							
+					</div>
+
+					<div class="product-details">
+				<h2 class="product-title text-center">產品內容</h2>
+				<div class="row">
+					<div class="col-md-5">
+						<div class="view-product">
+							<img src="1suna9X_mrEZ.png" class="img-thumbnail">
+						</div>
+						<div class="similar-product">
+							<div class="item active"></div>
+						</div>				
+					</div>
+					<div class="col-md-7 padding-right">
+						<h2>經典戚風蛋糕</h2>
+						<hr>
+						<div class="product-introduction">
+							<p>產品編號:</p>
+							<p><b>庫存:</b></p>
+							<p class="inner-content">狀態: <div class="badge badge-primary">好</div></p>
+							<p><b>產品簡述:</b> 好吃</p>
+							<label class="price">100</label>
+
+							<div class="input-group" style="margin-bottom: 20px;">
+								<div class="input-group-btn">
+									<button class="btn btn-default no-transform" ng-click="$vm.subtract()"><i class="fa fa-minus"></i></button>
+								</div>
+								<input type="number" min="1" max="30" class="form-control text-center input-xs" ng-model="$vm.quantity" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+								<div class="input-group-btn pull-left">
+									<button class="btn btn-default no-transform" ng-click="$vm.plus()"><i class="fa fa-plus"></i></button>	
+								</div>
+							</div>
+							<button class="btn btn-brand" ng-click="$vm.purchase()"><i class="fa fa-shopping-cart"></i>加入購物車</button>		
+						</div>
+					</div>
+				</div>
+			</div>
+
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<footer class="footer">
+		<div class="footer-top">
+		<div class="container">
+			<div class="row">
+			<div class="col-4">
+				<h2>JingCafe</h2>
+				<p>靜咖啡販賣各式咖啡In a elit in lorem congue varius. Sed nec arcu. Etiam sit amet augue. Fusce</p>
+				<ul class="social-network">
+            <li><a href="#" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-1x"></i></a></li>
+            <li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a></li>
+            <li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-1x"></i></a></li>
+            <li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest fa-1x"></i></a></li>
+            <li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a></li>
+          </ul>
+			</div>
+			<div class="col-4">
+				<h3>RECENT POSTS</h3>
+		          <ul>
+		            <li>Awesome Design with Overviews</li>
+		            <!-- <hr> -->
+		            <li>Great Design with Features </li>
+		            <!-- <hr> -->
+		            <li>Limitless functions & Works </li>
+		            <!-- <hr> -->
+		            <li>Multi is simple and clean design</li>
+		          </ul>
+			</div>
+			<div class="col-4">
+				<h3>CONTACT INFO</h3>
+	          	<ul>
+		            <li><i class="fa fa-home fa-2x"></i> Office # 38, Suite 54 Elizebth Street, Victoria State Newyork, USA 33026</li>
+		            <li><i class="fa fa-phone fa-2x"></i> +38 000 129900</li>
+		            <li><i class="fa fa-envelope fa-2x"></i> info@domain.net</li>
+	          	</ul>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-6">
+						<span>&copy; Multi Theme. All Rights Reserved.</span>
+					<div class="credits">
+						<span>By <a href="https://github.com/mongcheng">Mong</a></span>
+					</div>
+					</div>
+					<div class="col-6">
+						<ul class="pull-right">
+							<li><a href>Home</a></li>
+							<li><a href>Shop</a></li>
+							<li><a href>Blog</a></li>
+						</ul>
+					</div>
+					<div class="pull-right">
+					<a href class="scrollup" ng-click="$footer.scrollTop($event)"><i class="fa fa-angle-up fa-3x"></i></a>
+				</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div ui-view="main" autoscroll="true" autoscroll-body-top ng-cloak></div>
+	<script src="minified.bundle.js"></script>
+</html>
+
+
+

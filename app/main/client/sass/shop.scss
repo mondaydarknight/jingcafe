@@ -1,0 +1,104 @@
+
+.shop-page-wrapper {
+	transition: margin-top .3s cubic-bezier(.4,0,.2,1);
+    background-color: white;
+    transition: transform .2s cubic-bezier(.4,0,.2,1),-webkit-transform .2s cubic-bezier(.4,0,.2,1);
+}
+
+
+.shop-drawer {
+	position: relative;
+	display: inline-block;
+
+	&:after {
+		border: 16px solid transparent;
+	    border: 1rem solid transparent;
+	    border-bottom-color: #fff;
+	    content: "";
+	    display: inline-block;
+	    position: absolute;
+	    bottom: 0;
+	    left: 50%;
+	    -webkit-transform: translateX(-50%);
+	    transform: translateX(-50%);
+	    border-left-width: 22.4px;
+	    border-left-width: 1.4rem;
+	    border-right-width: 22.4px;
+	    border-right-width: 1.4rem;
+	    visibility: hidden;
+	    transition: visibility 0s;
+	    transition-delay: .2s;
+	    z-index: 400;
+	}
+
+	.inner-drawer {
+		@include flex-display();
+		@include flex-align(center);
+   	 	text-transform: none;
+   	 	
+
+   	 	.shop-avatar {
+		  	width: 35.2px;
+		    width: 2.2rem;
+		    height: 35.2px;
+		    height: 2.2rem;
+		    display: inline-block;
+		    // width: 48px;
+		    // width: 3rem;
+		    // height: 48px;
+		    // height: 3rem;
+		    position: relative;
+		    border-radius: 50%;
+		    border: 1.6px solid rgba(0,0,0,.09);
+		    border: .1rem solid rgba(0,0,0,.09);
+		    box-sizing: border-box;
+
+			&-placeholder {
+			   	width: 100%;
+			    position: relative;
+			    padding-top: 100%;
+			    background-color: #f5f5f5;
+			    border-radius: 50%;
+			    overflow: hidden;
+			}
+
+			.icon-headshot {
+				stroke: #c6c6c6;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-webkit-transform: translate(-50%,-50%);
+				transform: translate(-50%,-50%);
+				font-size: 15px;
+				font-size: 1.5rem;
+				font-weight: 400;
+				line-height: 51.2px;
+				line-height: 3.2rem;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+		}
+
+		&-text {
+			@include flex-display();
+			@include flex-align(center);
+			white-space: nowrap;
+		    padding-left: 8px;
+		    padding-left: .5rem;
+		    max-width: 176px;
+		    max-width: 11rem;
+		    height: 54.4px;
+		    height: 3.4rem;
+		    font-size: 10px;
+		    font-size: 1rem;
+		    font-weight: 400;
+		    color: #000;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    text-transform: capitalize;
+		}
+	}
+}
+
+
+

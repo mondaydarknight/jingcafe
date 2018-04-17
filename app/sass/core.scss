@@ -1,0 +1,167 @@
+
+html {
+	@include main-background();
+	min-height: 520px;
+	height: 100%;
+}
+
+body {
+	@include main-background();
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: $text-primary-color;
+	line-height: 1.1em;
+}
+
+div {
+	display: block;
+}
+
+label, p, span, div {
+	font-weight: normal;
+}
+
+a {
+	@include link-hover(0.1s);
+	background-color: transparent;
+    text-decoration:none;
+    outline: none;
+    color: $text-primary-color;
+}
+
+
+.home {
+  	padding: 20px 20px 0px 20px;
+  	background-color: rgba($color: $webpack-color, $alpha: 0.1);
+  	hr {
+    	width: 15em;
+  	}
+}
+
+
+.section {
+	// display: flex;
+ //  	align-items: center;
+ //  	min-height: calc(100vh - 40px);
+ //  	background-color: $background-color;
+ //  	color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.navigation {
+	background-color: $default;
+	padding: 0;
+}
+
+.navbar-brand {
+
+	h1 {
+		margin: 0;
+		float: left;
+		font-size: 30px;
+		color: $text-primary-color;
+	}
+
+	span {
+		color: $brand-primary;
+	}
+}
+
+.with-scroll {
+	height: calc(100% - 44px);
+	overflow-y: auto;
+}
+
+.interface {
+	@include scrollbars(.4em, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.7));
+	color: $text-default-color;
+	background-color: $default;
+	border: none;
+	position: relative;
+	margin-bottom: 30px;
+	transition: none;
+	background-attachment: fixed;
+
+	&.animation {
+		@include animation-duration(0.5s);
+	}
+
+	&.small-panel {
+		height: $small-panel-height;
+	}
+
+	&.xsmall-panel {
+		height: $xsmall-panel-height;
+	}
+
+	&.medium-panel {
+		height: $medium-panel-height;
+	}
+
+	&.xmedium-panel {
+		height: $extra-medium-panel-height;
+	}
+
+	&.large-panel {
+		height: $large-panel-height;
+	}
+
+	&.viewport {
+		height: calc(100vh -218px);
+	}
+	
+}
+
+.brand-name {
+	border: 1px solid #F7F7F0;
+	padding-bottom: 20px;
+	padding-top: 15px;
+
+	.nav-stacked {
+		li {
+			a {
+				background-color: $default;
+				color: #696763;
+				font-family: $font-family-roboto;
+				font-size: 14px;
+				padding: 5px 25px;
+				text-decoration: none;
+				text-transform: uppercase;
+
+				&:hover {
+					background-color: $default;
+					color: #696763;
+				}
+			}
+		}
+	}
+}
+
+.well {
+	background: $default;
+	border-color: 1px solid #F7F7F0;
+	border-radius: 4px;
+	box-shadow: none;
+	margin-bottom: 20px;
+	min-height: 20px;
+	padding: 35px;
+}
+
+
+
+
+.right {
+	right: 0;
+}
+
+
+@font-face {
+	font-family: 'Courgette';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Courgette Regular'), local('Courgette-Regular'), url(https://fonts.gstatic.com/s/courgette/v4/Gkr63O-aJXf4Mv4t7cBUchJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
+  	unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+

@@ -1,0 +1,59 @@
+
+/****** Variables and functions *******/
+@import "defaults";
+@import "variables";
+@import "mixins";
+
+
+@import "~bootstrap/scss/bootstrap";
+
+/** Core Interface **/
+@import "core";
+
+/** Layout **/
+@import "layout/padding";
+
+
+
+
+/** Client UI **/
+@import "../main/client/sass/blog";
+@import "../main/client/sass/dropdown";
+@import "../main/client/sass/error";
+@import "../main/client/sass/footer";
+@import "../main/client/sass/header";
+@import "../main/client/sass/menu";
+@import "../main/client/sass/recent-work";
+@import "../main/client/sass/shop";
+@import "../main/client/sass/sidebar";
+@import "../main/client/sass/theme";
+
+
+
+
+
+@import "../main/client/sass/component/badge";
+@import "../main/client/sass/component/box";
+@import "../main/client/sass/component/breadcrumbs";
+@import "../main/client/sass/component/button";
+@import "../main/client/sass/component/form";
+@import "../main/client/sass/component/notification";
+@import "../main/client/sass/component/pagination";
+@import "../main/client/sass/component/plank";
+@import "../main/client/sass/component/product";
+@import "../main/client/sass/component/slider";
+@import "../main/client/sass/component/svg";
+@import "../main/client/sass/component/tab";
+@import "../main/client/sass/component/table";
+@import "../main/client/sass/component/viedo";
+
+
+
+
+/** Admin UI**/
+
+
+
+
+
+

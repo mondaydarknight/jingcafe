@@ -1,0 +1,276 @@
+.pricing {
+	position: absolute;
+	right: 40%;
+	top: 52%;
+}
+
+.product-overview {
+	overflow: hidden;
+	padding-right: 0;
+
+	.product-title {
+		color: $brand-primary;
+		font-family: $font-family-roboto;
+		font-size: 18px;
+		font-weight: $font-bold;
+		margin: 0 15px;
+		text-transform: uppercase;
+		margin-bottom: 30px;
+		position: relative;
+	}
+
+	&-wrapper {
+		border: 1px solid #BDBDBD;
+		overflow: hidden;
+		margin-bottom: 30px;
+
+		.product-info {
+			position: relative;
+
+			h2.price {
+				color: $brand-primary;
+				font-family: $font-family-roboto;
+				font-size: 24px;
+				font-weight: 700;
+			}
+
+			label.product-name {
+				display: block;
+				font-family: $font-family-base;
+				font-size: 16px;
+				font-weight: $font-normal;
+				color: $text-primary-color;
+			}
+
+			img {
+				// max-width: 300px;
+				// height: 100px;				
+				width: 100%;
+			}
+			
+			.add-to-cart {
+				background: #F5F5ED;
+				border: 0 none;
+				border-radius: 0;
+				color: $item-color;
+				font-family: $font-family-base;
+				font-size: 15px;
+				margin-bottom: 25px;
+
+				&:hover {
+					background: $brand-primary;
+					border: 0 none;
+					border-radius: 0;
+					color: $default;
+				}
+
+				i {
+					margin-right: 5px;
+				}
+			}
+
+			.product-override {
+				background: $brand-primary;
+				transition: height 500ms ease 0s;
+				display: block;
+				opacity: 1;
+			}
+		}
+
+		.new,
+		.sale {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+
+		.options {
+			@include flex-display();
+			@include flex-align(center);
+			content: '';
+			text-decoration: none;
+			list-style: none;
+			margin-bottom: 10px;
+			border-top: 1px solid #F7F7F0;
+
+			a {
+				@include flex-display();
+				@include flex-align(center);
+				@include flex-pack(center);
+				@include flex(1);
+			    // -webkit-box-direction: normal;
+			    // -ms-flex-direction: column;
+			    // flex-direction: column;
+			   
+			    opacity: .7;
+				box-sizing: border-box;  
+				text-decoration: none;
+				color: $text-default-color;
+				font-family: $font-family-base;
+				font-size: 13px;
+				
+				
+				&:hover {
+					background: none;
+					color: $brand-primary;
+				}
+
+				i {
+					margin-right: 5px;
+				}											
+			}
+		}
+	}
+}
+
+
+
+
+.item {
+	padding-left: 30px;
+	padding-right: 30px;
+
+	&.property {
+		background: $brand-primary;
+  		border: 0 none;
+  		border-radius: 0;
+  		color: $default;
+ 	 	font-family: $font-family-roboto;
+  		font-size: 16px;
+  		font-weight: 300;
+  		margin-top: 23px;
+	}
+
+	.new, .sale {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+
+	h1 {
+		color: $default;
+		font-family: $font-family-base;
+		font-size: 48px;
+		margin-top: 115px;
+
+		span {
+			color: $brand-primary;
+		}
+	}
+
+	h2 {
+		color: $default;
+		font-family: $font-family-base;
+		font-size: 28px;
+		font-weight: $font-bold;
+		margin-bottom: 22px;
+		margin-top: 10px;
+	}
+
+	p {
+		color: $default;
+		font-size: 16px;
+		font-weight: 300;
+		font-family: $font-family-roboto;
+	}
+
+	button:hover {
+		background: $brand-primary;
+	}
+
+}
+
+.product-details {
+	margin-bottom: 40px;
+	overflow: hidden;
+	margin-top: 10px;
+
+	.view-product {
+		position: relative;
+
+		img {
+			border: 1px solid #F7F7F0;
+			height: 380px;
+			width: 100%;
+		}
+
+		h3 {
+			background: $brand-primary;
+			bottom: 0;
+			color: $default;
+			font-family: $font-family-roboto;
+			font-size: 14px;
+			font-weight: $font-bold;
+			margin-bottom: 0;
+			padding: 8px 20px;
+			position: absolute;
+			right: 0;
+		}
+	}
+
+	.product-introduction {
+		border: 1px solid #f7f7f0;
+		overflow: hidden;
+		padding-left: 10px;
+		padding-top: 10px;
+		position: relative;
+
+		h2 {
+			color: $text-primary-color;
+			font-family: $font-family-roboto;
+			font-size: 20px;
+			margin-top: 0;
+		}
+
+		p {
+			color: #item-color;
+			font-family: $font-family-roboto;
+		}
+
+		span {
+			color: $item-color;
+			float: left;
+			font-family: $font-family-roboto;
+			font-size: 16px;
+			font-weight: $font-bold;
+			margin-top: 0;
+		}
+
+		input {
+			border: 1px solid #DEDEDC;
+			color: #item-color;
+			font-family: $font-family-base;
+			font-size: 18px;
+			font-weight: $font-bold;
+			outline: medium none;
+			text-align: center;
+		}
+
+		.price {
+			color: $brand-primary;
+			font-family: $font-family-roboto;
+			font-weight: $font-bold;
+			font-size: 30px;
+			margin-right: 5px;
+		}
+
+
+		.inner-content {
+			display: inline-block;
+		}
+
+	}
+}
+
+.cart {
+	background: $brand-primary;
+	border: 0 none;
+	border-radius: $default;
+	font-family: $font-family-roboto;
+	font-size: 15px;
+	margin-bottom: 10px;
+	margin-left: 20px;
+}
+
+

@@ -1,0 +1,317 @@
+@-webkit-keyframes pulsate {
+	30% {
+		-webkit-transform: scale(0.1, 0.1);
+		opacity: 0.0;
+	}
+
+	35% {
+		opacity: 1.0;
+	}
+
+	40% {
+		-webkit-transform: scale(1.2, 1.2);
+		opacity: 0.0;
+	}
+
+}
+
+
+.notification {
+	float: right;
+	padding: 0;
+	list-style: none;
+
+	li {
+		list-style: none;
+		float: left;
+		// margin-left: 15px;
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		a {
+
+			&:hover {
+				color: $brand-sub-primary;
+			}
+
+			&.message {
+				color: $brand-primary;
+
+				span {
+					background: $brand-primary;
+				}
+
+				.notification-ring {
+					border-color: $brand-primary;
+				}
+			}
+
+			&.open {
+				& > a {
+					color: $brand-sub-primary;
+				
+					.message {
+						color: $brand-primary;
+					}
+				}
+			}
+
+			span.notification-quantity {
+				display: inline-block;
+			    border-radius: 13px;
+			    padding: 2px 4px 2px 4px;
+			    background-color: $brand-sub-primary;
+			    vertical-align: baseline;
+			    white-space: nowrap;
+			    text-shadow: none;
+			    font-size: 11px;
+			    text-align: center;
+			    line-height: 11px;
+			    color: $default;
+			    position: absolute;
+			    min-width: 10px;
+			    top: -5px;
+			    right: -14px;	        		
+			}
+
+			.notification-ring {
+				@include notification-animate(8s);
+				border: 1px solid $brand-sub-primary;
+				border-radius: 100px;
+				height: 40px;
+				width: 40px;
+				position: absolute;
+				top: -18px;
+				right: -27px;     
+				opacity: 0; 
+			}
+		}
+	}
+}
+
+
+@media screen and (max-width: $resXXS) {
+	.notification {
+		margin-right: 20px;
+		
+		li {
+			margin-left: 20px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+.notification-message {
+	@include scrollbars(.4em, rgba(0, 0, 0, .5), $default);
+	margin-right: 150px;
+	width: 316px;
+	left: auto;
+	right: -47px;
+	top: 26px;
+
+	.message-header {
+		padding: 10px 12px;
+		border-bottom: 1px solid $default;
+		font-size: 12px;
+
+		strong {
+			float: left;
+			color: #7d7d7d;
+		}
+
+		a {
+			float: right;
+			margin-left: 12px;
+			text-decoration: none;
+			&:hover {
+				color: #7d7d7d;
+			}
+		}
+	}
+
+	.message-list {
+		max-height: 296px;
+		overflow: scroll;
+		overflow: hidden;
+
+		& > a {
+			border-top: 1px solid $default;
+			padding: 10px 12px;
+			display: block;
+			text-decoration: none;
+			color: #7d7d7d;
+			font-size: 12px;
+
+			&:first-child {
+				border-top: none;
+			}
+
+			.img-area {
+				float: left;
+				width: 36px;
+				
+				img {
+					width: 36px;
+					height: 36px;
+					&.photo-message-item {
+						border-radius: 18px;
+					}
+				}
+
+				& > div {
+					width: 36px;
+					height: 36px;
+					border-radius: 4px;
+					font-size: 24px;
+					text-align: center;
+
+					&.comments,
+					&.orders {
+						color: $warning;
+					}
+
+					i {
+						width: 36px;
+						line-height: 36px;
+					}	
+				}
+			}
+
+			.message-area {
+				float: right;
+				width: 230px;
+
+				&:hover {
+					background: #E2F0FF;
+				}
+
+				div {
+					max-height: 34px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				span {
+					font-style: italic;
+					text-align: right;
+					display: block;
+					font-size: 11px;
+				}
+			}
+		}
+	}
+
+	& > a {
+		border-top: 1px solid $default;
+		display: block;
+		text-align: center;
+		padding: 10px;
+		font-size: 12px;
+		text-decoration: none;
+		&:hover {
+			color: #7d7d7d;
+		}
+	}
+
+	&.profile-dropdown {
+		width: 145px;
+		top: 55px;
+		right: -25px;
+
+		a {
+			text-align: left;
+			border: none;
+			text-decoration: none;
+			color: #7d7d7d;
+			padding: 4px 16px 4px 20px;
+
+			&:hover {
+				background: #f4fcff;
+			}
+
+			&.signout {
+				border-top: 1px solid $default;
+			}
+
+			i {
+				margin-right: 10px;
+			}
+		}
+
+		i.dropdown-arr {
+			right: -25px;
+		}
+	}
+
+	i.dropdown-arr {
+		position: absolute;
+		margin-right: 160px;
+		top: -22px;
+		right: 42px;
+		display: block;
+		width: 0;
+		height: 0;
+		border: 11px solid transparent;
+		border-bottom-color: rgba(0, 0, 0, .15);
+
+		&:after {
+			top: -9px;
+			left: 0px;
+			margin-left: -10px;
+			content: " ";
+			position: absolute;
+			display: block;
+			width: 0;
+			height: 0;
+			border: 10px solid transparent;
+			border-bottom-color: $default;
+		}
+	}
+}
+
+@media screen and (max-width: $resXL) {
+	.notification-message {
+		i.dropdown-arr {
+			right: -20px;
+		}
+	}
+}
+
+@media screen and (max-width: $resS) {
+	.notification-message {
+		right: -80px;
+
+		i.dropdown-arr {
+			margin-right: 0;
+		}
+	}
+}
+
+@media screen and (max-width: $resXS) {
+	.notification-message {
+		margin: 0;
+		right: -80px;
+		i.dropdown-arr {
+			left: 50px;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

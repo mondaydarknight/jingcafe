@@ -1,0 +1,51 @@
+.slider {
+	margin-top: 20px;
+	margin-right: 0px;
+	margin-left: 40px;
+
+	img {
+		width: 100%;
+	}
+}
+
+.carousel-indicators {
+	li {
+		background: #C4C4BE;
+
+		&.active {
+			background: $brand-primary;
+		} 
+	}
+}
+
+.carousel-advertisement {
+	margin-left: 0;
+	height: 400px;
+}
+
+
+.control-carousel {
+	position: absolute;
+	top: 50%;
+	font-size: 60px;
+	color: #C2C2C1;
+
+	&:hover {
+		color: $brand-primary;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

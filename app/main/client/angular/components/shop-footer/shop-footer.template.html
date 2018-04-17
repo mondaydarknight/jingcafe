@@ -1,0 +1,58 @@
+<footer class="footer">
+	<div class="footer-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-4">
+					<h2>{{::$vm.shopInfo.shop.name}}</h2>
+					<p>{{::$vm.shopInfo.shop.introduction}}</p>
+					<ul class="social-network">
+						<li><a href title="Facebook" data-placement="top"><i class="fa fa-facebook fa-1x"></i></a></li>
+						<li><a href title="Google plus" data-placement="top"><i class="fa fa-google-plus fa-1x"></i></a></li>
+					</ul>				
+				</div>
+				<div class="col-md-4 col-sm-4 col-4">
+					<h3>近期資訊</h3>
+					<ul>
+						<li ng-repeat="activity in ::$vm.shopInfo.activities">
+							<a href="" class="relative-link">{{activity.title}}</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-4 col-sm-4 col-4">
+					<h3>聯絡資訊</h3>
+					<ul>
+						<li><a href="" class="relative-link">
+							<i class="fa fa-home fa-2x"></i>   {{::$vm.shopInfo.shop.address}}</a>
+						</li>
+						<li><a href="" class="relative-link">
+							<i class="fa fa-phone fa-2x"></i>   {{::$vm.shopInfo.shop.phone}}</a>
+						</li>
+						<li><a href="" class="relative-link">
+							<i class="fa fa-envelope fa-2x"></i>   {{::$vm.shopInfo.shop.email}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-6">
+					<span>&copy; 2018 {{::$vm.shopInfo.shop.brand}} AG. All Rights Reserved.</span>
+					<div class="credits">
+						<span>By <a href="https://github.com/mongcheng">Mong</a></span>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-6">
+					<ul class="pull-right">
+						<li><a href>Home</a></li>						
+					</ul>
+				</div>
+				<div class="pull-right">
+					<a href class="scrollup" ng-click="$vm.scrollTop($event)" scroll-bubb><i class="fa fa-angle-up fa-3x"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

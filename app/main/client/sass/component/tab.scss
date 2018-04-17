@@ -1,0 +1,31 @@
+.nav-tabs {
+
+	li {
+		&.active {
+			a {
+				&,
+				&:hover,
+				&:focus {
+					-moz-border-bottom-colors: none;
+					-moz-border-left-colors: none;
+					-moz-border-right-colors: none;
+					-moz-border-top-colors: none;
+					background-color: $brand-primary;
+					border: 0px;
+					color: $default;
+					cursor: default;
+					margin-right: 0;
+					margin-left: 0;
+				}
+			}
+		}
+
+		a {
+			border: 1px solid rgba(0, 0, 0, 0);
+			border-radius: 4px 4px 0 0;
+			line-height: 1.42857;
+			margin-right: 0;
+		}
+	}
+
+}

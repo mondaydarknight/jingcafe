@@ -1,0 +1,83 @@
+.form {
+	display: block;
+	margin-bottom: 185px;
+	margin-top: 185px;
+	overflow: hidden;
+
+	.login-form {
+		h2 {
+			color: $item-color;
+			font-family: $font-family-roboto;
+			font-size: 20px;
+			font-weight: 300;
+			margin-bottom: 30px;
+		}
+
+		input {
+			background: #F0F0E9;
+  			border: medium none;
+  			color: $item-color;
+  			display: block;
+  			font-family: $font-family-roboto;
+  			font-size: 14px;
+  			font-weight: 300;
+  			height: 40px;
+  			margin-bottom: 10px;
+  			outline: medium none;
+  			padding-left: 10px;
+  			width: 100%;
+		}
+
+		span {
+			line-height: 25px;
+		
+			// input {
+			// 	width: 15px;
+			// 	float: left;
+			// 	height: 15px;
+			// 	margin-right: 5px;
+			// }
+		}
+
+		button {
+			background: $brand-primary;
+			border: medium none;
+			border-radius: 0;
+			color: $default;
+			display: block;
+			font-family: $font-family-roboto;
+			padding: 6px 25px;
+		}
+	}
+}
+
+
+.form-actions {
+	margin-bottom: 20px;
+	float: right;
+}
+
+.form-validate {
+	.container {
+		display: table;
+    	table-layout: fixed;
+    	width: 100%;
+    	margin-bottom: 20px;
+    	border-bottom: 1px solid rgba(0,0,0, .09);
+	}
+
+	.navigation {
+		cursor: pointer;
+		display: table-cell;
+		line-height: center;
+		font-weight: 300;
+		font-size: 20px;
+		opacity: 0.5;
+		padding: 1.6rem 0;
+		// color: 
+		color: rgba(0, 0, 0, .8);
+		
+	}
+
+}
+

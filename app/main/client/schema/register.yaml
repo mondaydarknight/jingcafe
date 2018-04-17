@@ -1,0 +1,33 @@
+---
+account:
+  transformations: [escape, trim]
+  validators:
+    email:
+      message: VALIDATE.INVALID_EMAIL
+    no_leading_whitespace:
+      message: VALIDATE.NO_LEAD_WS
+  encrypted: true
+username:
+  transformations: [escape, xss, trim]
+  validators:
+    no_leading_whitespace:
+      message: VALIDATE.NO_LEAD_WS
+    length:
+        min: 5
+        max: 30
+  encrypted: true
+password:
+  transformations: [escape, xss, trim]
+  validators:
+    no_leading_whitespace:
+      message: VALIDATE.NO_LEAD_WS
+    length:
+      min: 5
+      max: 60
+      message: VALIDATE.INVALID_PASSWORD
+phone:
+  transformations: [escape, xss, trim]
+  validators:
+    phone:
+      message: VALIDATE.INVALID_PHONE
+  encrypted: true

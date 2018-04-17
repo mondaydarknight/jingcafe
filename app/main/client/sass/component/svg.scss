@@ -1,0 +1,28 @@
+svg {
+    x: 0;
+    y: 0;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+.shop-svg-icon {
+  	display: inline-block;
+  	width: 1em;
+  	height: 1em;
+  	fill: currentColor;
+  	position: relative; 
+}
+
+circle {
+  	cx: 7.5;
+  	cy: 4.5;
+  	fill: none;
+  	r: 3.8;
+  	stroke-miterlimit: 10; 
+}

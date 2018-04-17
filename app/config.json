@@ -1,0 +1,7 @@
+{
+	"base": [
+		"core",
+		"admin",
+		"client"
+	]
+}

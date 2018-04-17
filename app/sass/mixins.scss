@@ -1,0 +1,262 @@
+
+
+@mixin scrollbars($size, $forgeground-color, $background-color: mix($foreground-color, white, 50%)) {
+	::-webkit-scrollbar {
+		width: $size;
+		height: $size;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: $forgeground-color;
+		cursor: pointer;
+	}
+
+	::-webkit-scrollbar-track {
+		background: $background-color;
+	}
+
+	body {
+		scrollbar-face-color: $forgeground-color;
+		scrollbar-track-color: $background-color;
+	}
+}
+
+@mixin background($relativeUrl) {
+	background: url($image-root + $relativeUrl);
+}
+ 
+@mixin backgroundNoRepeat($relativeUrl) {
+	background: url($image-root + $relativeUrl) no-repeat 0 0;
+}
+
+@mixin image-background($relativeUrl) {
+	background-image: url($image-root + $relativeUrl);
+}
+
+@mixin main-background() {
+
+	&::before {
+		font-family: $font-family-base;
+	  	font-size: 14px;
+	  	font-weight: 300;
+	  	line-height: 1.6em;
+	  	color: #fff;
+	  	background-color: #fff;
+	  	overflow-x: hidden;
+		content: '';
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-size: cover;
+		will-change: transform;
+		z-index: -1;
+	}
+}
+
+@mixin background-translucent-dard($opacity) {
+	background: rgba(0, 0, 0, $opacity);
+}
+
+@mixin placeholder-style($color, $opacity) {
+	&::-webkit-input-placeholder {
+		color: $color;
+		opacity: $opacity;
+	}
+
+	&:-moz-placeholder {
+		// Firefox 18-
+		color: $color;
+		opacity: $opacity;
+	}
+	&::-moz-placehoder {
+		color: $color;
+		opacity: $opacity;
+	}
+
+	&-ms-input-placeholder {
+		color: $color;
+		opacity: $opacity;
+	}
+}
+
+
+/******* Transition ********/
+@mixin transition-ease($secondsFrom, $secondsEnd: 0s) {
+	-moz-transition: all $secondsFrom ease $secondsEnd;
+	-webkit-transition: all $secondsFrom ease $secondsEnd;
+	-o-transition: all $secondsFrom ease $secondsEnd;
+	transition: all $secondsFrom ease $secondsEnd;
+}
+
+
+@mixin transition-duration($seconds) {
+	-webkit-transition-duration: $seconds;
+	-moz-transition-duration: $seconds;
+	-ms-transition-duration: $seconds;
+	-o-transition-duration: $seconds;
+	transition-duration: $seconds;
+}
+
+@mixin transition-opacity($seconds) {
+	-webkit-transition: opacity $seconds;
+	-moz-transition: opacity $seconds;
+	-o-transition: opacity $seconds;
+	transition: opacity$seconds;
+}
+
+@mixin transition-property-margin() {
+	-webkit-transition-property: height, width;
+  	-moz-transition-property: height, width;
+  	-ms-transition-property: height, width;
+  	-o-transition-property: height, width;
+  	transition-property: height, width;
+}
+
+@mixin transition($seconds: none) {
+	-webkit-transition: $seconds;
+	-moz-transition: $seconds;
+	-ms-transition: $seconds;
+	-o-transition: $seconds;
+	transition: $seconds;
+}
+
+@mixin transition-property-opacity() {
+	-webkit-transition-property: -webkit-transform, opacity;
+  	-moz-transition-property: -moz-transform, opacity;
+  	-ms-transition-property: -ms-transform, opacity;
+ 	-o-transition-property: -o-transform, opacity;
+ 	transition-property: transform, opacity;
+}
+
+
+
+@mixin link-hover($seconds) {
+	transition: all $seconds ease-in-out;
+    -moz-transition: all $seconds ease-in-out;
+    -webkit-transition: all $seconds ease-in-out;
+    -o-transition: all $seconds ease-in-out;
+}
+
+
+
+
+@mixin animation-duration($seconds) {
+	-webkit-animation-duration: $seconds;
+  	-moz-animation-duration: $seconds;
+  	-ms-animation-duration: $seconds;
+  	-o-animation-duration: $seconds;
+  	animation-duration: $seconds;
+}
+
+@mixin fade-in-up($seconds) {
+	-webkit-animation: fadeInUp $seconds;
+  	-moz-animation: fadeInUp $seconds;
+  	-ms-animation: fadeInUp $seconds;
+  	-o-animation: fadeInUp $seconds;
+  	animation: fadeInUp $seconds;
+}
+
+@mixin notification-animate($seconds) {
+	-webkit-animation: pulsate $seconds ease-out;
+            animation: pulsate $seconds ease-out;
+    -webkit-animation-iteration-count: infinite;
+            animation-iteration-count: infinite;
+}
+
+
+@mixin overrideColors($color) {
+	p,
+	h1,h2,h3,h4,h5,h6,
+	.pie-chart-item,
+	.panel-heading>.dropdown .dropdown-toggle,
+	.panel-title,
+	ol.blur span,
+	ul.blur,
+	.popular-app-cost,
+	.popular-app-info,
+	.panel-title>.small,
+	.panel-title>.small>a,
+	.panel-title>small>a,
+	.traffic-text label,
+	.form-group label, 
+	.help-block {
+		color: $color;
+	}
+	.text-muted,
+	.feed-message .message-time {
+		color: $darken($color, 20);
+	}
+}
+
+
+@mixin flex($chunk) {
+	-webkit-box-flex: $chunk;
+    -ms-flex: $chunk;
+    flex: $chunk;
+}
+
+@mixin flex-display() {
+	display: -wekbit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+@mixin flex-align($direction) {
+	-webkit-box-align: $direction;
+    -ms-flex-align: $direction;
+    align-items: $direction;
+}
+
+// Set flex pack direction
+// Drection: justify
+// 			 center
+// 			 space-between
+@mixin flex-pack($direction) {
+	-webkit-box-pack: $direction;
+	-moz-flex-pack: $direction;
+	-ms-flex-pack: $direction;
+	-o-flex-pack: $direction;
+	justify-content: $direction;
+}
+
+@mixin flex-direction($direction) {
+	-webkit-box-flex-direction: $direction;
+	-ms-flex-direction: $direction;
+	flex-direction: $direction;
+}
+
+@mixin flex-orient($direction) {
+	-webkit-box-orient: $direction;
+	-ms-orient: $direction;
+	orient: $direction;
+}
+
+
+
+@mixin user-select-none() {
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
