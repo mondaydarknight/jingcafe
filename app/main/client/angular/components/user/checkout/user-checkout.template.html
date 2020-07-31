@@ -1,0 +1,28 @@
+<section class="container">
+	<div class="cassette">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-12">
+				<div class="container">
+				<div class="plank animated">
+					<div class="plank-heading">
+						<h5 class="plank-title">結帳</h5>
+					</div>
+					<div class="plank-body">
+						<verification>
+							<verification-step title="交易明細" form="$vm.$order">
+								<user-checkout-product-list></user-checkout-product-list>
+							</verification-step>
+							<verification-step title="配送方式" form="$vm.$logistic">
+								<user-checkout-logistic></user-checkout-logistic>						
+							</verification-step>
+							<verification-step title="付款方式" form="$vm.$payment">
+								<user-checkout-payment></user-checkout-payment>
+							</verification-step>						
+						</verification>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+</section>

@@ -1,0 +1,28 @@
+{# JingCafe base layout template application #}
+
+<!DOCTYPE html>
+<html lang="en" data-framework="angularjs">
+	<head>
+		<meta charset="UTF-8">
+  
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="generator" content="JingCafe" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		
+		<title>Jing Cafe</title>
+		<link href="minified.bundle.css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Source+Serif+Pro" rel="stylesheet">
+  
+		<style>[ng-cloak] {display: none;}</style>
+	</head>
+
+	<div ui-view="layout" autoscroll="true" autoscroll-body-top ng-cloak></div>
+
+	<div id="csrf" csrf-name-key="{{ site.csrf.keys.name }}" csrf-name="{{ site.csrf.name }}" csrf-value-key="{{ site.csrf.keys.value }}" csrf-value="{{ site.csrf.value }}" style="display: none;"></div>
+	
+	<script src="admin.minified.bundle.js"></script>
+</html>
+
+
+

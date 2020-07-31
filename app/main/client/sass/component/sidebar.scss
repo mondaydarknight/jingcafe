@@ -1,0 +1,281 @@
+.sidebar-gallery {
+	li {
+		display: inline-block;
+		margin: 0 10px 10px 0;
+
+		a {
+			border-radius: 4px;
+			display: inline-block;
+		}
+	}
+}
+
+.product-category-sidebar {
+	position: relative;
+	margin-bottom: 20px;
+
+	&-heading {
+		position: relative;
+		display: block;
+		width: 100%;
+		text-align: center;
+		font-size: 16px !important;
+	}
+	
+	.product-category {
+		border: 3px solid #F7F7F0;
+		margin-bottom: 35px;
+		padding: 15px 0px 20px;
+		
+		.badge {
+			margin-top: 5px;
+			background: none;
+			border-radius: 10px;
+			color: $item-color;
+			display: inline-block;
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 1;
+			min-width: 10px;
+			padding: 3px 7px;
+			text-align: center;
+			vertical-align: baseline;
+			white-space: nowrap;
+		}
+
+		.panel {
+			background-color: $default;
+			border: 0;
+			border-radius: 0px;
+			box-shadow: none;
+			margin: 0 15px;
+		}
+
+		.panel-heading {
+			a {
+				color: $item-color;
+				font-family: $font-family-roboto;
+				font-size: 16px;
+				font-weight: $font-bold;
+				text-decoration: none;
+				text-transform: uppercase;
+			}
+		}
+
+		.panel-body {
+			border-top: 0 none;
+
+			ul {
+				padding-left: 20px;
+				text-decoration: none;
+				list-style: none;
+				content: '';
+
+				li {
+					color: $item-color;
+					font-family: $font-family-roboto;
+					font-size: 12px;
+					text-transform: uppercase;
+
+					a {
+						&:hover {
+							list-style: none;
+							text-decoration: none;
+							color: $brand-primary;
+						}
+					}
+				}				
+			}
+		}
+
+		.product-measure-items {
+			margin: 0;
+			background-color: $default;
+			border: 0;
+			border-radius: 0px;
+			box-shadow: none;
+			text-decoration: none;
+			list-style: none;
+			content: '';
+
+			li {
+				padding-right: 10px;
+				margin-left: -20px;
+				font-family: $font-family-roboto;
+				font-weight: $font-bold;
+				font-style: 16px;
+			}
+
+			a {
+				background-color: $default;
+				color: $item-color;
+				// padding-bottom: 5px 15px;
+				text-decoration: none;
+				text-transform: uppercase;
+
+				&:hover {
+					text-decoration: none;
+					background-color: $default;
+					color: $brand-primary !important;
+				}
+			}
+		}
+	}
+
+	.shipping {
+		background-color: #F2F2F2;
+		margin-top: 30px;
+		overflow: hidden;
+		padding-top: 20px;
+		position: relative;
+	}
+
+}
+
+
+/************************
+	UserSidebar
+************************/
+.user-sidebar {
+	display: block;
+	-ms-flex-preferred-size: 20%;
+	-ms-flex-negative: 0;
+	flex-basis: 20%;
+	flex-shrink: 0;
+	margin-bottom: 50px;
+	height: auto;
+	background-color: $default;
+	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .12);
+
+	& > .user-brief {
+		display: flex;
+		padding: 15px 10px;
+		border-bottom: 1px solid #efefef;
+	
+		.user-brief-avatar {
+			width: 50px;
+			height: 50px;		
+		}
+
+		.user-brief-info {
+			display: flex;
+			flex-pack: center;
+			flex-direction: column;
+			padding-left: 15px;
+			overflow: hidden;
+			cursor: pointer;
+			content: " ";
+			flex: 1 1 auto;
+
+			.brief-username {
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				margin-bottom: 5px;
+				color: #333;
+			}
+
+			.brief-edit {
+				color: #888;
+				text-transform: capitalize;
+				text-decoration: none;		
+			}
+		}
+	}
+
+	& > .sidebar-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		margin-top: 27px;
+		padding: 5px 10px;
+		cursor:  pointer;
+		
+		.sidebar-dropdown {
+			position: relative;
+			
+			a {
+				text-decoration: none;
+
+				&:active,
+				&.active,
+				&:hover {
+					color: $brand-primary;
+					text-decoration: none;
+					background: $border-color;
+				}
+			}
+
+			&-toggle {
+				display: flex;
+				align-items: center;
+				color: rgba(0, 0, 0, .8);
+				text-decoration: none;
+				text-transform: capitalize;
+				margin-bottom: 18px;
+				transform: color .1s cubic-bezier(.4, 0, .2, 1);
+				
+
+				.dropdown-icon {
+					width: 22px;
+					height: 22px;
+					line-height: 22px;
+					text-align: center;
+					border-radius: 50%;
+					color: $default;
+					-ms-flex-negative: 0;
+					flex-shrink: 0;
+					margin-right: 12px;
+					font-size: 1.5rem;
+
+					&.icon-account {
+						background-color: rgb(255, 193, 7);
+					}
+
+					&.icon-order {
+						background-color: rgb(68, 181, 255);
+					}
+
+					svg {
+						fill: $default;
+						stroke: $default;
+						width: 13px;
+						height: 13px;
+					}
+
+					i {
+						color: $default;
+						font-size: 1rem !important;
+					}			
+				}
+			}
+
+			&-menu {
+				transition: height .4s cubic-bezier(.4,0,.2,1),opacity .4s cubic-bezier(.4,0,.2,1);
+	    		height: auto;
+	    		opacity: 1;
+	    		overflow: hidden;
+				display: block;
+				padding: 0 0 3px 34px;
+
+				li.sidebar-dropdown-item {
+					display: block;
+					content: " ";
+					list-style: none;
+					cursor: pointer;
+					text-decoration: none;
+					color: rgba(0, 0, 0, .8);
+					margin-bottom: 15px;
+					color: #555;
+					font-family: $font-family-base;
+					font-size: 14px;
+					font-weight: 500;
+				}
+			}
+		}
+	}
+}
+
+
+
+

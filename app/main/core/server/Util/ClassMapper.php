@@ -67,6 +67,8 @@ class ClassMapper {
 	/**
 	 * Call a static method for a specified class
 	 *
+	 * @deprecated call_user_func_array
+	 * @todo Use the unpacking argument. It's fastest 
 	 * @param string 	$identifier 	The identifier of class
 	 * @param string 	@method Name 	
 	 * @param mixed 	args whatever needs to pass the method.
@@ -75,9 +77,12 @@ class ClassMapper {
 	{
 		$className = $this->getClassMapper($identifier);
 
-		$params = array_slice(func_get_args(), 2);
-		
-		return call_user_func_array("$className::$methodName", $params);
+		// $params = array_slice(func_get_args(), 2);
+		$parameters = array_slice(func_get_args(), 2);
+
+		// return call_user_func_array("$className::$methodName", $params);
+
+		return $className::$methodName(...$parameters);
 	}
 
 

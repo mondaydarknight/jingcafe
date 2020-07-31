@@ -1,93 +1,57 @@
-ul.pagination {
-	li {
 
-		&.active a,
-		&:hover a {
-			background-color: $brand-primary !important;
-			border-color: $brand-primary !important;
-			color: $default;
-		}
 
-		a {
-			border: 1px solid #F1F1F1;
-			margin-right: 5px;
-			border-radius: 5px;
-			font-size: 16px;
-			padding: 5px 14px;
-
-			i {
-				margin-left: 5px;
-				margin-right: 5px;
-			}
-		}
-	}
-}
-
-.pagination {
+ul.pager-pagination {
 	display: inline-block;
-	margin-bottom: 25px;
-	margin-top: 0;
-	padding-left: 15px;
+	margin-top: 10px;	
+	font-size: 13px;
+	padding: 0;
+	list-style: none;
+	list-style-type: disc;
 
-	li {
-		&:first-child {
-			a,
-			span {
-				border-bottom-left-radius: 0;
-				border-top-right-radius: 0;
+	li.pager-pagination-item {
+		display: inline-block;
+		padding: 0;
+		margin-right: 5px;
+		background: #ebe9f2;
+		color: #898b96;
+		border-radius: 50%;
+		
+		&:active,
+		&.active {
+			background-color: $brand-bright;
+			
+			.pagination-link {
+				color: $default;
 			}
 		}
 
-		&:last-child {
-			a,
-			span {
-				border-bottom-left-radius: 0;
-				border-top-right-radius: 0;
+		&:hover {
+			.paginatino-link {
+				color: #898b96;
 			}
 		}
 
-		a,
-		span {
-			background-color: #f0f0e9;
-			border: 0;
-			float: left;
-			line-height: 1.42857;
-			margin-left: -1px;
-			padding: 6px 12px;
+		.pagination-link {
 			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 2.25rem;
+			min-width: 2.25rem;
+			vertical-align: middle;
+			padding: 0.5rem;
+			text-align: center;
+			font-size: 1rem;
+			line-height: 1rem;
+			font-weight: $font-normal;
 			text-decoration: none;
-			margin-right: 5px;
-			color: $black;
-		}
-
-		a:hover {
-			background: $brand-primary;
-			color: $default;
-		}
-
-	}
-
-	.active {
-		a,
-		a:hover,
-		a:focus,
-		span,
-		span:hover,
-		span:focus {
-			background-color: $brand-primary;
-			border-color: $brand-primary;
-			color: $default;
-			cursor: default;
-			z-index: 2;
+			cursor: pointer;
 		}
 	}
+
+
+
 
 }
-
-
-
-
-
-
 
 

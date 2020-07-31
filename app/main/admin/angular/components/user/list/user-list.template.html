@@ -1,0 +1,28 @@
+
+<div class="widgets">
+	<div class="row">
+		<div class="col-md-6 col-sm-6 col-12">
+			<div class="board">
+				<div class="board-heading">
+					<h5 class="board-title">用戶管理</h5>
+				</div>
+				<div class="board-body">
+					<div class="user-list">
+						<div class="user-list-item" ng-repeat="client in ::$vm.clients">
+							<div class="user-list-img-wrap shop-avatar">
+								<div class="shop-avatar-placeholder">
+									<div ng-bind-html="::$vm.iconUser"></div>
+								</div>
+							</div>
+							<div class="user-list-content">
+								<div class="user-list-content-title">{{::client.username}}</div>
+								<div class="user-list-content-description">{{::client.phone}}</div>
+							</div>
+						</div>						
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+</div>
+

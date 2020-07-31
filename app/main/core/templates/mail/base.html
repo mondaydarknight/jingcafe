@@ -1,0 +1,740 @@
+{% block subject %}
+	Nothing to notify
+{% endblock %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transactional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{site.title}}</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+  			padding: 0;
+		 	font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Microsoft JhengHei;
+		}	
+
+		html, body {			
+			-webkit-font-smoothing: antialiased;
+			-webkit-text-size-adjust: none;
+			width: 100% !important;
+			height: 100% !important;
+			margin: 0;
+			color: #f5f5f5;
+		}
+
+		img {
+			max-width: 600px;
+			outline: none;
+			text-decoration: none;
+			-ms-interpolation-mode: bicubic;
+		}
+
+		h1,h2,h3,h4,h5,h6 {
+			font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Microsoft JhengHei;
+			line-height: 24px;
+			margin-bottom:15px; 
+			color: #333;
+		}
+		h1 small, 
+		h2 small, 
+		h3 small, 
+		h4 small, 
+		h5 small, 
+		h6 small { 
+			font-size: 60%; 
+			color: #6f6f6f; 
+			line-height: 0; 
+			text-transform: none; 
+		}
+
+		h1 { 
+			font-weight:200; 
+			font-size: 44px;
+		}
+
+		h2 { 
+			font-weight:200; 
+			font-size: 37px;
+		}
+		
+		h3 { 
+			font-weight:500; 
+			font-size: 27px;
+		}
+
+		h4 { 
+			font-weight:500; 
+			font-size: 23px;
+		}
+
+		h5 { 
+			font-weight:900; 
+			font-size: 17px;
+		}
+
+		h6 { 
+			font-weight:900; 
+			font-size: 14px; 
+			text-transform: uppercase; 
+			color:#444;
+		}
+
+		a {			
+			/*color: #676767;*/
+			background: #ffffff;			
+			color: rgba(0, 0, 0, .54);
+			cursor: pointer !important;
+			vertical-align: bottom;
+			white-space: nowrap;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-box-sizing: border-box;
+			text-align: center;
+			text-decoration: none;
+			text-rendering: optimizeLegibility;
+			box-sizing: border-box;
+			letter-spacing: 0;
+			font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Microsoft JhengHei;
+			font-size: 16px;
+			font-weight: normal;
+			font-style: normal;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			-moz-font-feature-settings: "liga" on;
+		}
+
+		a img {
+			border: none;
+		}
+
+		strong {
+			font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Microsoft JhengHei;
+			font-weight: 700;
+			letter-spacing: 0;
+		    font-style: normal;
+		    font-size: 16px;
+		    line-height: 24px;
+		    color: #676767;
+		    /*color: rgba(0,0,0,.84);*/
+		    text-rendering: optimizeLegibility;
+		    -webkit-font-smoothing: antialiased;
+		    -moz-osx-font-smoothing: grayscale;
+		    -moz-font-feature-settings: "liga" on;
+		}
+
+		p, ul {
+			margin-bottom: 10px;
+			font-weight: normal;
+			font-size: 14px;
+			line-height: 1.6;
+		}
+
+		p.lead {
+			font-size: 17px;
+		}
+
+		p.last {
+			margin-bottom: 0px;
+		}
+
+		ul li {
+			margin-left: 5px;
+			list-style-position: inside;
+		}
+
+		.alert {
+			position: relative;
+			padding: 0.75rem 1.25rem;
+			margin-bottom: 1rem;
+			border: 1px solid transparent;
+			border-radius: 0.25rem;
+		}
+
+		.alert.alert-danger {
+			color: #792d2d;
+			background-color: #fadddd;
+			border-color: #f9d0d0;
+		}
+
+		.alert a {
+			font-weight: bold;
+			color: #2ba6cb;
+		}
+
+		p.callout {
+			padding: 15px;
+			background-color: #ecf8ff;
+			margin-bottom: 15px;
+		}
+
+		.callout a {
+			font-weight: bold;
+			color: #2ba6cb;
+		}
+
+		.outlook a {
+			padding: 0;
+		}
+
+		.read-message-body {
+			width: 100%;
+		}
+
+		table {
+			border-collapse: collapse !important;
+		}
+
+		table td {
+			border-collapse: collapse;
+		}
+
+		.table-bg {
+			margin: 0 auto;
+			padding: 0;
+			width: 100% !important;
+		}
+
+		td {
+			font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Microsoft JhengHei;
+			font-size: 14px;
+			color: #777777;
+			text-align: center;
+			line-height: 21px;
+		}
+
+		table.social {
+			background: #ebebeb;
+		}
+
+		.social .btn {
+			padding: 3px 7px;
+			font-size: 12px;
+			margin-bottom: 10px;
+			text-decoration: none;
+			color: #ffffff;
+			font-weight: bold;
+			display: block;
+			text-align: center;
+		}
+
+		a.facebook {
+			background: #3d5998 !important;
+		}
+
+		a.google {
+			background: #dd4b39 !important;
+		}
+
+		a.twitter {
+			background: #55acee !important;
+		}
+
+		.sidebar .btn {
+			display: block;
+			width: 100%;
+		}
+
+		.android-container {
+			min-width: 600px;
+		}
+
+		.header-lg,
+		.header-md,
+		.header-sm {
+			font-size: 32px;
+			font-weight: 700;
+			line-height: normal;
+			padding: 35px 0 0;
+			color: #4d4d4d;
+		}
+
+		.header-md {
+			font-size: 24px;
+		}
+
+		.header-sm {
+			padding: 5px 0;
+			font-size: 18px;
+			line-height: 1.3;
+		}
+
+
+		.footer {
+			background-color: #ffffff; 
+			height: 100px; 
+			border-top: 1px solid #e5e5e5;
+		}
+
+		.content-padding {
+			padding: 20px 0 30px;
+		}
+
+		.mobile-header-padding-left {
+			width: 290px;
+			text-align: left;
+			padding-left: 10px;	
+		}
+
+		.collapse {
+			margin: 0 !important;
+		}
+
+		.mobile-header-padding-right {
+			width: 290px;
+			text-align: right;
+			padding-left: 10px;
+		}
+
+		.free-text {
+			width: 100% !important;
+			padding: 10px 60px 0;
+		}
+
+		.block-rounded {
+			border-radius: 5px;
+			border: 1px solid #e5e5e5;
+			vertical-align: top;
+		}
+
+		.info-block {
+			padding: 0 20px;
+			width: 260px;
+		}
+
+		.info-img {
+			width: 250px;
+			border-radius: 5px 5px 0 0;
+		}
+
+		.link {
+			display: inline-block;
+			position: relative;
+			color: rgba(0, 0, 0, .54);
+			font-size: 16px;
+			text-align: center;
+			text-decoration: none !important;
+			cursor: pointer;
+			vertical-align: bottom;
+			white-space: nowrap;
+			text-rendering: none;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			letter-spacing: 0;
+			font-style: normal;
+			text-rendering: optimizeLegibility;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+			-moz-font-feature-settings: "liga" on;
+		}
+
+		.btn {
+			text-decoration:none;
+		  	color: #ffffff;
+		  	font-weight: bold;
+		  	margin-right: 10px;
+		  	text-align: center;
+		  	cursor: pointer;
+		  	/*padding: 10px 16px;*/
+		  	padding: 30px 0;
+		}
+
+		.btn-width {
+			width: 228px;
+		}
+		.btn-verify {
+			font-family: medium-content-sans-serif-font, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Microsoft JhengHei;
+			font-size: 16px;
+			background-color: #FE980F;
+			color: #ffffff;
+			text-align: center;
+			line-height: 45px;
+			border-radius: 5px;
+			display: inline-block;
+			font-weight: normal;
+			text-align: center;
+			text-decoration: none;
+			width: 155px;
+			-webkit-text-size-adjust: none;
+			mso-hide: all; 
+		}
+
+		.force-width {
+			min-width: 600px;
+			height: 0px !important;
+			line-height: 1px !important;
+			font-size: 1px !important;
+		}
+
+		
+		/* ------------------------------------- 
+		    SIDEBAR 
+		------------------------------------- */
+		ul.sidebar {
+			margin-left: 20px;
+		  	background:#ebebeb;
+		  	display:block;
+		  	list-style-type: none;
+		}
+		ul.sidebar li { 
+			display: block; 
+			margin:0;
+		}
+
+		ul.sidebar li a {
+		  	color: #666;
+		  	padding:10px 16px;
+		  	margin-right:10px;
+		  	text-decoration:none;
+		  	text-align:center; 
+		  	font-weight:bold; 
+		  	cursor:pointer;
+		  	border-bottom: 1px solid #d6d6d6;
+		  	border-top: 1px solid #FFFFFF;
+		  	display:block;
+		  	margin:0;
+		}
+		
+		ul.sidebar li a.last { 
+			border-bottom-width:0px;
+		}
+		
+		ul.sidebar li a h1,
+		ul.sidebar li a h2,
+		ul.sidebar li a h3,
+		ul.sidebar li a h4,
+		ul.sidebar li a h5,
+		ul.sidebar li a h6,
+		ul.sidebar li a p { 
+			margin-bottom:0!important;
+		}
+
+		/* --------------------------------------------------- 
+		    RESPONSIVENESS
+		    Nuke it from orbit. It's the only way to be sure. 
+		------------------------------------------------------ */
+
+		/* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
+		.container {
+		  	display: block !important;
+		  	max-width: 600px !important;
+		  	margin: 0 auto !important; /* makes it centered */
+		  	clear: both !important;
+		}
+
+		/* This should also be a block element, so that it will fill 100% of the .container */
+		.content {
+		  	padding:15px;
+		  	max-width:600px;
+		  	margin:0 auto;
+		  	display:block; 
+		}
+
+		/* Let's make sure tables in the content area are 100% wide */
+		.content table { 
+			width: 100%; 
+		}
+
+		/* Odds and ends */
+		.column {
+		  	width: 300px;
+		  	float:left;
+		}
+
+		.column.product-list {
+			width: 400px;
+		}
+
+		.column-other-info {
+			width: 200px;
+		}
+
+		.column-separator {
+			border-right: 1px solid #d6d6d6;
+		}
+
+		.column tr td { 
+			padding: 15px; 
+		}
+		
+		.column-wrap { 
+		  	padding:0!important; 
+		  	margin:0 auto; 
+		  	max-width:600px!important;
+		}
+
+		.column table { 
+			width:100%;
+		}
+
+		.social .column {
+		  	width: 280px;
+		  	min-width: 279px;
+		  	float:left;
+		}
+
+		.external * {
+			line-height: 115%;
+		}
+		
+		.pull-left {
+			float: left;
+		}
+
+		.pull-right {
+			float: right;
+		}
+
+		/* Be sure to place a .clear element after each set of columns, just to be safe */
+		.clear { 
+			display: block; 
+			clear: both; 
+		}
+
+		/* ------------------------------------------- 
+		    PHONE
+		    For clients that support media queries.
+		    Nothing fancy. 
+		-------------------------------------------- */
+		@media only screen and (max-width: 600px) {
+		  	a[class="btn"] { 
+		  		display: block !important; 
+		  		margin-bottom: 10px !important; 
+		  		background-image: none !important; 
+		  		margin-right: 0 !important;
+		  	}
+
+		  	table[class="column"],
+		  	div[class="column"] { 
+		  		width: auto !important; 
+		  		float: none !important;
+		  	}
+		  	
+		  	table.social table[class="column"],
+		  	table.social div[class="column"] {
+		   		width:auto!important;
+		  	}
+		}
+
+	</style>
+	<style type="text/css" media="screen">
+		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
+	</style>
+	<style type="text/css" media="screen">
+		@media screen {
+			* {
+				font-family: 'Oxygen', 'Helvetica Neue', 'Arial', 'sans-serif', Microsoft JhengHei !important;
+			}
+		}
+	</style>
+	<style type="text/css" media="only screen and (max-width: 480px)">
+		/* Mobile styles*/
+
+		@media only screen and (max-width:480px) {
+			table[class*="android-container"] {
+				min-width: 290px !important;
+				width: 100% !important;
+			}
+
+			table[class="w320"] {
+				width: 320px !important;
+			}
+
+			img[class="force-width"] {
+				display: none !important;
+				width: 0 !important;
+				height: 0 !important;
+			}
+
+			a[class="btn-width"],
+			a[class="btn-mobile"] {
+				width: 248px !important;
+			}
+
+			td[class*="mobile-header-padding-left"] {
+				width: 160px !important;
+				padding-left: 0!important;
+			}
+
+			td[class*="mobile-header-padding-right"] {
+				width: 160px !important;
+				padding-right: 0 !important;
+			}
+
+			td[class="header-lg"] {
+				font-size: 24px !important;
+				padding-bottom: 5px !important;
+			}
+
+			td[class="header-md"] {
+				font-size: 18px !important;
+				padding-bottom: 5px !important;
+			}
+
+			td[class="content-padding"] {
+				padding: 5px 0 30px !important;
+			} 
+
+			td[class="btn"] {
+				padding: 5px !important;
+			}
+
+			td[class*="free-text"] {
+				padding: 10px 18px 30px !important;
+			}
+
+			td[class="info-block"] {
+				display: block !important;
+				width: 280px !important;
+				padding-bottom: 40px !important;
+			}
+
+			td[class="info-img"],
+			img[class="info-img"] {
+				width: 278px !important;
+			}
+		}
+	</style>
+</head>
+<body bgcolor="#f5f5f5">
+	<table align="center" cellpadding="0" cellspacing="0" class="android-container" width="100%">
+		<tr>
+			<td align="left" valign="top" width="100%" style="background: repeat-x url(http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg) #ffffff;">
+				<center>
+					<img src="http://s3.amazonaws.com/swu-filepicker/SBb2fQPrQ5ezxmqUTgCr_transparent.png" class="force-width">
+					<table cellspacing="0" cellpadding="0" width="100%" bgcolor="#fffff" background="http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg" style="background-color: transparent;">
+						<tr>
+							<td width="100%" height="80" valign="top" style="text-align: center; vertical-align: middle;">
+								<center>
+									<table cellpadding="0" cellspacing="0" width="600" class="w320">
+										<tr>
+											<td class="pull-left mobile-header-padding-left" style="vertical-align: middle;">
+												<a href=""><img src="" width="137" height="47"></a>
+											</td>
+											<td class="pull-right mobile-header-padding-right" style="color: #4d4d4d">
+												<a href=""><img width="44" height="47" src="http://s3.amazonaws.com/swu-filepicker/k8D8A7SLRuetZspHxsJk_social_08.gif" alt="twitter"></a>
+												<a href=""><img width="38" height="47" src="http://s3.amazonaws.com/swu-filepicker/LMPMj7JSRoCWypAvzaN3_social_09.gif" alt="facebook" /></a>
+                      							<a href=""><img width="40" height="47" src="http://s3.amazonaws.com/swu-filepicker/hR33ye5FQXuDDarXCGIW_social_10.gif" alt="rss" /></a>
+											</td>
+										</tr>
+									</table>
+								</center>
+							</td>
+						</tr>
+						<tr>
+							<!-- <td align="center" valign="top" width="30%" class="container content-padding">
+								<table class="content">
+									<tr>
+										<td>
+											<center>
+												<table cellpadding="0" cellspacing="0">
+													<tr>
+														<td align="center">
+															<h5>JingCafe</h5>
+															<ul class="sidebar">
+																<li>
+																	<a href="" class="btn">關於JingCafe</a>
+																	<a href="" class="btn">About jingcafe</a>
+																	<a href="" class="btn">jingcafe notification</a>
+																</li>
+															</ul>
+														</td>
+													</tr>
+												</table>
+											</center>											
+										</td>
+									</tr>
+								</table>
+							</td> -->
+							<td align="center" valign="top" width="70%" style="background-color: #f7f7f7;" class="content-padding">
+								<center>
+									<table cellpadding="0" cellspacing="0" width="600" class="w320">
+										<tr>
+											<td class="header-lg">
+												歡迎加入 {{  site.title }} 服務專賣店的會員
+											</td>
+										</tr>
+										<tr>
+											<td class="free-text">
+												請點選下方按鈕進行會員認證
+											</td>
+										</tr>
+										<tr>
+											<td class="btn">
+												<div>
+													<a href="https://www.google.com.tw/" class="btn-verify btn-mobile">認證</a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h3>您的交易已送出</h3>
+												<p class="lead">請至交易系統進行check</p>
+												<table cellpadding="0" cellspacing="0" class="social" width="100%">
+													<tr>
+														<td>
+															<table align="left" class="column">
+																<tr>
+																	<td>
+																		<h5>購買清單</h5>
+																		<p class="lead">蛋糕cake resume x1</p>
+																		<a href="" class="btn btn-width">mobileMailChecking</a>
+																	</td>
+																</tr>
+																<tr class="column-wrap">
+																	<td>
+																		<p>sSEslijsner哈囉火</p>
+																		<strong>WCKD 蝦皮</strong>
+																	</td>
+																</tr>
+															</table>
+															<table align="right" class="column">
+																<tr>
+																	<td>
+																		<h5>取貨方式</h5>
+																		<p><strong>{{logistic.name}}</strong></p>
+																		<h5>付款方式</h5>
+																		<p><strong>{{payment.name}}</strong></p>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+												<p class="callout">
+													want modify order 愈修改訂單<a href="" >u點擊</a>
+												</p>
+											</td>
+										</tr>
+									</table>
+								</center>												
+							</td>
+						</tr>
+					</table>
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top" width="100%" class="footer">
+				<center>
+					<table cellpadding="0" cellspacing="0" width="600" class="w320">
+						<td style="padding: 25px 0 25px">
+							<p><strong>JingCafe</strong></p>
+							<p>&copy; 2018 AG. All Rights Reserved.</p>
+						</td>
+					</table>
+				</center>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>
+{% endblock %}

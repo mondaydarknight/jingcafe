@@ -1,0 +1,30 @@
+<form name="$vm.userCheckout.$order" novalidate>
+	<div class="product-list">
+		<div class="product-list-wrap">
+			<div class="product-list-head">
+				<span class="product-list-head-item">商品</span>
+				<span class="product-list-head-item">單價</span>
+				<span class="product-list-head-item">數量</span>
+				<span class="product-list-head-item">總計</span>
+				<span class="product-list-head-item">操作</span>
+			</div>
+			<div class="product-list-content"></div>
+			<div class="product-list-content">
+				<div class="product-content-item-wrap" style="padding: 15px 0; justify-content: center;">
+					<div class="alert alert-info alert-deliver-note" style="min-width: 19rem; text-align: center;">
+						<i class="fa fa-truck"></i><span>滿{{::$vm.userCheckout.shopBase.shop.freeLogisticPrice}}即可免運費</span>
+					</div>
+				</div>
+			</div>
+			<div class="product-list-bottom">
+				<div class="product-list-bottom-item">
+					<button class="btn btn-material width-fixed material-brand no-transform" ng-click="$vm.directToProudctPage()">繼續購物</button>
+				</div>
+				<div class="product-list-bottom-item">
+					<span class="item-text">總金額：</span>
+					<span class="price" style="font-size: 22px;"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

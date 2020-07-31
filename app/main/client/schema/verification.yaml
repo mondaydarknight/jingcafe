@@ -1,0 +1,6 @@
+---
+token:
+  transformations: [escape, xss, trim]
+  validators:
+    required:
+      message: VALIDATE.REQUIRED

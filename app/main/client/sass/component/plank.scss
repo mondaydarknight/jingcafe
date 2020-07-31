@@ -1,4 +1,8 @@
+$plank-title-height: 44px;
+$plank-text: #7d7d7d;
+
 .plank {
+	@include scrollbars(.4em, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.7));
 	color: #666666;
 	background-color: $default;
 	border: none;
@@ -6,10 +10,59 @@
 	position: relative;
 	margin-bottom: 24px;
 	box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.25);
+	height: auto;
 
 	::-webkit-scrollbar {
 		width: 0.4em;
 		height: 0.4em;
+	}
+
+
+	&.animated {
+		animation-duration: 0.5s;
+		transition: all .12s ease-in-out;
+	}
+
+	&.box-border {
+		box-shadow: 0 1px 10px rgba(0, 0, 0, .25);
+		box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);        
+		transition: width .5s;
+		transform-origin: center;
+	}
+	
+	&.register-panel {
+		height: 600px;
+	}
+	
+	&.small-panel {
+		height: $small-panel-height;
+	}
+
+	&.xsmall-panel {
+		height: $xsmall-panel-height;
+	}
+
+	&.medium-panel {
+		height: $medium-panel-height;
+	}
+
+	&.xmedium-panel {
+		height: $extra-medium-panel-height;
+	}
+
+	&.large-panel {
+		height: $large-panel-height;
+	}
+
+	&.viewport {
+		height: calc(100vh - 218px);
+	}
+
+	&.with-scroll {
+		.plank-body {
+			height: calc(100% - #{$plank-title-height});
+			overflow-y: auto;
+		}
 	}
 
 	&-heading {
@@ -18,19 +71,66 @@
 		border-bottom-right-radius: 0;
 	}
 
+	&-body {
+		padding: 15px 22px;
+		height: 100%;
+	}
+
 	&-heading,
 	&-footer {
+		color: $plank-text;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 		box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12);
-		height: 44px;
+		height: auto;
 		font-size: 16px;
-		padding: 2px 22px;
+		padding: 10px 22px 0 22px;
 	}
 
 	&-title {
 		font-weight: 400;
 		text-transform: uppercase;
 		opacity: 0.9;
+	}
+
+	&.plank-primary {
+		background-color: $brand-bg;
+		border-color: $brand-bg;
+	}
+
+	&.plank-success {
+		background-color: $success-bg;
+		border-color: $success-bg;
+	}
+
+	&.plank-info {
+		background-color: $info-bg;
+		border-color: $info-bg;
+	}
+
+	&.plank-warning {
+		background-color: $warning-bg;
+		border-color: $warning-bg;
+	}
+
+	&.plank-danger {
+		background-color: $danger-bg;
+		border-color: $danger-bg;
+	}
+
+	.inline-label {
+		margin-right: 10px;
+	}
+
+	.with-code {
+		line-height: 1.5em;
+	}
+
+	.context {
+		height: 120px;
+	}
+
+	.light-text {
+		font-weight: $font-light;
 	}
 
 }

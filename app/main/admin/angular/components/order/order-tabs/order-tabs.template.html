@@ -1,0 +1,8 @@
+
+<div class="verification">
+	<div class="verification-tab">
+		<div class="verification-tab-item" ng-repeat="tab in ::$vm.tabs" ng-class="{'active': $vm.tabIndex == $index}" ng-click="$vm.selectTab($index)">{{::tab.title()}}</div>
+	</div>
+</div>
+
+<div ng-transclude></div>

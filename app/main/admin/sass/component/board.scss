@@ -1,0 +1,70 @@
+
+
+.board {
+	position: relative;
+	height: auto;
+	background-color: $default;
+	border: none;
+	margin-bottom: 24px;
+	box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .25);
+
+	&.animated {
+		-webkit-animation-duration: .5s;
+		animation-duration: .5s;
+		-webkit-animation-fill-mode: both;
+    	animation-fill-mode: both;
+	}
+
+	&.zoom-in {
+		-webkit-animation-name: zoomIn;
+    	animation-name: zoomIn;
+	}
+
+	&.with-scroll {
+		height: calc(100% - 44px);
+		overflow: auto;
+	}
+
+	&.board-xs {
+		height: 300px;
+	}
+
+	&.board-sm {
+		height: 600px;
+	}
+
+	&.board-md {
+		height: 900px;
+	}
+
+	&.board-lg {
+		height: 1200px;
+	}
+
+	&-heading {
+		border-bottom: 1px solid rgba(0, 0, 0, .12);
+		// border-top-left-radius: 3px;
+		// border-top-right-radius: 3px;
+		box-shadow: 0 1px 0 0 rgba(255, 255, 255, .12);
+		color: $text-title-color;
+		height: auto;
+		font-size: 16px;
+		padding: 14px 18px;
+
+		.board-title {
+			font-weight: $font-light;
+			opacity: .9;
+		}
+	}
+
+	&-body {
+		padding: 15px 22px;
+		height: 100%;
+
+		&:before {
+			display: table;
+			content: " ";
+		}
+	}
+
+}

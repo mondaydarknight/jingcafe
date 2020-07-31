@@ -61,7 +61,6 @@ class MainDomainManager {
 	 */
 	public function addResource($resourceName, $mainDomainName)
 	{
-		$resourcePath = $this->resourcePaths[$resourceName];
 		$fullPath = \JingCafe\APP_DIR .DIRECTORY_SEPARATOR . \JingCafe\MAIN_DIR_NAME .DIRECTORY_SEPARATOR . $mainDomainName . DIRECTORY_SEPARATOR . $resourceName;
 
 		$this->container->locator->addPath($resourceName, '', $fullPath);

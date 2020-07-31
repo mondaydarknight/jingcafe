@@ -1,0 +1,89 @@
+<div class="box box-default">
+	<div class="box-heading">
+		<h4 class="box-title">產品內容</h4>
+	</div>
+	<div class="box-body">
+		<div class="product-detail">
+			<div class="row">
+				<div class="col-md-5 col-sm-12 col-12">
+					<div class="view-product">
+						<a ng-href="{{::$vm.product.profile}}" class="fancybox" data-fancybox-group="gallery" title="產品內容">
+							<img class="product-thumbnail rounded" ng-src="{{::$vm.product.profile}}" alt="">
+						</a>
+					</div>
+					<div class="similiar-product"></div>
+				</div>
+				<div class="col-md-7 col-sm-12 col-12 padding-right">
+					<div class="product-introduction">
+						<div class="introduction-head">
+							<div>
+								<h2 class="product-name">{{::$vm.product.name}}</h2>
+								<label class="outline outline-light" style="padding: 0px;margin: 0;">{{::$vm.product.enName}}</label>
+							</div>
+							<div class="discount" ng-if="::$vm.product.discount && $vm.product.discount < 10">
+								<span class="discount-arrow"></span>
+								<span class="discount-text">{{::$vm.product.discount}}</span>
+								<small class="discount-small">折</small>
+							</div>
+						</div>
+						<hr>
+						<div class="product-detail-wrap">
+							<p class="outline-content">{{::$vm.product.characteristic}}</p>
+							<div class="alert alert-info alert-deliver-note">
+								<i class="fa fa-truck"></i> <span>滿{{::$vm.shopBase.shop.freeLogisticPrice}}即可免運費</span>
+							</div>
+							<label class="list-item">
+								<span class="badge badge-pill badge-success">{{::$vm.productInterface.productCategoryName}}</span>
+							</label>				
+							<div class="original-price" style="display: inline-block;">{{::$vm.product.price | currency: '$NT': 0}}</div>
+							<label class="price" style="display: inline-block; padding-left: 15px;">{{::$vm.product.currentPrice | currency:'NT$': 0}}</label>
+							<label class="list-item">庫存: <span class="item-mark">{{::$vm.product.amount}}</span></label>				
+							<div class="input-group product-select-quantity">
+								<span class="input-group-btn">
+									<button class="btn btn-default btn-quantity no-transform btn-none" ng-click="$vm.substract($event)">
+										<i class="fa fa-minus"></i>
+									</button>
+								</span>
+								<input type="text" name="quantity" class="form-control text-center input-xs" ng-model="$vm.product.quantity" ng-change="$vm.inputQuantity()" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+								<span class="input-group-btn">
+									<button class="btn btn-default btn-quantity no-transform btn-none" ng-click="$vm.plus($event)">
+										<i class="fa fa-plus"></i>
+									</button>
+								</span>
+							</div>
+							<div>
+								<button class="btn btn-brand btn-lg btn-width-icon" ng-click="$vm.purchase()" style="width: 180px;">
+									<i class="fa fa-shopping-cart"></i> 加入購物車
+								</button>
+							</div>
+							<div style="margin-top: 15px;">
+								<button class="btn btn-success btn-lg btn-width-icon" ng-click="$vm.purchase(true)" style="width: 180px;"><i class="fa fa-dollar"></i> 直接結帳</button>
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>			
+		</div>		
+	</div>
+</div>
+
+<div class="product-tabs">
+	<div class="product-tabs-wrap">
+		<ul class="product-tabs-header">
+			<li class="tab-item active">
+				<a href class="tab-item-link">產品說明</a>
+			</li>
+		</ul>
+		<div class="product-tabs-content">
+			<!-- <div class="product-list-box">
+				<div class="product-list-box-wrap">
+					<div class="box-item">產品編號: {{::$vm.product.productKey}}</div>
+				</div>
+			</div> -->
+			<div class="description" ng-bind-html="::$vm.product.description"></div>				
+		</div>
+	</div>
+</div>
+
+
+<product-billboard recommend-products="$vm.recommendProducts"></product-billboard>

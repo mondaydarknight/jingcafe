@@ -1,0 +1,54 @@
+
+<div class="text-center">
+	<h4 class="outline">產品</h4>
+</div>
+<div class="product-overview">
+	<div class="row">
+		<div class="col-lg-4 col-md-6 col-sm-8 col-12 col-auto" ng-repeat="product in ::$vm.products | filter:$vm.filterProductByInput track by product.id">
+			<div class="product-overview-wrapper text-center">
+				<div class="discount" ng-if="::product.discount && product.discount < 10">
+					<span class="discount-arrow"></span>
+					<span class="discount-text">{{::product.discount}}</span>
+					<small class="discount-small">折</small>
+				</div>
+				<div class="product-info" ui-sref="shop.product.detail({'productId': product.id})">
+					<!-- src="data:image/png;base64,{{main.user.imageData}}" -->
+					<!-- <img class="img-product" ng-src="{{::product.profile}}" alt=""> -->
+					<div class="product-view">
+						<div class="view-pic" style="background-image: url({{::product.profile}});"></div>
+					</div>
+					<label class="product-name">{{::product.name}}</label>					
+					<h5 class="original-price">{{::product.price | currency: '$NT': 0}}</h5>					
+					<h2 class="price">{{::product.currentPrice | currency:'NT$': 0}}</h2>
+				</div>
+				<!-- <div class="options">
+					<div class="options-item flex1">
+						<a href=""><i class="fa fa-plus-square"></i> 加入收藏</a>						
+					</div>					
+					<div class="options-item flex1">
+						<a href=""><i class="fa fa-plus-square"></i> 比較商品</a>
+					</div>
+					</div> -->
+			</div>
+		</div>
+	</div>
+</div>		
+
+	<!-- <div class="product-overview-wrapper sell-out">
+						<div class="sell-out-wrap">
+							<div class="sell-out-tip">已售完</div>
+						</div>
+						<div class="product-info">
+							<img src="/assets/img/products/1suna9X_mrEZ.png" alt="">
+							<label class="product-name">清新餅乾</label>
+							<h2 class="price">$27</h2>
+						</div>
+						<div class="options">
+							<div class="options-item flex1">
+								<a href=""><i class="fa fa-plus-square"></i> 加入收藏</a>						
+							</div>					
+							<div class="options-item flex1">
+								<a href=""><i class="fa fa-plus-square"></i> 比較商品</a>
+							</div>
+						</div>
+					</div> -->

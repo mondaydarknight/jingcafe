@@ -1,0 +1,44 @@
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 offset-md-1 col-sm-12 col-12">
+			<div class="box box-default">
+				<div class="box-heading">
+					<h5 class="box-title">付款結帳</h5>
+				</div>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-lg-8 col-md-8 col-sm-9 col-12" style="margin: 20px 0;">
+							<p class="text-content">請填寫下方匯款資訊，以便客服確認訂單！</p>
+							<form name="paymentForm" ng-submit="paymentForm.$valid && $vm.settlePayment()" novalidate>
+								<div class="form-group has-feedback clearfix" ng-class="{'has-success': paymentForm.username.$valid && paymentForm.username.$dirty, 'has-error': paymentForm.username.$invalid && (paymentForm.username.$dirty || paymentForm.$submitted)}">
+									<input type="text" name="username" class="form-control form-control-success form-control-error" ng-model="$vm.payment.username" placeholder="匯款人姓名" required autofocus>
+									<span class="help-block error-block basic-block">請輸入匯款人姓名</span>
+								</div>
+								<div class="form-group has-feedback clearfix" ng-class="{'has-success': paymentForm.account.$valid && paymentForm.account.$dirty, 'has-error': paymentForm.account.$invalid && (paymentForm.account.$dirty || paymentForm.$submitted)}">
+									<input type="text" name="account" class="form-control form-control-success form-control-error" onkeypress="return event.charCode >= 48 && event.charCode <= 57;" ng-model="$vm.payment.account" placeholder="匯款帳戶後五碼" required>
+									<span class="help-block error-block basic-block">請輸入匯款帳戶後五碼</span>
+								</div>
+								<!-- <div class="form-group has-feedback clearfix" ng-class="{'has-success': paymentForm.payPrice.$valid && paymentForm.payPrice.$dirty, 'has-error': paymentForm.payPrice.$invalid && (paymentForm.payPrice.$dirty || paymentForm.$submitted)}">
+									<input type="text" name="payPrice" class="form-control form-control-success form-control-error" ng-model="$vm.payment.payPrice" placeholder="匯款金額" onkeypress="return event.charCode >= 48 && event.charCode <= 57;" required>
+									<span class="help-block error-block basic-block">請輸入匯款金額</span>
+								</div> -->
+								<div class="text-center">
+									<button type="submit" class="btn btn-material width-fixed no-transform">確認</button>
+								</div>						
+							</form>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-3 col-12">
+							<div class="settle-payment-icon">
+								<i class="fa fa-dollar"></i>
+							</div>	
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

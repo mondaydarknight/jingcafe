@@ -1,0 +1,45 @@
+
+<form name="$vm.userCheckout.$logistic" class="box box-material" novalidate>
+	<div class="row">
+		<div class="col-md-6 col-sm-12 col-12 with-separator">
+			<div class="container">
+				<div class="col-sm-8 col-8 offset-sm-2 offset-2 text-center">
+					<div class="alert alert-info" style="margin-top: 10px;">
+						<label class="custom-checkbox checkbox-inline" ng-click="$vm.toggleRenderUserInfo($event)">
+							<input class="user-basic-info" type="checkbox">
+							<span>同會員資料</span>
+						</label>
+					</div>	
+				</div>
+				<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.userCheckout.$logistic.username.$invalid && ($vm.userCheckout.$logistic.username.$dirty || $vm.userCheckout.$logistic.$submitted)}">
+					<label class="control-label">姓名</label>					
+					<input type="text" name="username" class="form-control" ng-model="$vm.userCheckout.params.logistic.username" placeholder="付款人姓名" required> 
+					<span class="help-block error-block basic-block">請填寫付款人姓名</span>
+				</div>
+				<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.userCheckout.$logistic.phone.$invalid && ($vm.userCheckout.$logistic.phone.$dirty || $vm.userCheckout.$logistic.$submitted)}">
+					<label class="control-label">電話</label>
+					<input type="text" name="phone" class="form-control" ng-model="$vm.userCheckout.params.logistic.phone" placeholder="電話" required>
+					<span class="help-block error-block basic-block">請填寫電話</span>
+				</div>
+			</div>		
+		</div>
+		<div class="col-md-6 col-sm-12 col-12">
+			<div class="container">
+				<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.userCheckout.$logistic.name.$error.required && $vm.userCheckout.$logistic.$submitted}" style="margin: 1rem 0;">
+					<div class="logistic-item">
+						<div class="logistic-item-inner">
+							<div class="logistic-item-content">
+								<input type="text" class="logistic-item-title" name="name" ng-model="$vm.userCheckout.params.logistic.name" readonly required>
+								<span class="logistic-item-detail text-overflow">{{$vm.userCheckout.params.logistic.address}}</span>
+							</div>	
+							<div class="logistic-item-sub-content"></div>
+						</div>
+					</div>
+					<button class="btn btn-default btn-with-icon no-transform" ng-click="$vm.selectLogistic()"><em class="fa fa-plus"></em> 選擇配送方式</button>
+					<span class="help-block error-block basic-block">請選擇配送方式</span>
+				</div>	
+			</div>			
+		</div>
+	</div>
+</form>
+

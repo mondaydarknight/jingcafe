@@ -1,0 +1,82 @@
+/**
+ * body.modal-open {
+ * 		.modal {
+ *    		@extend .show;
+ *  	}
+ *  	.modal-backdrop {
+ *    		@extend .modal-backdrop.show;
+ *  	}
+ * }
+ */
+
+/**
+ * Angular UI was working until [alpha 5], however the modal open was disappear when $uibModal.open() 
+ * The issue is fiexed with bootstrap v4.0 
+ * 1. By adding {windowClass: 'show', backdropClass: 'show'} to the end of the $uibModal.open()
+ * 2. Add scss file to fix problem of modal visibility.
+ * 3. angular.module('app').config(['$uibModalProvider', () => {
+ * 		$uibModalProvider.options.windowClass = 'show';	
+ * 		$uibModalProvider.options.backdropClass = 'show';
+ * 	  } $uibModal])
+ *
+ *
+ */
+
+    .modal {
+        &.in {
+            opacity: 1;
+            .modal-dialog {
+                -webkit-transform: translate(0, 0);
+                -o-transform: translate(0, 0);
+                transform: translate(0, 0);
+            }
+        }
+    }
+
+    .modal-backdrop {
+        &.fade {
+            filter: alpha(opacity=0);
+            opacity: 0;
+        }
+        &.in {
+            filter: alpha(opacity=50);
+            opacity: .5;
+        }
+    }
+
+
+.modal {
+    .modal-title {
+        font-size: 26px;
+        font-weight: 500;
+    }
+
+
+    .modal-header {
+        &.modal-success {
+            background-color: $success;
+            .modal-title {
+                font-size: 16px;
+                color: $default;
+            }
+        }
+
+        &.modal-warning {
+            background-color: $warning;
+            .modal-title {
+                font-size: 16px;
+                color: $default;
+            }
+        }
+
+        &.modal-danger {
+            background-color: $danger;
+            .modal-title {
+                font-size: 16px;
+                color: $default;
+            }
+        }
+    }
+}
+
+

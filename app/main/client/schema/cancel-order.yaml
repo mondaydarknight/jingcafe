@@ -1,0 +1,11 @@
+---
+orderId:
+  transformations: [escape, trim]
+  validators:
+    integer:
+      message: VALIDATE.INVALID_INTEGER
+reasonId:
+  transformations: [escape, trim]
+  validators:
+    integer:
+      message: VALIDATE.INVALID_INTEGER

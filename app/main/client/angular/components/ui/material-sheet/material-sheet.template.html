@@ -1,0 +1,12 @@
+<div class="material-sheet">
+	<div class="material-sheet-inner">
+		<ul class="material-sheet-menu">
+			<li class="material-sheet-item item-wrap" ng-repeat="menu in ::$vm.shopMenuItems" ng-if="!menu.isAdmin || (menu.isAdmin && $vm.AuthService.isAuthenticated)">
+				<span class="material-sheet-title">{{::menu.title}}</span>
+				<a class="material-sheet-link" href ng-click="$vm.directToMenuPage($event, menuItem)" ng-repeat="menuItem in ::menu.shopItems">
+					<i class="{{::menuItem.icon}}"></i> {{::menuItem.title}}
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

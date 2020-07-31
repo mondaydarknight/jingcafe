@@ -1,0 +1,38 @@
+
+<li class="navbar-list-item notification">
+	<a href class="notification-toggle with-icon item-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<span class="sr-only">cart-dropdown-toggle</span>
+		<i class="fa fa-bell-o"></i>
+		<!-- <span class="with-icon icon-inverse" ng-bind-html="::$vm.iconNotification"></span> -->
+		<span class="notification-toggle-quantity" ng-if="$vm.notifications.length">{{$vm.notifications.length}}</span>
+		<span class="notification-toggle-ring"></span>
+	</a>
+	<div class="dropdown-menu notification-menu" role="menu" aria-labelledby="notification-label">
+		<i class="notification-arrow"></i>
+		<div class="notification-menu-header clearfix">
+			<strong>通知</strong>
+		</div>
+		<div class="notification-menu-list clearfix">
+			<a href class="notification-list-item" ng-repeat="notification in $vm.notifications">
+				<div class="notification-item-domain">
+					<div class="notification-img">
+						<i class="photo-message-item img-circle" ng-bind-html="::notification.icon"></i>
+					</div>
+					<div class="notification-content">
+						<div class="notification-content-item">
+							<div class="notification-label">{{::notification.title}}</div>
+							<button type="button" class="close" data-label="Close" ng-click="$vm.remove($event, $index)" style="margin-right: 5px">
+								<em aria-hidden="true" class="sn-link-close">&times;</em>
+							</button>
+						</div>
+						<div class="notification-content-item">
+							<div class="notification-detail">{{::notification.context}}</div>
+							<small class="notification-time">{{::notification.dateTime}}</small>
+						</div>
+					</div>
+				</div>
+			</a>				
+		</div>
+	</div>
+</li>
+

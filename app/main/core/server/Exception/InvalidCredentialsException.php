@@ -11,6 +11,6 @@ namespace JingCafe\Core\Exception;
  */
 class InvalidCredentialsException extends HttpException
 {
-	protected $defaultMessage = 'USER_OR_PASS_INVALID';
+	protected $defaultMessage = 'ACCOUNT.USER_OR_PASS_INVALID';
 	protected $httpErrorCode = 403;
 }

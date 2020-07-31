@@ -1,28 +1,39 @@
+import HttpService from './HttpService';
 
-export default class ProductService {
+class ProductService  extends HttpService {
 
-	constructor(HttpService) {
+	constructor($state, $http, AuthService, CONSTANTS) {
 		'ngInject';
 
-		this.HttpService = HttpService;
+		super($http, AuthService, CONSTANTS);
+
+		this.$state = $state;
 	}
 
-	getProductCategory() {
-		return this.HttpService.get('/shop/product/category');
+	directToDefaultProductList() {
+		return this.$state.go('shop.product.list', {productCategory: 'coffee_bean'});
 	}
 
-	getProducts(params) {
-		if (Object.getOwnPropertyNames(params).length > 0) {
-			return this.HttpService.get('/shop/product/', {uri: params.productCategory}, true);
-		}
+	categories() {
+		return this.get('/shop/product/categories');
 	}
 
-	getProductDetail(params) {
-		if (Object.getOwnPropertyNames(params).length > 0) {
-			return this.HttpService.get('/shop/product/detail', {productId: params.productId, productKey: params.productKey}, true);
-		}
+	recommendProducts() {
+		return this.get('/shop/product/recommend');
 	}
 
+	latestProduct() {
+		return this.get('/shop/product/latest');
+	}
 
+	overview(params) {
+		return this.get('/shop/product', {uri: params.productCategory});
+	}
+
+	detail(params) {
+		return this.get('/shop/product/detail', {productId: params.productId, productKey: params.productKey}, true);		
+	}
 
 }
+
+export default ProductService;

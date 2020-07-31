@@ -1,0 +1,102 @@
+
+.not-found {
+	position: relative;
+	display: block;
+	background-color: #f7f7f7;
+	text-align: center;
+
+	&-wrap {		
+		margin: 20px auto;
+		// width: 120px;
+		height: auto;
+		font-size: 14px;
+		font-weight: $font-light;
+		font-family: $font-family-lato;
+		letter-spacing: .05em;
+		line-height: 1.5em;
+	}
+
+	&-title {
+		font-size: 16px;
+		font-weight: $font-light;
+		text-transform: uppercase;
+		padding: 10px 0;
+	}
+
+	&-items {
+		font-size: 50px;
+		height: 60px;
+
+		.fa {
+			position: absolute;
+			top: calc(50% - 0.4em);
+			left: calc(50% - 0.4em);
+			opacity: 0;
+		
+			&:nth-child(1) {
+				animation: slideFade 20s 0s infinite linear;
+			}
+
+			&:nth-child(2) {
+				animation: slideFade 20s 2s infinite linear;	
+			}
+
+			&:nth-child(3) {
+				animation: slideFade 20s 4s infinite linear;
+			}
+
+			&:nth-child(4) {
+				animation: slideFade 20s 6s infinite linear;
+			}
+
+			&:nth-child(5) {
+				animation: slideFade 20s 8s infinite linear;
+			}
+
+			&:nth-child(6) {
+				animation: slideFade 20s 10s infinite linear;
+			}
+
+			&:nth-child(7) {
+				animation: slideFade 20s 12s infinite linear;
+			}
+
+			&:nth-child(8) {
+				animation: slideFade 20s 14s infinite linear;
+			}
+
+			&:nth-child(9) {
+				animation: slideFade 20s 16s infinite linear;
+			}
+
+			&:nth-child(10) {
+				animation: slideFade 20s 18s infinite linear;
+			}			
+		}
+	}
+}
+
+
+@keyframes slideFade {
+  	0% {
+    	opacity: 0;
+    	transform: translate(50px, 0);
+  	}
+  	4.5% {
+    	opacity: 1;
+    	transform: translate(10px, 0);
+  	}
+  	10.5% {
+    	opacity: 1;
+    	transform: translate(-10px, 0);
+  	}
+  	15% {
+    	opacity: 0;
+    	transform: translate(-50px, 0);
+  	}
+  	100% {
+    	opacity: 0;
+    	transform: translate(50px, 0);
+  	}
+}
+

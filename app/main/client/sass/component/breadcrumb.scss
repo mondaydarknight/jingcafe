@@ -1,0 +1,32 @@
+.breadcrumbs {
+	position: relative;
+
+	.breadcrumb {
+		background: transparent;
+		margin-bottom: 75px;
+		padding-left: 0;
+
+		li {
+			a {
+				background: $brand-primary;
+				color: $default;
+				padding: 3px 7px;
+			
+				&:after {
+					content: "";
+					height: auto;
+					width: auto;
+					border-width: 8px;
+					border-style: solid;
+					border-color: transparent transparent transparent $brand-primary;
+					position: absolute;
+					top: 11px;
+					left: 48px;
+				}
+			}
+		}
+
+	}
+
+
+}

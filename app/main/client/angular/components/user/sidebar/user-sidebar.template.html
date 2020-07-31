@@ -1,0 +1,48 @@
+<div class="user-sidebar">
+	<div class="user-brief">
+		<div class="shop-drawer">
+			<div class="inner-drawer">
+				<div class="shop-avatar user-brief-avatar">
+					<div class="shop-avatar-placeholder">
+						<svg class="shop-svg-icon icon-headshot" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+							<g>
+								<circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10"></circle>
+								<path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10"></path>
+							</g>
+						</svg>					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="user-brief-info">
+			<span class="brief-username">{{::$vm.AuthService.user.username}}</span>
+			<div class="brief-edit">
+				<span>修改個人資料</span>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar-list">
+		<div class="sidebar-dropdown">
+			<a href class="sidebar-dropdown-toggle" ui-sref="shop.user.information">
+				<div class="dropdown-icon icon-account">
+					<svg class="shop-svg-icon icon-headshot" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+						<g>
+							<circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10"></circle>
+							<path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10"></path>
+						</g>
+					</svg>
+				</div>
+				<span class="text-normal">我的帳戶</span>
+			</a>
+			<!-- <ul class="sidebar-dropdown-menu">
+				<li class="sidebar-dropdown-item"><a href="">個人檔案</a></li>
+			</ul> -->
+			<a href class="sidebar-dropdown-toggle" ui-sref="shop.user.order.list">
+				<div class="dropdown-icon icon-order">
+					<i class="fa fa-list"></i>
+				</div>
+				<span class="text-normal">訂單管理</span>
+			</a>
+		</div>
+	</div>
+</div>

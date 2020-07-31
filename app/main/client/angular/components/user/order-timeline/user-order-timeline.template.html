@@ -1,0 +1,58 @@
+<div class="plank animated box-border">
+	<div class="plank-heading">
+		<h5 class="plank-title">出貨資訊</h5>
+	</div>
+	<div class="plank-body">
+		<div class="row">
+			<div class="col-sm-4 col-sm-4 col-12">
+				<div class="trend">
+					<div class="trend-wrap">
+						<h5 class="text-normal">{{::$vm.order.username}}</h5>
+						<p>{{::$vm.order.phone}}</p>
+						<p>請密切關注我們的動態哦</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-8 col-sm-8 col-12 border-interval">
+				<div class="timeline css-animation">
+					<div class="timeline-block">
+						<div class="timeline-img">
+							<div class="timeline-icon default"></div>
+						</div>
+						<div class="timeline-content">
+							<label class="text-normal">{{::$vm.order.createdAt}}</label>
+							<p>訂單成立</p>
+						</div>
+					</div>
+					<div class="timeline-block">
+						<div class="timeline-img">
+							<div class="timeline-icon default"></div>
+						</div>
+						<div class="timeline-content">
+							<label>{{::$vm.order.paidAt}}</label>
+							<p>買家付款成立</p>
+						</div>
+					</div>
+					<div class="timeline-block">
+						<div class="timeline-img">
+							<div class="timeline-icon default"></div>
+						</div>
+						<div class="timeline-content">
+							<span class="text-normal">{{::$vm.order.producedAt}}</span>
+							<p>賣家出貨</p>
+						</div>
+					</div>
+					<div class="timeline-block">
+						<div class="timeline-img">
+							<div class="timeline-icon"></div>	
+						</div>
+						<div class="timeline-content warning">
+							<span>{{::$vm.order.completedAt}}</span>
+							<p>訂單完成</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

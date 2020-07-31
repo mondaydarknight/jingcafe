@@ -1,0 +1,43 @@
+
+
+.login-form {
+	position: relative;
+	display: block;
+	padding-top: 20px;
+	
+	&-wrap {
+		margin: 20px 0;
+		position: relative;
+		overflow: hidden;
+		transform: translateY(0);
+		box-sizing: border-box;
+	}
+
+	&-title {
+		text-align: center;
+		font-size: 24px;
+		color: $text-title-color;
+	}
+
+	.board {
+		border-radius: 4px;
+		box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);    	
+	}
+
+	&-content {
+		padding-top: 6px;
+		display: block;
+
+		.form-control {
+			transition: border-color .25s ease;
+			cursor: text;
+			border-radius: 2rem;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, .02);
+			padding-left: 15px;
+			// border: 1px solid rgba(0, 0, 0, .14);			
+		}
+
+	}
+
+}
+

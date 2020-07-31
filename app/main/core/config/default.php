@@ -9,7 +9,6 @@
  */
 
 return [
-	'alert' => [],
 	'assets' => [
 		'raw' => [
 			'path'		=> 'assets',
@@ -63,8 +62,25 @@ return [
 		'smtp'		=> false,
 		'twig'		=> false
 	],
+
+	'file' => [
+		'name' 			=> null,
+		'maxSize' 		=> null,
+		'fileMaxSize' 	=> null,
+		'extenssions' 	=> null,
+		'required'		=> null,
+		// 'uploadDir'		=> '/assets/img/',
+		'title'			=> ['{random}{date}', 32],
+		'replace'		=> true,
+		'listInput'		=> true,
+		'files'			=> null
+	],
 	'mail' => [
 		// Set to one of smtp, mail, qmail, sendmail
+		'admin' => [
+			'email' => getenv('SMTP_USERNAME'),
+			'name'	=> \JingCafe\NAME
+		],
 		'mailer'	=> 'smtp',
 		'service'	=> \JingCafe\NAME,
 		'host'		=> getenv('SMTP_HOST') ?: null,
@@ -73,47 +89,26 @@ return [
 		'secure'	=> 'tls',
 		'username'	=> getenv('SMTP_USERNAME') ?: null,
 		'password'	=> getenv('SMTP_PASSWORD') ?: null,
-		'debug'		=> 4
+		'debug'		=> 4,
+		'options'	=> [
+			'isHtml'	=> true,
+			'CharSet' 	=> 'UTF-8',
+			'Timeout'	=> 15
+		],
+		'certificate' => [
+			'ssl' => [
+				'verify_peer' 		=> false,
+				'verify_peer_name'	=> false,
+				'allow_self_signed'	=>  true
+			]
+		]
 	],
 	'path' => [
 		'document_root' 	=> str_replace(DIRECTORY_SEPARATOR, '/', $_SERVER['DOCUMENT_ROOT']),
-		'public_relative'	=> dirname($_SERVER['SCRIPT_NAME'])
-	],
-	'session' => [
-		'name'			=> \JingCafe\NAME . 'Client',
-		'minutes'		=> 120,
-		'cache_limiter'	=> false,
-		// Decouples the session keys used to store certain session info
-		'keys' 			=> [
-			'csrf' 				=> 'site.csrf',
-			'current_user_id' 	=> 'account_user_id'
-		],
-		'handler'		=> 'file',
-		// Config values for when using db-based session
-		'database'		=> [
-			'table' => 'sessions'
-		]		
-	],
-	'settings' => [
-		'displayErrorDetails' => true
-	],
-	'site' => [
-		'csrf' => null,
-		'locales' => [
-			'available' => [
-				'en_US' => 'English',
-				'zh_TW'	=> '中文'
-			],
-			'default' => 'zh_TW'
-		],
-		'title' => 'JingCafe',
-		'uri' => [
-			'base' => [
-				'host'		=> isset($_SERVER['SERVER_NAME']) ? trim($_SERVER['SERVER_NAME'], '/') : 'localhost',
-				'scheme'	=> empty($_SERVER['HTTPS']) || $_SERVER['HTTTPS'] === 'off' ? 'http' : 'https',
-				'port'		=> isset($_SERVER['SERVER_PORT']) ? (int)$_SERVER['SERVER_PORT'] : null,
-				'path'		=> isset($_SERVER['SCRIPT_NAME']) ? trim(dirname($_SERVER['SCRIPT_NAME']), '/\\') : '' 
-			]
+		'public_relative'	=> dirname($_SERVER['SCRIPT_NAME']),
+		'assets'			=> [
+			'icon'			=> \JingCafe\PUBLIC_PATH . '/assets/img/icon',
+			'product'		=> '/assets/img/products/'
 		]
 	],
 	'persistence' => [
@@ -129,6 +124,65 @@ return [
 			'persistentTokenColumn'	=> 'persistence_token',
 			'expiresColumn'			=> 'expired_at'
 		]
+	],
+	'session' => [
+		'name'			=> \JingCafe\NAME . 'Client',
+		'minutes'		=> 120,
+		'cache_limiter'	=> false,
+		// Decouples the session keys used to store certain session info
+		'keys' 			=> [
+			'csrf' 				=> 'site.csrf',
+			'current_user_id' 	=> 'account_user_id'
+		],
+		'handler'		=> 'file',
+		// Config values for when using db-based session
+		'database'		=> [
+			'table' => 'sessions'
+		]
+	],
+	'settings' => [
+		'displayErrorDetails' => true
+	],
+	'site' => [
+		'csrf' => null,
+		'charset' => 'UTF-8',
+		'locales' => [
+			'available' => [
+				'en_US' => 'English',
+				'zh_TW'	=> '中文'
+			],
+			'default' => 'zh_TW'
+		],
+		'title' => \JingCafe\NAME,
+		'uri' => [
+			'base' => [
+				'host'		=> isset($_SERVER['SERVER_NAME']) ? trim($_SERVER['SERVER_NAME'], '/') : 'localhost',
+				'scheme'	=> empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off' ? 'http' : 'https',
+				'port'		=> isset($_SERVER['SERVER_PORT']) ? (int)$_SERVER['SERVER_PORT'] : null,
+				'path'		=> isset($_SERVER['SCRIPT_NAME']) ? trim(dirname($_SERVER['SCRIPT_NAME']), '/\\') : '' 
+			]
+		]
+	],
+	'system' => [
+		'checkout' => [
+			'continue_day' => 5,			
+		],
+		'notification' => [
+			'continue_day' 	=> 3
+		]
+	],
+	'verification' => [
+		'algorithm'	=> 'sha512',
+		'timeout'	=> 10800,
+		'key'		=> '000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f'
+	],
+	'php' => [
+		'timezone' 				=> 'Asia/Taipei',
+		'error_reporting' 		=> E_ALL,
+		'display_errors'		=> 'true',
+		'log_errors'			=> 'false',
+		// Let PHP itself render errors natively, Useful if a fatal error is rasied in our custom shutdown handler
+		'display_errors_native'	=> 'false'
 	]
 ];
 

@@ -1,0 +1,16 @@
+<div class="verification">
+	<div class="verification-tab">
+		<div class="verification-tab-item" ng-repeat="tab in $vm.tabs" ng-class="{'active': $vm.tabIndex === $index}" ng-click="$vm.selectTab($index)">Step {{::$index+1}} {{::tab.title()}}</div>
+	</div>
+	
+	<div class="verification-content" ng-transclude></div>
+	
+	<div class="pager">
+		<span class="previous">
+			<button class="btn btn-brand" ng-click="$vm.previous()" ng-disabled="$vm.isFirstTab()"><i aria-hidden="true">&larr;</i>上頁</button>
+		</span>
+		<span class="next">
+			<button class="btn btn-brand" ng-click="$vm.next()" ng-disabled="$vm.isLastTab()"><i aria-hidden="true">&rarr;</i>下頁</button>
+		</span>
+	</div>
+</div>

@@ -1,0 +1,49 @@
+
+<div class="modal-content">
+	<div class="modal-body">
+		<button type="button" class="close" data-label="Close" ng-click="$vm.cancel()">
+			<em aria-hidden="true" class="sn-link-close">&times;</em>
+		</button>
+
+		<div class="container">
+			<div class="logistic-container" style="margin-top: 2rem; margin-bottom: 1rem;">
+				<div class="logistic-heading" style="padding-left: 1rem; padding-right: 1rem;">
+					<h5 class="logistic-title">選擇配送方式</h5>					
+				</div>
+				<div class="logistic-content" style="padding: 0 1rem;">
+					<div class="text-center">
+						<div class="alert alert-danger" style="display: none;"><i class="fa fa-exclamation-circle"></i> 請選擇配送方式</div>
+					</div>
+					<div class="logistic-list" ng-repeat="logistic in ::$vm.logistics" ng-click="$vm.directToSelectLogisticPage($index, logistic)">
+						<div class="logistic-list-item" ng-class="{'active': $vm.activeLogisticId === $index}">
+							<div class="logistic-list-item-inner">
+								<div class="logistic-item-radio">
+									<input type="radio" name="logistic" class="logistic-radio">
+									<img ng-src="{{::logistic.profile}}" class="logistic-pic" width="50" height="50">
+								</div>
+								<div class="logistic-description" style="padding-left: .5rem;">
+									<div class="item-link">{{::logistic.name}}</div>
+									<div class="logistic-container-detail" ng-show="$vm.activeLogisticId === $index">{{$vm.address}}</div>
+								</div>
+							</div>
+							<div class="logistic-list-item-inner" style="min-width: 2rem;">
+								<div class="logistic-corner">
+									<span class="item-link item-fee">{{::logistic.fee | currency: '$ ': 0}}</span>
+								</div>		
+							</div>															
+						</div>	
+					</div>
+					<div class="logistic-action" style="margin: 10px 0;">
+						<button class="btn btn-material no-transform" ng-click="$vm.submit()">確認</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+
+
+

@@ -1,0 +1,49 @@
+
+
+.chart-box {
+	.chart {
+		position: relative;
+		display: inline-block;
+		width: 84px;
+		height: 84px;
+		text-align: center;
+		float: left;
+
+		canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+
+		.percent {
+			display: inline-block;
+			line-height: 84px;
+			z-index: 2;
+			font-size: 16px;
+
+			&:after {
+				content: '%';
+				margin-left: .1em;
+				font-size: .8em;
+			}
+		}	
+	}
+	
+
+	.description {
+		display: inline-block;
+	    padding: 12px 0 0 20px;
+	    font-size: 18px;
+	    text-align: center;
+	    opacity: .9;
+	    color: $text-title-color;
+	
+	    .amount {
+	    	display: block;
+	    	padding-top: 8px;
+			font-size: 24px;	
+	    }
+	}
+}
+

@@ -1,0 +1,38 @@
+
+<div class="recommend-product">
+	<div class="recommend-product-section text-center">
+		<h2 class="outline">推薦商品</h2>
+	</div>
+	<div class="recommend-product-wrap">
+		<div class="recommend-product-header">
+			<div></div>
+			<div class="recommend-product-select">
+				<a href class="recommend-product-arrow" ng-click="$vm.prev($event)" ng-class="{'disabled': $vm.isFirstProductItem}">
+					<svg xmlns="http://www.w3.org/2000/svg" class="rotate" width="20" height="20" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><polyline stroke-width="2" points="10 17 15 12 10 7"></polyline></g></svg>
+				</a>
+				<a href class="recommend-product-arrow inverse" ng-click="$vm.next($event)" ng-class="{'disabled': $vm.isLastProductItem}">
+					<svg xmlns="http://www.w3.org/2000/svg" class="rotate" width="20" height="20" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><polyline stroke-width="2" points="10 17 15 12 10 7"></polyline></g></svg>
+				</a>
+			</div>
+		</div>		
+		<div class="recommend-product-content">
+			<div class="recommend-product-content-inner">
+				<div class="product-item size-sm" ng-repeat="product in ::$vm.recommendProducts">
+					<a href class="product-item-link" ui-sref="shop.product.detail({'productId': product.id})">
+						<div class="product-item-header">
+							<div class="product-item-header-landscape">
+								<div class="product-item-thumbnail" style="background-image: url({{::product.profile}})"></div>
+							</div>
+							<div class="product-mark">
+								<span class="text-mark">HOT</span>
+							</div>
+						</div>
+						<div class="product-item-content">
+							<span class="content-description">{{::product.name}}</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

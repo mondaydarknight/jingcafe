@@ -11,6 +11,11 @@ class Category extends Model
 {
 
 	/**
+	 * Disable the timestamps settings.
+	 */
+	public $timestamps = false;
+
+	/**
 	 * The name of current table
 	 * @var string
 	 */
@@ -27,12 +32,13 @@ class Category extends Model
 	];
 
 
-	/**
-	 * Disable the timestamps settings.
-	 */
-	public $timestamps = false;
 
 
+
+	public function product()
+	{
+		return $this->belongsTo('JingCafe\Core\Database\Models\Product');
+	}
 
 
 

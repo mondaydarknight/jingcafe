@@ -1,0 +1,44 @@
+
+<nav class="admin-navbar">
+	<div class="navbar-block flex1">
+		<a href class="btn-collapsed" btn-toggle-sidebar ng-if="$vm.AuthService.isAuthenticated"></a>
+		<div class="mr-auto inline">
+			<ol class="navbar-breadcrumb clearfix">
+				<li class="brand" style="position: relative !important;">
+					<a href ui-sref="admin.home.index"><h1 class="light-mode"><span>Jing</span>Cafe</h1></a>
+				</li>
+			</ol>
+		</div>
+	</div>
+	<div class="navbar-block flex0">
+		<ul class="navbar-list" ng-if="$vm.AuthService.isAuthenticated">
+			<notification-message></notification-message>
+			<li class="navbar-list-item notification">
+				<a href class="item-link notification-toggle user-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="shop-avatar">
+						<div class="shop-avatar-placeholder">
+							<svg class="shop-svg-icon icon-headshot" width="25" height="25" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0"><g><circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10"></circle><path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10"></path></g></svg>
+						</div>
+					</div>
+				</a>
+				<div class="dropdown-menu user-profile-menu" role="menu" aria-labelledby="user-profile-dropdown">
+					<div class="menu-profile">
+						<div class="shop-avatar menu-profile-avatar">
+							<div class="shop-avatar-placeholder">
+								<svg class="shop-svg-icon icon-headshot" width="25" height="25" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0"><g><circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10"></circle><path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10"></path></g></svg>
+							</div>
+						</div>
+						<div class="menu-profile-list">
+							<h5 class="name">{{::$vm.AuthService.user.username}}</h5>
+							<span class="email">{{::$vm.AuthService.user.email}}</span>
+						</div>
+					</div>
+					<div class="menu-options">
+						<div></div>
+						<div><button class="btn btn-default no-transform btn-with-icon" ng-click="$vm.logout()"><i class="fa fa-sign-out"></i>登出</button></div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>

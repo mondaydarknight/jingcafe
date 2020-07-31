@@ -1,0 +1,24 @@
+
+<div class="widgets">
+	<div class="row">
+		<div class="col-md-12 col-12">
+			<div class="board">
+				<div class="board-heading">
+					<h5 class="board-title">訂單管理</h5>
+				</div>
+				<div class="board-body">
+					
+					<div class="product-overview">
+						<order-search-engine></order-search-engine>
+						
+						<order-tabs>
+							<order ng-repeat="factor in ::$vm.composition" title="::factor.name" type="::factor.type" status="::factor.status" time="::factor.time" orders="$vm.orders"></order>
+						</order-tabs>
+
+						<pagination></pagination>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+</div>

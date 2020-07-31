@@ -1,0 +1,63 @@
+<section class="cassette">
+	<div class="row">
+		<div class="col-md-8 col-sm-8 col-12 offset-md-1 offset-sm-1">
+			<div class="container-fluid">
+				<div class="plank register-panel animated">
+					<div class="plank-heading">
+						<h5 class="plank-title">會員註冊</h5>
+					</div>
+					<div class="plank-body">
+						<label class="text-content text-danger">*代表必填</label>
+						<form name="$vm.registerForm" ng-submit="$vm.registerForm.$valid && $vm.register()" novalidate>
+							<div class="form-group feedback clearfix" ng-class="{'has-error': $vm.registerForm.sex.$error.required && $vm.registerForm.$submitted}">
+								<label class="inline-label control-label text-danger">*性別</label>					
+								<label class="custom-radio radio-inline">
+									<input type="radio" name="sex" ng-model="$vm.user.sex" value="M" required>
+									<span>男性</span>
+								</label>
+								<label class="custom-radio radio-inline">
+									<input type="radio" name="sex" ng-model="$vm.user.sex" value="F" required>
+									<span>女性</span>
+								</label>
+								<span class="help-block error-block basic-block">請填寫性別</span>
+							</div>
+							<div class="form-group feedback clearfix" ng-class="{'has-error': $vm.registerForm.username.$invalid && ($vm.registerForm.username.$dirty || $vm.registerForm.$submitted)}">
+								<label class="control-label text-danger">*名稱</label>
+								<input type="text" name="username" ng-model="$vm.user.username" class="form-control" placeholder="名稱" required autofocus>
+								<span class="help-block error-block basic-block">請填寫名稱</span>
+							</div>
+							<div class="form-group feedback clearfix" ng-class="{'has-error': $vm.registerForm.account.$invalid && ($vm.registerForm.account.$dirty || $vm.registerForm.$submitted)}">
+								<label class="control-label text-danger">*信箱帳號</label>
+								<input type="email" name="account" ng-model="$vm.user.account" class="form-control" placeholder="信箱帳號" required>
+								<span class="help-block error-block basic-block">請填寫信箱帳號</span>
+							</div>
+							<div class="form-group feedback clearfix" ng-class="{'has-error': $vm.registerForm.password.$invalid && ($vm.registerForm.password.$dirty || $vm.registerForm.$submitted)}">
+								<label class="control-label text-danger">*密碼</label>
+								<input type="password" name="password" ng-model="$vm.user.password" class="form-control" placeholder="密碼" required>
+								<span class="help-block error-block basic-block">請填寫密碼</span>
+							</div>
+							<div class="form-group feedback clearfix" ng-class="{'has-error': $vm.registerForm.passwordAgain.$invalid && ($vm.registerForm.passwordAgain.$dirty || $vm.registerForm.$submitted)}">
+								<label class="control-label text-danger">*確認密碼</label>
+									<input type="password" name="passwordAgain" ng-model="$vm.user.passwordAgain" class="form-control" placeholder="確認密碼" input-match="$vm.user.password" required>
+									<span class="help-block error-block basic-block">密碼不相符，請重新輸入</span>
+								</div>
+								<div class="form-group feedback clearfix" ng-class="{'has-error': $vm.registerForm.phone.$invalid && ($vm.registerForm.phone.$dirty || $vm.registerForm.$submitted)}">
+									<label class="control-label text-danger">*電話號碼</label>
+									<input type="text" name="phone" ng-model="$vm.user.phone" class="form-control" placeholder="電話號碼" required>
+									<span class="help-block error-block basic-block">請輸入電話號碼</span>
+								</div>
+								<div class="form-actions">
+									<span type="alert" class="text-danger text-right" ng-show="$vm.error">{{$vm.error}}</span>
+									<button type="submit" class="btn btn-brand" style="width: 80px;" ng-disabled="$vm.isLoading">註冊</button>
+									<img ng-show="$vm.isLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+								</div>
+							</form>
+						</div>					
+					</div>	
+				</div>
+		</div>
+		<div class="col-md-3 col-sm-3 col-12">
+			<window-commercial product="::$vm.product"></window-commercial>
+		</div>
+	</div>		
+</section>

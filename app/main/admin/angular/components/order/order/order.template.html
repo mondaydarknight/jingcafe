@@ -1,0 +1,112 @@
+
+<div ng-show="$vm.selected">
+ 	<div class="admin-order">
+ 		<div class="admin-order-content">
+ 			<div class="content-setting"></div>
+ 			<div class="order with-plain">
+				<div class="order-wrap">
+					<div class="order-header">
+						<div class="order-header-bottom with-column" ng-show="$vm.hasResult">
+							<div class="order-column"><label class="item-link">#</label></div>
+							<div class="order-column"><label class="custom-checkbox"><input type="checkbox" name="" ng-click="$vm.selectAllItems($event)"><span></span></label></div>
+							<div class="order-column"><label class="item-link">訂單編號</label></div>
+							<div class="order-column"><label class="item-link">取貨人</label></div>
+							<div class="order-column"><label class="item-link">訂單明細</label></div>
+							<div class="order-column"><label class="item-link">總金額</label></div>
+							<div class="order-column"><label class="item-link">創立日期</label></div>				
+						</div>
+						<div class="not-found" ng-show="!$vm.hasResult">				
+							<div class="not-found-wrap" >
+								<h2 class="not-found-title">查無訂單</h2>								
+							</div>
+						</div>
+					</div>
+					<div class="order-content">
+						<div class="order-content-wrap list-view">
+							<div class="order-content-item" ng-repeat-start="order in $vm.orders">
+								<div class="item-fragment item-tool"><b class="fa fa-angle-down"></b></div>
+								<div class="item-fragment item-tool">
+									<label class="custom-checkbox">
+				 						<input type="checkbox" name="operate-setting" required>
+				 						<span></span>
+				 					</label>
+								</div>
+								<div class="item-fragment">
+									<span class="item-text">{{::order.id}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="item-text">{{::order.userLogistic.username}}</span>
+								</div>
+								<div class="item-fragment">
+									<div class="item-text" style="margin: 10px 0;" ng-repeat="product in ::order.products">{{::product.name}} x {{::product.quantity}}</div>
+								</div>
+								<div class="item-fragment">
+									<span class="price">{{::order.totalPrice | currency: '$NT': '0'}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="item-text">{{::order.time}}</span>
+								</div>
+							</div>
+
+							<div class="row detail-list-view order-content-item" ng-repeat-end style="display: none;">
+			 					<div class="col-sm-3 col-3">
+			 						<div class="text-center">
+				 						<label class="label-item"><span class="item-tag tag-success">取貨人</span></label>
+					 					<ul class="order-content-menu">
+					 						<li class="order-content-menu-item">
+					 							<a href class="item-link">{{::order.userLogistic.username}}</a>
+					 						</li>
+					 						<li class="order-content-menu-item">
+					 							<a href class="item-link">{{::order.userLogistic.phone}}</a>
+					 						</li>
+					 					</ul>	
+				 					</div>
+			 					</div>
+			 					<div class="col-sm-3 col-3">
+			 						<div class="text-center">
+			 							<label class="label-item">
+			 								<span class="item-tag tag-warning">配送及付款方式</span>
+			 							</label>
+			 							<ul class="order-content-menu">
+			 								<li class="order-content-menu-item">
+			 									<a href class="item-link">{{::order.userLogistic.logistic.name}}</a>
+			 								</li>
+			 								<li class="order-content-menu-item">
+			 									<a href class="item-link">運費: {{::order.userLogistic.logistic.fee}}</a>
+			 								</li>
+			 								<li class="order-content-menu-item">
+			 									<a href class="item-link">{{::order.userPayment.payment.name}}</a>
+			 								</li>
+			 							</ul>
+			 						</div>
+			 					</div>
+			 					<div class="col-sm-3 col-3">
+			 						<div class="text-center">
+			 							<label class="label-item"><span class="item-tag tag-danger">產品明細</span></label>
+			 							<ul class="order-content-menu">
+			 								<li class="order-content-menu-item" ng-repeat="product in ::order.products">
+			 									<a href="" class="item-link">{{::product.name}} x {{::product.quantity}} <b class="single-price">{{::product.price | currency: '$NT': '0'}}</b></a>
+			 								</li>
+			 							</ul>
+			 						</div>
+			 					</div>
+			 					<div class="col-sm-3 col-3">
+			 						<div class="text-center">
+			 							<label class="label-item"><span class="item-tag tag-info">留言</span></label>
+			 							<ul class="order-content-menu">
+			 								<li class="order-content-menu-item">
+			 									<a href class="item-link">{{::order.message}}</a>
+			 								</li>
+			 							</ul>
+			 						</div>
+			 					</div>
+			 				</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+ 		</div>
+ 	</div>
+</div>
+
+

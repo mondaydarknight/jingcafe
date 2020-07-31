@@ -1,0 +1,11 @@
+---
+type:
+  transformations: [escape, trim]
+  validators:
+    string:
+      message: VALIDATE.INVALID_STRING
+    length:
+      min: 5
+      max: 10
+      message: VALIDATE.INVALID_LENGTH
+orderIndexes:

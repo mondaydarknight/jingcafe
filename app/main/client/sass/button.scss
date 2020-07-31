@@ -1,0 +1,557 @@
+$hover: 24;
+
+@mixin styleButton($color, $borderColor) {
+  	background: $color;
+  	border-color: $borderColor;
+}
+
+@mixin buttonColor($color, $borderColor) {
+  	@include styleButton($color, $borderColor);
+
+  	&.disabled, 
+  	&[disabled], 
+  	fieldset[disabled] &, 
+  	&.disabled:hover, 
+  	&[disabled]:hover,
+  	fieldset[disabled] &:hover, 
+  	&.disabled:focus, 
+  	&[disabled]:focus, 
+  	fieldset[disabled] &:focus,
+  	&.disabled.focus, 
+  	&[disabled].focus, 
+  	fieldset[disabled] &.focus, 
+  	&.disabled:active,
+  	&[disabled]:active, 
+  	fieldset[disabled] &:active, 
+  	&.disabled.active, 
+  	&[disabled].active,
+  	fieldset[disabled] &.active {
+    	@include styleButton($color, $borderColor + $hover/2);
+    	cursor: not-allowed;
+
+      &:hover {
+      		transform: none;
+    	}
+  	}
+
+  	&.active,
+  	&:active, 
+  	&:hover, 
+  	&:focus, 
+  	&.focus {
+   	 	@include styleButton($color, $borderColor - $hover);
+  	}
+}
+
+@mixin openDropdownButton($color, $dark-color) {
+  	@include styleButton($color, $color - $hover);
+  	background-color: $dark-color;
+  	border-color: $dark-color;
+}
+
+@mixin buttonGroupColor($color) {
+  	border-color: $color - $hover/2;
+  	&:hover {
+    	border-color: $color - $hover;
+  	}
+}
+
+@mixin progressButtonColor($btnColor) {
+  	border-radius: 0;
+  	.content {
+    	&:after, &:before {
+      		color: darken($btnColor, 40);
+    	}
+  	}
+
+  	&.progress-button-style-move-up, &.progress-button-style-slide-down {
+    	.content {
+      		background-color: darken($btnColor, 10);
+    	}
+  	}
+
+  	&.progress-button-style-lateral-lines .progress-inner {
+    	border-color: darken($btnColor, 10);
+    	background: 0 0;
+  	}
+
+  	.progress {
+  	  	background-color: darken($btnColor, 10);
+    	box-shadow: 0 1px 0 darken($btnColor, 10);
+  	}
+
+  	.progress-inner {
+    	background-color: darken($btnColor, 20);
+  	}
+
+  	&.progress-button-perspective {
+    	background: none;
+    	.content {
+      		background-color: $btnColor;
+    	}
+  	}
+}
+
+
+// .btn:focus, 
+// .btn:active:focus, 
+// .btn.active:focus,
+// .btn.focus, 
+// .btn:active.focus, 
+// .btn.active.focus {
+//   outline: none;
+// }
+
+.btn {
+  	border-radius: 5px;
+  	transition: all 0.1s ease;
+  	outline-style: none;
+    margin-bottom: 5px;
+
+  	&:focus,
+  	&:active,
+  	&.active:focus,
+  	&:active:focus,
+  	&.focus {
+  		text-decoration: none;
+		  box-shadow: none;
+    	outline:none !important;
+  	}
+
+  	&.btn-rounded {
+    	border-radius: 16px;
+  	}
+
+  	&:hover {
+    	transform: scale(1.2);
+  	}
+
+  	&.btn-link {
+      color: #0366d6;
+    	text-decoration: none;
+  	}
+
+  	&.btn-with-icon {
+   	 	i {
+      		margin-right: 10px;
+    	}
+  	}
+
+  	&.btn-raised {
+    	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.35);
+  	}
+
+  	&.btn-mm {
+    	padding: 5px 11px;
+    	font-size: 13px;
+  	}
+
+  	&.btn-xm {
+    	padding: 8px 14px;
+    	font-size: 16px;
+  	}
+
+    &.btn-lg {
+      font-size: 1.2rem;
+    }
+}
+
+
+.open > .btn.dropdown-toggle {
+  	&.btn.btn-brand {
+    	@include openDropdownButton($brand-primary, $brand-dark)
+  	}
+  
+  	&.btn-success {
+    	@include openDropdownButton($success, $success-dark)
+  	}
+
+  	&.btn-info {
+    	@include openDropdownButton($info, $info-dark)
+  	}
+
+  	&.btn-warning {
+    	@include openDropdownButton($warning, $warning-dark)
+  	}
+  	&.btn-danger {
+    	@include openDropdownButton($danger, $danger-dark)
+  	}
+}
+
+.btn-none {
+  &:hover {
+    background-color: $default !important;
+  } 
+}
+
+button.btn.btn-default {
+  	border-width: 1px;
+  	color: $text-default-color;
+  	@include buttonColor(transparent, $border);
+  	
+    &:active, &:target, &:hover {
+    	// background-color: rgba(0, 0, 0, 0.2);
+    	background-color: $border-color;
+      color: $text-default-color;
+  	}
+}
+
+button.btn.btn-brand {
+  	@include buttonColor($brand-primary, $brand-primary);
+  	color: white;
+  	&:active, &:target {
+    	background-color: $brand-dark;
+  	}
+}
+
+button.btn.btn-success {
+  	@include buttonColor($success, $success);
+  	color: white;
+  	&:active, &:target {
+    	background-color: $success-dark;
+  	}
+}
+
+button.btn.btn-info {
+  	@include buttonColor($info, $info);
+  	&:active, &:target {
+    	background-color: $info-dark;
+  	}
+}
+
+button.btn.btn-warning {
+  	@include buttonColor($warning, $warning);
+  	color: $default;
+
+    &:active, &:target {
+    	background-color: $warning-dark;
+  	}
+}
+
+button.btn.btn-danger {
+  	@include buttonColor($danger, $danger);
+  	color: $default;
+
+    &:active, &:target {
+    	background-color: $danger-dark;
+  	}
+}
+
+button.btn.btn-inverse {
+  	@include buttonColor($help-text, $help-text);
+  	color: $default;
+  	&:active, &:target, &:hover {
+    	background-color: $help-text;
+    	color: $default;
+  	}
+}
+
+.btn-group, .btn-toolbar {
+  	:hover {
+    	transform: none;
+  	}
+}
+
+
+.btn-group {
+  	button.btn.btn-brand {
+    	@include buttonGroupColor($brand-primary);
+  	}
+  	button.btn.btn-danger {
+    	@include buttonGroupColor($danger);
+ 	}
+  	button.btn.btn-info {
+    	@include buttonGroupColor($info);
+  	}
+  	button.btn.btn-success {
+   		@include buttonGroupColor($success);
+  	}
+  	button.btn.btn-warning {
+    	@include buttonGroupColor($warning);
+  	}
+  	.dropdown-menu {
+    	margin-top: 0px;
+  	}
+}
+
+.btn-toolbar {
+  	display: inline-block;
+}
+
+.btn .caret {
+  	margin-left: 2px;
+}
+
+
+button.progress-button {
+  	.progress {
+    	margin-bottom: 0;
+    	border-radius: 0;
+  	}
+  	&:hover {
+    	transform: none;
+  	}
+
+  	&.progress-button-style-shrink.btn.disabled.progress-button-dir-horizontal:hover {
+    	transform: scaleY(.3);
+ 	}
+  	&.progress-button-style-shrink.btn.disabled.progress-button-dir-vertical:hover {
+    	transform: scaleX(.1);
+  	}
+
+  	&.btn.btn-primary {
+    	@include progressButtonColor($primary);
+  	}
+
+  	&.btn.btn-default {
+    	@include progressButtonColor($default);
+  	}
+
+  	&.btn.btn-success {
+    	@include progressButtonColor($success);
+  	}
+
+  	&.btn.btn-info {
+    	@include progressButtonColor($info);
+  	}
+
+  	&.btn.btn-warning {
+    	@include progressButtonColor($warning);
+  	}
+
+  	&.btn.btn-danger {
+    	@include progressButtonColor($danger);
+  	}
+}
+
+.dropdown button.btn.btn-default.dropdown-toggle {
+  	color: $text-default-color;
+  	border: 1px solid $border;
+  	background-color: transparent;
+  	&:focus, &:active {
+    	background-color: $default;
+  	}
+}
+
+.bootstrap-select {
+  	.dropdown-toggle:focus {
+    	outline: none !important;
+  	}
+  	button.btn-default:focus {
+    	color: $default;
+  	}
+  	.btn {
+    	transition: none;
+  	}
+}
+
+.input-group-btn {
+  	.btn {
+    	height: 100%;
+  	}
+}
+
+.no-transform {
+  	&:hover {
+    	-webkit-transform: none;
+    	transform: none;
+  
+    	&.btn-info {
+      		background: $info-dark !important;
+    	}
+
+    	&.btn-brand {
+      		background: $brand-dark !important;
+    	}
+
+    	&.btn-success {
+      		background: $success-dark !important;
+    	}
+
+    	&.btn-danger {
+      		background: $danger-dark !important;
+   	 	}
+  	}
+}
+
+.btn-cancel {
+	font-size: 30px;
+	font-weight: $font-bold;
+	line-height: 1rem;
+	text-shadow: 0 1px 0 $default;
+	transition: all 200ms ease-out;
+	background-color: transparent;
+	-webkit-appearance: none;
+  color: #6f727d;;
+  padding: 0;
+  transition-delay: .3s;
+	outline: none;
+	height: 30px;
+	width: 30px;
+	transition: all 400ms cubic-bezier(0.25, 0.60, 0.36, 1);
+  border: none;
+  color: #6f727d;
+  transform-origin: 0;
+	cursor: pointer;
+}
+
+
+.btn-circle {
+  	display: inline-block;
+  	padding: 0.3em 1.2em;
+  	margin: 00 1em 0.1em 0;
+  	border: 0.16em solid rgba(255, 255, 255, 0);
+  	border-radius: 2em;
+  	box-sizing:border-box;
+  	text-decoration: none;
+  	font-family: $font-family-medium;
+  	font-weight: $font-light;
+  	color: $default;
+  	text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
+  	text-align: center;
+  	transition: all 0.2s;
+
+  	&:hover {
+    	border-color: rgba(255, 255, 255, 1);
+  	}
+}
+
+.btn-material {
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    border: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: $font-family-medium;
+    z-index: 1;
+    height: 36px;
+    line-height: 36px;
+    width: 100%;
+    border-radius: 2px;
+    background-color: rgb(65, 163, 255);
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    color: $default; 
+
+    &.material-brand {
+      background-color: $brand-primary;
+    }
+
+    &.width-fixed {
+      width: 180px;
+    }
+
+    &:hover {
+      opacity: .7;
+    }
+}
+
+@media screen and (max-width: $resXS) {
+  .btn-material {
+    &.width-fixed {
+      width: 140px;
+    }
+  }
+}
+
+@media screen and (max-width: $resS) {
+  .btn-material {
+    &.width-fixed {
+      width: 120px;
+    }
+  }
+}
+
+
+*:focus { 
+  outline: 0; 
+}
+
+.btn-wrapper {
+  	margin: 50px auto;
+  	width: 100px;
+}
+.button-block {
+  	width: 70px;
+  	height: 70px;
+  	border-radius: 100%; /* TODO: prefix */
+  	margin: 0 auto;
+  	position: relative;
+  	display: block;
+  	position: relative;
+  	border: 35px solid #F0544E;
+  	-webkit-box-sizing: border-box;
+  	-moz-box-sizing: border-box;
+  	-webkit-border-radius: 100%;
+  	-moz-border-radius: 100%;
+  	box-sizing: border-box;
+  	-webkit-transition: border 600ms ease-in-out;
+  	-moz-transition: border 600ms ease-in-out;
+  	-ms-transition: border 600ms ease-in-out;
+  	-o-transition: border 600ms ease-in-out;
+  	transition: border 600ms ease-in-out;
+}
+.button-block button {
+  	position: absolute;
+  	left: 50%;
+  	top: 50%;
+  	width: 30px;
+  	height: 30px;
+  	background: transparent;
+  	border: 0;
+  	margin: -15px 0 0 -15px;
+  	cursor: pointer;
+}
+.mark {
+  	background-color: #fff;
+  	position: absolute;
+  	height: 30px;
+  	width: 4px;
+  	display: block;
+  	top: 0;
+  	-webkit-transition: all 600ms ease-in-out;
+  	-moz-transition: all 600ms ease-in-out;
+  	-ms-transition: all 600ms ease-in-out;
+  	-o-transition: all 600ms ease-in-out;
+  	transition: all 600ms ease-in-out;
+}
+.mark.x  { 
+  	right: 14px; 
+  	transform:rotate(45deg); /* TODO: prefix */
+}
+.mark.xx { 
+  	left: 12px; 
+  	transform:rotate(-45deg); /* TODO: prefix */
+}
+.button-block.canceled  {
+  	border-width: 4px;
+  	border-color: #1ABC9C;
+}
+.button-block.canceled .mark { background-color: #1ABC9C; }
+.button-block.canceled .mark.x {
+  	right: 5px;
+  	top: -3px;
+  	height: 35px;
+}
+.button-block.canceled .mark.xx {
+  	height: 15px;
+  	top: 15px;
+  	left: 5px;
+}
+
+.btn-quantity {
+  border-radius: 0;
+  margin: 0;
+  
+  &:active,
+  &:focus {
+    border: 1px solid #d6d6d6;
+  }
+}

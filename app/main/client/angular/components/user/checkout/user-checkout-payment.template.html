@@ -1,0 +1,32 @@
+<form name="$vm.userCheckout.$payment" class="box box-material" ng-submit="$vm.userCheckout.$payment.$valid && $vm.userCheckout.checkout()" novalidate>
+	<div class="row">
+		<div class="col-md-10 offset-md-1">
+			<div class="form-group has-feedback row clearfix" ng-class="{'has-error': $vm.userCheckout.$payment.method.$error.required && $vm.userCheckout.$payment.$submitted}">
+				<label class="col-sm-3 control-label">選擇付款方式</label>
+				<div class="col-sm-9">
+					<div class="button-checkbox-group">
+						<div class="button-checkbox payment-group" ng-repeat="payment in ::$vm.payments" ng-click="$vm.selectPayment($index)">
+							<input type="radio" name="method" ng-model="$vm.selected" value="true" required>
+							<span>{{::payment.name}}</span>
+							<div class="selected-icon"><div ng-bind-html="::$vm.iconChecked"></div></div>
+						</div>
+					</div>
+					<span class="help-block error-block basic-block">請選擇付款方式</span>
+				</div>
+			</div>
+
+			<div class="form-group has-feedback row clearfix">
+				<label class="col-sm-3 control-label">備註</label>
+				<div class="col-sm-9">
+					<textarea class="form-control" ng-model="$vm.userCheckout.params.message" placeholder=""></textarea>
+				</div>
+			</div>
+
+			<div class="text-center">
+				<button class="btn btn-brand with-icon"><i class="fa fa-check"></i>結帳</button>
+			</div>
+		</div>
+	</div>	
+</form>
+
+

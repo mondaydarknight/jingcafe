@@ -1,0 +1,57 @@
+<footer class="footer">
+	<div class="footer-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-sm-12 col-12">
+					<h2>{{::$vm.shopBase.shop.name}}</h2>
+					<p class="description">{{::$vm.shopBase.shop.brief}}</p>
+					<p class="info-wrap"><a href=""><i class="fa fa-phone"></i> {{::$vm.shopBase.shop.phone}}</a></p>
+					<p class="info-wrap"><a href=""><i class="fa fa-envelope"></i> {{::$vm.shopBase.shop.email}}</a></p>
+					<ul class="social-network">
+						<li><a href title="Facebook" data-placement="top"><i class="fa fa-facebook fa-1x"></i></a></li>
+						<li><a href title="Google plus" data-placement="top"><i class="fa fa-google-plus fa-1x"></i></a></li>
+					</ul>				
+				</div>
+				<div class="col-md-8 col-sm-12 col-12">				
+					<div class="navigation">
+						<div class="navigation-wrap" ng-repeat="menuItem in ::$vm.shopMenuItems" >
+							<h2 class="navigation-title">{{::menuItem.title}}</h2>
+							<ul class="navigation-list">
+								<li class="navigation-list-item" ng-repeat="item in menuItem.shopItems">
+									<a href ui-sref="{{::item.href}}({{::item.arguments}})" class="navigation-list-link">{{item.title}}</a>
+								</li>
+							</ul>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-6">
+					<span>&copy; 2018 {{::$vm.shopBase.shop.brand}} AG. All Rights Reserved.</span>
+					<div class="credits">
+						<span>By <a href="https://github.com/mongcheng">Mong</a></span>
+					</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-6">
+					<ul class="contact-navbar pull-right">
+						<li class="contact-navbar-item" ng-click="$vm.directToAdminPage()">
+							<div class="contact-navbar-icon">
+								<i class="fa fa-shopping-bag"></i>
+							</div>
+							<div class="contact-navbar-link">
+								<a class="item-link">賣家中心</a>				
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="pull-right">
+					<a href class="scrollup" scroll-bubble><i class="fa fa-angle-up fa-3x"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

@@ -5,10 +5,30 @@ namespace JingCafe\Core\Database\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use JingCafe\Core\Util\CBMCryptography;
 use JingCafe\Core\Util\Password;
 
 class User extends Model
 {
+	/**
+	 * Encrypted columns
+	 *
+	 * @var array 
+	 */
+	protected static $encryptedColumns = [
+		'username',
+		'account',
+		'phone'
+	];
+
+
+	/** 
+	 * Enable timestamps for User
+	 * @var bool
+	 */
+	public $timestamps = false;
+
+
 
 	/**
 	 * The name of the table of current table
@@ -29,7 +49,7 @@ class User extends Model
 		'password',
 		'sex',
 		'phone',
-		'theme',
+		'profile',
 		'address',
 		'rank',
 		'flag_verified',
@@ -59,9 +79,10 @@ class User extends Model
 	// 	'delete_at'
 	// ];
 
-	protected $appends = [
-		'username'
-	];
+	// protected $appends = [
+	// 	'username'
+	// ];
+
 
 	/**
 	 * Cached dictionary of permission for the user
@@ -70,51 +91,55 @@ class User extends Model
 	 */
 	protected $cachedPermissions;
 
-	/** 
-	 * Enable timestamps for User
-	 * @var bool
-	 */
-	public $timestamps = false;
 
 
 
 	/**
-	 * Determine if the property for the object exists
+	 * Determine whether a user exist, including checking soft-deleted records.
 	 *
-	 * We add relations here so that twig will able to find them
-	 * @link http://stackoverflow.com/questions/29514081/cannot-access-eloquent-attributes-on-twig/35908957#35908957
-	 * @param string $name 	The name of the property to check.
-	 * @param bool true if the property is defined, false otherwise.
+	 * @deprecated since 4.1.7 This method conflicts with and ovverides the Builder::exists() method. Use Model::findUnique() instead.
+	 *
+	 * @param mixed 	$value
+	 * @param string 	$identifier
+	 * @param bool 		$checkDelete 	Set to true to include soft-deleted records
+	 * @return User|null 
 	 */
-	public function __isset($name)
+	public static function exists($value, $identifier = 'username', $checkDeleted = true)
 	{
-		if (in_array($name, ['avatar', 'last_sign_in_time'])) {
-			return true;
-		}
-
-		return parent::__isset($name);
+		return static::findUnique($value, $identifier, $checkDeleted);
 	}
 
+	
 	/**
-	 * Get a property for this object.
-	 *
-	 * @param string $name 	The name of property to retrieve
-	 * @throws Exception 	The property does not exist for this object.
-	 * @return string 		The associated property.
+	 * Get specific info of  user_logistics by binding with user_id
+	 * @param int 	The user id
 	 */
-	public function __get($name)
+	public static function withQuerySpecificUserById($userId)
 	{
-		if ($name === 'last_sign_in_time') {
-			return $this->lastActivityTime('sign_in');
-		} elseif ($name === 'avatar') {
-			$hash = md5(strtolower(trim($this->email)));
+		return function($query) use ($userId) {
+			return $query->where('user_id', $userId);
+		};
+	}
 
-			return 'https://www.gravatar.com/avatar/' . $hash . '?d=mm';
-		} else {
-			return parent::__get($name);
+	/** 
+	 * Encrypt or decrypt user by match encrytpedColumns columns
+	 *
+	 * @param array|User 	$user
+	 * @param bool 			$isEncrypted
+	 *
+	 * @return array 
+	 */
+	public static function encryptOrDecryptUser($user, $isEncrypted = true)
+	{
+		foreach (static::$encryptedColumns as $column) {
+			if (isset($user[$column])) {
+				$user[$column] = $isEncrypted ? CBMCryptography::encrypt($user[$column]) : CBMCryptography::decrypt($user[$column]);
+			}
 		}
+		
+		return $user;
+	}
 
-	}	
 
 	/** 
 	 * Get all activities for this user
@@ -153,21 +178,6 @@ class User extends Model
 
 		// Soft delete the user, leaving all associated records alone
 		return parent::delete();
-	}
-
-	/**
-	 * Determine whether a user exist, including checking soft-deleted records.
-	 *
-	 * @deprecated since 4.1.7 This method conflicts with and ovverides the Builder::exists() method. Use Model::findUnique() instead.
-	 *
-	 * @param mixed 	$value
-	 * @param string 	$identifier
-	 * @param bool 		$checkDelete 	Set to true to include soft-deleted records
-	 * @return User|null 
-	 */
-	public static function exists($value, $identifier = 'username', $checkDeleted = true)
-	{
-		return static::findUnique($value, $identifier, $checkDeleted);
 	}
 
 
@@ -233,9 +243,7 @@ class User extends Model
 	 */
 	public function isAdmin()
 	{
-		$adminId = static::$container->config['user_id.admin'];
-
-		return $this->id === $this->adminId;
+		return $this->rank === 'A';
 	}
 
 
@@ -297,6 +305,44 @@ class User extends Model
 		return $this;
 	}
 
+	/**
+	 * Determine if the property for the object exists
+	 *
+	 * We add relations here so that twig will able to find them
+	 * @link http://stackoverflow.com/questions/29514081/cannot-access-eloquent-attributes-on-twig/35908957#35908957
+	 * @param string $name 	The name of the property to check.
+	 * @param bool true if the property is defined, false otherwise.
+	 */
+	public function __isset($name)
+	{
+		if (in_array($name, ['avatar', 'last_sign_in_time'])) {
+			return true;
+		}
+
+		return parent::__isset($name);
+	}
+
+
+	/**
+	 * Get a property for this object.
+	 *
+	 * @param string $name 	The name of property to retrieve
+	 * @throws Exception 	The property does not exist for this object.
+	 * @return string 		The associated property.
+	 */
+	public function __get($name)
+	{
+		if ($name === 'last_sign_in_time') {
+			return $this->lastActivityTime('sign_in');
+		} elseif ($name === 'avatar') {
+			$hash = md5(strtolower(trim($this->email)));
+
+			return 'https://www.gravatar.com/avatar/' . $hash . '?d=mm';
+		} else {
+			return parent::__get($name);
+		}
+
+	}	
 
 
 }

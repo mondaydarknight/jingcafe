@@ -11,7 +11,13 @@ namespace JingCafe\Core\Schema;
  * Perform a serious of transformations on a set of data fields, as specified by a RequestSchemaInterface.
  */
 class RequestTransformer
-{
+{	
+	/**
+	 * @var array 	The specific columns of constants for verifying usage
+	 */
+	const SPECIFIC_COLUMNS = ['validators'];
+
+
 	/**
 	 * @var RequestSchemaInterface
 	 */
@@ -101,13 +107,15 @@ class RequestTransformer
 		}
 
 		$schemaFields = self::$schema->all();
-	
+		
 		// 1. Perform sequence of transformations on each field.
 		$transformedData = [];
-
-		foreach ($data as $name => $value) {
+		
+		foreach ($data as $fieldName => $fieldValue) {
 			// handle values not listed in the schema
-			if (!array_key_exists($name, $schemaFields)) {			
+			if (isset($schemaFields[$fieldName]) || array_key_exists($fieldName, $schemaFields)) {			
+				$transformedData[$fieldName] = static::transformField($schemaFields[$fieldName], $fieldValue);
+			} else {
 				switch ($onUnexpectedVar) {
 					case 'allow':
 						$transformedData[$name] = $value;
@@ -119,8 +127,6 @@ class RequestTransformer
 						continue;
 						break;
 				}
-			} else {
-				$transformedData[$name] = self::transformField($name, $value);			
 			}
 			
 			// 2. Get default values for any fields missing from data. Especially useful for checkboxs, etc which are not submitted when they are unchecked
@@ -136,66 +142,57 @@ class RequestTransformer
 
 	/**
 	 * {@inheritDoc}
+	 * @param arary[mixed] 			$schemaParams
+	 * @param array[mixed]|string 	$paramsValue
+	 * @return mixed 	
 	 */
-	public static function transformField($name, $value)
+	public static function transformField($schemaParams, $paramValue)
 	{
-		$schemaFields = self::$schema->all();
+		$schemaParams = static::unsetSpecificColumns($schemaParams);
 
-		$fieldParameters = $schemaFields[$name];
+		if (!isset($schemaParams['transformations']) || empty($schemaParams['transformations'])) {			
+			// Determine the schema params have columns
+			if (empty($schemaParams)) {
+				return $paramValue;
+			}
+			
+			$transformCache = [];
+			foreach ($schemaParams as $schemaKey => $shcemaValue) {				
+				$transformCache = array_merge($transformCache, [$schemaKey => static::transformField($shcemaValue, isset($paramValue[$schemaKey]) ? $paramValue[$schemaKey] : null)]);
+			}
 
-		if (!isset($fieldParameters['transformations']) || empty($fieldParameters['transformations'])) {
-			return $value;
+			return $transformCache;
 		}
 
-		$transformedValue = $value;
 		$transformationOptions = [
-			'purify'	=> function($value) {
+			'purify'	=> function($paramValue) {
 				self::$purifier = self::getHtmlPurifier();
-				return self::$purifier->purify($value);
+				return self::$purifier->purify($paramValue);
 			},
-			'escape' 	=> function($value) {
-				return self::escapeHtmlCharacters($value);
+			'escape' 	=> function($paramValue) {
+				return self::escapeHtmlCharacters($paramValue);
 			},
-			'purge' 	=> function($value) {
-				return self::purgeHtmlCharacters($value);
+			'purge' 	=> function($paramValue) {
+				return self::purgeHtmlCharacters($paramValue);
 			},
-			'xss'		=> function($value) {
-				return self::filterXssSqlCharacters($value);
+			'xss'		=> function($paramValue) {
+				return self::filterXssSqlCharacters($paramValue);
 			},
-			'trim' 		=> function($value) {
-				return self::trim($value);
+			'trim' 		=> function($paramValue) {
+				return self::trim($paramValue);
 			}
 		];
 
-
-		foreach ($fieldParameters['transformations'] as $transformation) {
+		foreach ($schemaParams['transformations'] as $transformation) {
 			if (isset($transformationOptions[strtolower($transformation)])) {
-				$transformedValue = $transformationOptions[strtolower($transformation)]($transformedValue);
+				$paramValue = $transformationOptions[strtolower($transformation)]($paramValue);
 			}
 		}
 
-		return $transformedValue;
+		return $paramValue;
 	}
 
-	/**
-	 * Set the schema for this transformer, as a valid RequestSchema object
-	 *
-	 * @param RequestSchemaInterface 
-	 * @return void
-	 */
-	protected static function setSchema(RequestSchemaInterface $schema)
-	{
-		static::$schema = $schema;
-	}
-
-	protected static function getHtmlPurifier()
-	{
-		$config = \HTMLPurifier_Config::createDefault();
-		$config = $config->set('Cache.DefinitionImpl', null);
-		return new \HTMLPurifier($config);
-	}
-
-
+	
 	/**
 	 * Autodetect if a field is an array or scalar, and filter appropriately
 	 *
@@ -259,6 +256,43 @@ class RequestTransformer
 
 		return $value;
 	}
+
+
+	/**
+	 * Set the schema for this transformer, as a valid RequestSchema object
+	 *
+	 * @param RequestSchemaInterface 
+	 * @return void
+	 */
+	protected static function setSchema(RequestSchemaInterface $schema)
+	{
+		static::$schema = $schema;
+	}
+
+
+	/**
+	 * Unset the specific columns of array
+	 * @param array[mixed] 	$schemaParams
+	 */
+	protected static function unsetSpecificColumns($schemaParams)
+	{
+		foreach (static::SPECIFIC_COLUMNS as $column) {
+			if (isset($schemaParams[$column])) {
+				unset($schemaParams[$column]);
+			}
+		}
+
+		return $schemaParams;
+	}
+
+
+	protected static function getHtmlPurifier()
+	{
+		$config = \HTMLPurifier_Config::createDefault();
+		$config = $config->set('Cache.DefinitionImpl', null);
+		return new \HTMLPurifier($config);
+	}
+
 
 	/**
 	 * Autodetect if a field is an array or scalar, and filter appropriately

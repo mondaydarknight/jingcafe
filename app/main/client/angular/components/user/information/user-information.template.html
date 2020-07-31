@@ -1,0 +1,46 @@
+<div class="plank animated">
+	<div class="plank-heading">
+		<h5 class="plank-title">會員資料</h5>
+	</div>
+	<div class="plank-body">
+		<div class="row">
+			<div class="col-sm-7 col-12">
+				<form name="personForm" ng-submit="personForm.$valid && $vm.updateUser()" novalidate>
+					<div class="form-group clearfix">
+						<span class="text-small">管理您的帳戶以保障安全</span>
+					</div>
+					<div class="form-group has-feedback row clearfix" has-error="{'has-error': personForm.username.$invalid && (personForm.username.$dirty || personForm.$submitted)}">
+						<label class="col-sm-3 control-label">姓名</label>
+						<div class="col-sm-9">
+							<input type="text" name="username" class="form-control" ng-model="$vm.user.username" placeholder="姓名" required>
+						</div>
+						<span class="help-block error-block basic-block">姓名不為空</span>
+					</div>
+					<div class="form-group has-feedback row clearfix" has-error="{'has-error': personForm.phone.$invalid || (personForm.phone.$dirty || personForm.$submitted)}">
+						<label class="col-sm-3 control-label">電話號碼</label>
+						<div class="col-sm-9">
+							<input type="text" name="phone" class="form-control" ng-model="$vm.user.phone" placeholder="電話號碼" required>
+						</div>
+						<span class="help-block error-block basic-block">電話號碼不為空</span>
+					</div>
+					<!-- <div class="form-group has-feedback row clearfix">
+						<label class="col-sm-3 form-control-label">地址</label>
+						<div class="col-sm-9">
+							<input type="text" name="address" class="form-control" ng-model="$vm.user.phone" placeholder="地址" required>
+						</div>
+					</div> -->
+					<div class="text-center">
+						<button class="btn btn-material width-fixed no-transform">確認</button>
+					</div>
+				</form>		
+			</div>
+			<div class="col-sm-5 col-12">				
+				<div class="user-profile-container">
+					<div class="wrap">
+						<div ng-bind-html="$vm.iconUser" class="avatar-lg"></div>						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

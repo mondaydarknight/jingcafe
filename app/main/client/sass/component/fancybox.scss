@@ -1,0 +1,49 @@
+
+.fancybox-overlay {
+	background-color: rgba(0, 0, 0, .85) !important;
+}
+
+.fancybox-close {
+	position: absolute;
+    right: 0 !important;
+    top: 0 !important;
+    width: 50px !important;
+    height: 50px !important;
+    cursor: pointer;
+    z-index: 9000;
+    background-image: none;
+    background-color: #26292E;
+    opacity: 0.5;
+    -webkit-transition: background 0.1s linear 0s, opacity 0.1s linear 0s;
+    -moz-transition: background 0.1s linear 0s, opacity 0.1s linear 0s;
+    -o-transition: background 0.1s linear 0s, opacity 0.1s linear 0s;
+    transition: background 0.1s linear 0s, opacity 0.1s linear 0s;
+    opacity: .5;
+
+    &:hover {
+    	opacity: 1;
+    }
+
+    &-icon {
+    	left: 50%;
+	    top: 50%;
+	    margin: -11px 0 0 -11px;
+	    font-size: 22px;
+	    line-height: 1em;
+	    position: absolute;
+	    color: #FFFFFF;
+
+	    &::before {
+	    	// content: "\e05a";
+			// font-family: 'Icons';
+			speak: none;
+			font-style: normal;
+			font-weight: normal;
+			font-variant: normal;
+			text-transform: none;
+			-webkit-font-smoothing: antialiased;	
+	    }
+    }
+
+}
+

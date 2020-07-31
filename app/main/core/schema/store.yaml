@@ -1,0 +1,15 @@
+---
+brand: 
+  transformations: [escape, trim]
+url:
+  transformations: [escape, trim]
+name:
+  transformations: [escape, trim]
+methods:
+  transformations: [escape]
+county:
+  transformations: [escape, trim]
+road:
+  transformations: [escape, trim]
+zone:
+  transformations: [escape, trim]

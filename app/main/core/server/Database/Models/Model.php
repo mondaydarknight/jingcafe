@@ -13,6 +13,7 @@ use Interop\Container\ContainerInterface;
 use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Eloquent\Model as LaravelModel;
 
+use JingCafe\Core\Util\Util;
 
 abstract class Model extends LaravelModel
 {
@@ -66,6 +67,22 @@ abstract class Model extends LaravelModel
 		}
 
 		return $query->first();
+	}
+
+	/**
+	 * Create or update a record matching the attributes, fill it with values
+	 *
+	 * @param array 	$attributes
+	 * @param array 	$values
+	 * @return sttaic
+	 */
+	public static function updateOrCreate(array $attributes, $values = [])
+	{
+		$instance = static::firstOrNew($attributes);
+
+		$instance->fill($values)->save();
+	
+		return $instance;
 	}
 
 	/**
@@ -137,5 +154,7 @@ abstract class Model extends LaravelModel
 		DB::connection()->setFetchMode(\PDO::FETCH_ASSOC);
         return DB::table(static::$table);
 	}
+
+	
 
 }

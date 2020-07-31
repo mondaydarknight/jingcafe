@@ -1,0 +1,64 @@
+<div class="user-dropdown metabar-navbar-item">
+	<a href class="with-icon shop-drawer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<div class="inner-drawer">
+			<div ng-bind-html="::$vm.iconUser" style="margin-top: -5px;"></div>
+		</div>
+	</a>
+
+	<div class="dropdown-menu user-dropdown-menu" role="menu" aria-labelledby="user-dropdown">
+		<div class="user-dropdown-menu-wrap">
+			<div class="user-dropdown-menu-header">
+				<div class="user-profile">
+					<div class="user-profile-avatar">
+						<div style="width: 100%; height: 100%;" ng-bind-html="::$vm.iconUser"></div>
+					</div>
+					<div class="user-profile-content">
+						<div class="username">{{::$vm.AuthService.user.username}}</div>
+						<div class="email">{{::$vm.AuthService.user.email}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="user-dropdown-menu-list">
+				<a href class="user-list-item" ui-sref="shop.user.information">
+					<div class="user-list-item-wrap">
+						<div class="user-list-item-icon">
+							<div class="user-list-item-icon-wrap"><i ng-bind-html="::$vm.iconUserDocument"></i></div>
+						</div>
+						<div class="user-list-item-text">我的帳戶</div>
+					</div>
+				</a>
+				<a href class="user-list-item" ng-click="$vm.logout()">
+					<div class="user-list-item-wrap">
+						<div class="user-list-item-icon">
+							<div class="user-list-item-icon-wrap"><i ng-bind-html="::$vm.iconSignOut"></i></div>
+						</div>
+						<div class="user-list-item-text">登出</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="dropdown-menu user-menu-dropdown-list" role="menu" aria-labelledby="user-dropdown-menu">
+		<i class="dropdown-arr"></i>
+		<a href class="user-menu-dropdown-item" ui-sref="shop.user.information">管理頁面</a>
+		<a href class="user-menu-dropdown-item" ng-click="$vm.logout()"><i class="fa fa-power-off"></i> 登出</a>
+	</div> -->
+</div>
+
+<!-- <a href class="shop-drawer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<div class="inner-drawer">
+		<div class="shop-avatar">
+			<div class="shop-avatar-placeholder">
+				<svg class="shop-svg-icon icon-headshot" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0"><g><circle cx="7.5" cy="4.5" fill="none" r="3.8" stroke-miterlimit="10"></circle><path d="m1.5 14.2c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke-linecap="round" stroke-miterlimit="10"></path></g></svg>
+			</div>
+		</div>
+	</div>
+</a>
+<div class="dropdown-menu user-dropdown-menu" role="menu" aria-labelledby="user-dropdown-menu">
+	<i class="dropdown-arr"></i>
+	<a href class="user-dropdown-item" ui-sref="shop.user.person-info">管理頁面</a>
+	<a href class="user-dropdown-item" ng-click="$vm.logout()">
+		<i class="fa fa-power-off"></i> 登出
+	</a>
+</div> -->

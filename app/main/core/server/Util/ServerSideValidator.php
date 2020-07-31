@@ -2,7 +2,7 @@
 
 namespace JingCafe\Core\Util;
 
-
+use InvalidArgumentException;
 use JingCafe\Core\Schema\RequestSchemaInterface;
 
 /**
@@ -13,6 +13,8 @@ use JingCafe\Core\Schema\RequestSchemaInterface;
  */
 class ServerSideValidator extends Validator
 {	
+	const SPECIFIC_COLUMNS = ['transformations'];
+
 	/**
 	 * 
 	 * @var ServerSideValidator instance
@@ -88,7 +90,7 @@ class ServerSideValidator extends Validator
 			static::$serverSideValidatorInstance = new static;
 		}
 
-		static::$serverSideValidatorInstance->setSchema($schema)->loadValidators();
+		static::$serverSideValidatorInstance->setSchema($schema);
 
 		return static::$serverSideValidatorInstance;
 	}
@@ -149,33 +151,71 @@ class ServerSideValidator extends Validator
 	// }
 
 	/**
+	 * Get validators of schema file
+	 * @return array
+	 */
+	public function getValidators()
+	{
+		return $this->validators;
+	}
+
+	/**
+	 * Verfy params data with schema field  
+	 *
+	 * @param array[mixed]	$params
+	 * @param bool 			$isClearUnexpectedVar
+	 */
+	public function validate($params = [], $isClearUnexpectedVar = true)
+	{
+		if (empty($schema = $this->schema->all())) {
+			return $params;
+		}
+
+		$validateValues = [];
+
+		foreach ($params as $paramKey => $paramValue) {
+			if (isset($schema[$paramKey]) || array_key_exists($paramKey, $schema)) {
+				$validateValues[$paramKey] = $this->validateFieldValue($schema[$paramKey], $paramKey, $paramValue);
+			} else {
+				if (!$isClearUnexpectedVar) {
+					$validateValues[$paramKey] = $paramValue; 
+				}
+			}
+		}
+
+		return $validateValues;
+	}
+
+
+
+	/**
 	 * Load schema and execute validate of data
 	 * @param RequestSchemaInterface 	$schema
 	 * @param array 					$data
 	 */
-	public function validate(array $data = [])
-	{	
-		if (empty($this->validators)) {
-			return $data;
-		}
+	// public function validate(array $data = [])
+	// {	
+	// 	if (empty($this->validators)) {
+	// 		return $data;
+	// 	}
 
-		$fields = array_intersect_key($data, array_flip(array_keys($this->validators)));
-		$validatedValue = [];
-		$validators = $this->validators;
+	// 	$fields = array_intersect_key($data, array_flip(array_keys($this->validators)));
+	// 	$validatedValue = [];
+	// 	$validators = $this->validators;
 
-		$validate = function($validator, $fieldName, $fieldValue) use (&$validatedValue) {
-			$validatedValue[$fieldName] = static::$validator['rule']($fieldValue, $validator['message'], $validator['params']);
-		};
+	// 	$validate = function($validator, $fieldName, $fieldValue) use (&$validatedValue) {
+	// 		$validatedValue[$fieldName] = static::$validator['rule']($fieldValue, $validator['message'], $fieldName, $validator['params']);
+	// 	};
 
-		// Execution Validatotion
-		foreach ($fields as $fieldName => $fieldValue) {
-			foreach ($validators[$fieldName] as $validator) {
-				$validate($validator, $fieldName, $fieldValue);
-			}
-		}
+	// 	// Execution Validatotion
+	// 	foreach ($fields as $fieldName => $fieldValue) {
+	// 		foreach ($validators[$fieldName] as $validator) {
+	// 			$validate($validator, $fieldName, $fieldValue);
+	// 		}
+	// 	}
 
-		return $validatedValue;
-	}
+	// 	return $validatedValue;
+	// }
 
 	/**
 	 * {@inheritDoc}
@@ -186,7 +226,60 @@ class ServerSideValidator extends Validator
 	{
 		return array_key_exists($field, $this->$validators[$name]);
 	}
-	
+		
+
+	/**
+	 * Validate the field value 
+	 *
+	 * @param array[mixed] 	$fieldName
+	 * @param string|array 	$paramValue
+	 * @param string 		$paramKey 	The column of validator
+	 * @return mixed 		The params data
+	 */
+	protected function validateFieldValue($schemaParams, $paramKey, $paramValue)
+	{
+		$schemaParams = $this->unsetSpecificColumns($schemaParams);
+
+		if (!isset($schemaParams['validators'])) {
+			// Whether or not the schemaParams have validate columns
+			if (empty($schemaParams)) {
+				return $paramValue;
+			}
+
+			$paramsCache = [];
+			foreach ($schemaParams as $schemaKey => $schemaValue) {
+				$paramsCache = array_merge($paramsCache, [$schemaKey => $this->validateFieldValue($schemaValue, $schemaKey, $paramValue[$schemaKey])]);
+			}
+
+			return $paramsCache;
+		}
+
+		try {
+			foreach ($schemaParams['validators'] as $validatorName => $validator) {
+				$message = isset($validator['message']) ? $validator['message'] : null;
+				
+				if (in_array($validatorName, $this->specifiedRules)) {
+					unset($validator['message']);
+
+					array_walk($validator, function($restriction, $rule) use ($paramValue, $paramKey, $message) {
+						if (!is_array($restriction)) {
+							$restriction = [$restriction];
+						}
+
+						$this->verifyValue($rule, $paramValue, $message, $restriction);
+					});
+				} else  {
+					$paramValue = $this->verifyValue($validatorName, $paramValue, $message);
+				}
+			}
+		} catch(InvalidArgumentException $e) {
+			throw new InvalidArgumentException($e->getMessage() . '|' . $paramKey);
+		}
+
+		return $paramValue;
+	}
+
+
 	/**
 	 * Determine whether the rule method is exist
 	 * @return bool
@@ -195,6 +288,43 @@ class ServerSideValidator extends Validator
 	{
 		return method_exists(__CLASS__, $ruleMethod);
  		// throw new \InvalidArgumentException("Rule {$ruleMethod} has not been register with ". __CLASS__);
+	}
+
+	/**
+	 * Unset specific columns of array
+	 * @param array 
+	 */ 
+	protected function unsetSpecificColumns($schemaParams)
+	{
+		foreach (static::SPECIFIC_COLUMNS as $column) {
+			if (isset($schemaParams[$column])) {
+				unset($schemaParams[$column]);
+			}
+		}
+
+		return $schemaParams;
+	}
+
+
+	/**
+	 * Find the verifyed method exist and execute method
+	 *
+	 * @param string 	$rule
+	 * @param mixed 	$value
+	 * @param string 	$message
+	 * @param array 	$params
+	 * @throws InvalidArgumentException
+	 * @return mixed|null
+	 */
+	protected function verifyValue($rule, $value, $message, $params = [])
+	{
+		$ruleMethod = static::buildValidateMethod($rule);
+
+		if (static::isValidateMethodExist($ruleMethod)) {
+			return static::$ruleMethod($value, $message, $params);
+		}
+
+		return null;
 	}
 
 	/**
@@ -211,9 +341,9 @@ class ServerSideValidator extends Validator
 		foreach ($fields as $fieldName => $field) {
 			if (!isset($field['validators'])) {
 				continue;
-			} 
+			}
 			
-			foreach ($field['validators'] as $validatorName => $validator) {				
+			foreach ($field['validators'] as $validatorName => $validator) {		
 				// Find validate in rules 
 				if (in_array($validatorName, $this->rules)) {
 					continue;

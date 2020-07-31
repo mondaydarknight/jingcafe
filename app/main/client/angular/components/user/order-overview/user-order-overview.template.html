@@ -1,0 +1,11 @@
+<div class="box">
+	<div class="verification">
+		<div class="verification-tab">
+			<div class="verification-tab-item" ng-repeat="tab in $vm.orderTabs" ng-class="{'active': $vm.tabIndex === $index}" ng-click="$vm.selectTab($index)">{{tab.title()}}</div>
+		</div>	
+	</div>				
+</div>
+
+
+<div ui-view="panel" autoscroll="true" ng-cloak></div>
+

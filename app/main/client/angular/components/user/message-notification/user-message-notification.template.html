@@ -1,0 +1,33 @@
+
+<div class="notification metabar-navbar-item">
+	<a href class="notification-toggle with-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<span class="sr-only">cart-dropdown-toggle</span>
+		<span class="with-icon" ng-bind-html="::$vm.iconNotification"></span>
+		<span class="notification-toggle-quantity" style="top: -4px; right: -3px;">1</span>
+		<span class="notification-toggle-ring"></span>
+	</a>
+	<div class="dropdown-menu notification-menu" role="menu" aria-labelledby="notification-label">
+		<i class="notification-arrow"></i>
+		<div class="notification-menu-header clearfix">
+			<strong>通知</strong>
+		</div>
+		<div class="notification-menu-list clearfix">
+			<a href class="notification-list-item">
+				<div class="notification-item-domain flex1">
+					<div class="notification-img">
+						<i class="photo-message-item img-circle" ng-bind-html="::$vm.iconCoin"></i>
+					</div>
+					<div class="notification-content">
+						<div class="notification-label">匯款通知</div>
+						<div class="notification-detail">有一筆匯款通知信件notificatiosebrsrebersbrsbrbsen</div>
+					</div>
+				</div>				
+				<div class="notification-item-cancel flex0">
+					<button type="button" class="close" data-label="Close" ng-click="$vm.removeProduct($event, $index)">
+						<em aria-hidden="true" class="sn-link-close">&times;</em>
+					</button>
+				</div>
+			</a>				
+		</div>
+	</div>
+</div>

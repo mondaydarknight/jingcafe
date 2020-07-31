@@ -1,0 +1,17 @@
+
+<div class="shop-menubar">
+	<ul class="shop-menubar-menu"> 
+		<li class="shop-menubar-item" ng-repeat="menu in $vm.shopMenuItems" ng-class="{'active': $vm.expandedMenuId === $index}" ng-show="!menu.isAdmin || (menu.isAdmin && $vm.AuthService.isAuthenticated)">
+			<a href class="shop-menubar-item-link">{{::menu.title}}<i class="fa fa-angle-down"></i></a>
+			<div class="menubar-dropdown" ng-init="menuIndex = $index">
+				<ul class="menubar-dropdown-menu" role="menu">
+					<li class="menubar-dropdown-item" ng-repeat="item in menu.shopItems" ng-class="{'active': $vm.expandedMenuId === menuIndex && $vm.selectedMenuId === $index}">
+						<a href class="menubar-dropdown-item-link" ng-click="$vm.directToMenuPage($event, menuIndex, $index)">
+							<i class="{{::item.icon}} menubar-dropdown-icon"></i>{{::item.title}}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+</div>

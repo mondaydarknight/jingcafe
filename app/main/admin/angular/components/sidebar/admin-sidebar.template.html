@@ -1,0 +1,24 @@
+	
+<div class="slim-scroll">
+	<aside class="admin-sidebar">
+		<ul class="admin-sidebar-list">
+			<li class="admin-sidebar-list-item" ng-repeat="item in ::$vm.menuItems" ng-class="::{'with-sublist': !!item.subMenuItems.length}" ng-click="$vm.directToOtherPage($event, item)" sidebar-toggle-item="item">
+				<a href class="admin-sidebar-list-link" ng-mouseenter="$vm.hoverItem($event)" sidebar-toggler>
+					<i class="{{::item.icon}}"></i>
+					<span>{{::item.title}}</span>
+					<b class="fa fa-angle-down" ui-sref-active="fa-angle-up" ng-if="!!item.subMenuItems.length"></b>
+				</a>
+				
+				<ul class="admin-sidebar-sublist" ng-if="::!!item.subMenuItems.length" sidebar-toggle-menu>
+					<li class="admin-sidebar-sublist-item" ng-repeat="subItem in item.subMenuItems" ng-click="$vm.directToOtherPage($event, subItem)">
+						<a href class="admin-sidebar-list-link">{{::subItem.title}}</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+		<div class="sidebar-hover-element" ng-style="{'top': $vm.hoverElementTop + 'px', 'height': $vm.hoverElementHeight + 'px'}"></div>
+	</aside>
+</div>
+
+

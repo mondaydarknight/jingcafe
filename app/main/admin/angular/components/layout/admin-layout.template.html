@@ -1,0 +1,17 @@
+
+
+<main class="" ng-class="{'menu-collapsed': $vm.SidebarService.isMenuCollapsed}">
+	<admin-header></admin-header>
+	
+	<admin-sidebar collapsed-sidebar></admin-sidebar>
+
+	<div loader="bounced"></div>
+
+	<div class="main-layout admin-layout">
+		<div class="main-layout-content">
+			<div ui-view="main" autoscroll="true" ng-cloak></div>
+		</div>	
+	</div>
+	
+
+</main>

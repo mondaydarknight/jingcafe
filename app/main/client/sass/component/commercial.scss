@@ -1,0 +1,113 @@
+
+
+.window-commercial {
+	position: relative;
+	display: none;
+	justify-content: center;
+	margin: 0 auto;
+	padding: 0;
+	-webkit-transition: all .5s linear;
+    transition: all .5s linear;
+    transition-property: top, height;
+
+	&.active {
+		@include fade-in-up(400ms);
+		display: flex;
+	}
+
+	&-wrap {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		flex-grow: 1;
+		flex-wrap: wrap;
+		border-radius: 4px;
+		background-color: #FFB300;
+		padding: 15px 25px;
+	    background-position: center;
+		text-align: center;
+		width: 100%;
+		max-width: 330px;
+		box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, .1);
+		cursor: pointer;
+		max-height: 600px;
+
+		&:hover {
+			opacity: .8;
+		}
+	}
+
+	&-item {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 20px;
+		height: 100%;
+    	flex-direction: column;
+	}
+
+	&-img {
+		background-color: $default;
+		position: relative;
+		display: block;
+		border-radius: 4px;
+		vertical-align: top;
+	    width: 100%;
+	    max-width: 300px;
+	    max-height: 300px;
+	    object-fit: cover;
+	    object-position: top;
+	    height: auto;   
+	}
+
+	&-title {
+		font-size: 38px;
+	    color: #FFF59D;
+	    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Yu Gothic", YuGothic, sans-serif;
+	    font-weight: 700;
+	    /* text-shadow: 2px 2px #efefef; */
+	    vertical-align: baseline;
+	    line-height: 1.2;
+	    overflow: hidden;
+	    text-overflow: ellipsis;	    
+		word-wrap: break-word;
+    	word-break: break-all;
+	}
+
+	&-text {
+		padding: 18px 0;
+		font-size: 20px;
+		color: $default;
+		font-family: $font-family-medium;
+		font-weight: 600;
+		line-height: 1.2;
+		letter-spacing: 0;
+		overflow: hidden;
+		vertical-align: bottom;
+		text-overflow: ellipsis;
+		word-wrap: break-word;
+    	word-break: break-all;
+    	cursor: pointer;
+	}
+
+	&-highlight-box {
+		border-radius: 18px;
+		border: 3px solid $default;
+		padding: 10px 0;
+		margin-top: 10px;
+		color: $default;
+		font-size: 22px;
+		font-family: $font-family-medium;
+		font-weight: 600;
+		line-height: 1.2;
+	}
+
+}
+
+
+@media screen and (max-width: $resM) {
+	.window-commercial {
+		&-text {
+			font-size: 17px;
+		}
+	}
+}

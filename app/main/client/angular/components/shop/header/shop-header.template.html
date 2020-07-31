@@ -1,0 +1,32 @@
+<header class="metabar brand brand-color">
+	<div class="metabar-inner">	
+		<div class="metabar-block flex1">		
+			<a href class="brand-link" ui-sref="shop.home"></a>
+			<shop-menubar></shop-menubar>
+		</div>
+		<div class="metabar-block flex0">
+			<div class="metabar-navbar">
+				<span ng-if="$vm.AuthService.isAuthenticated">
+					<user-message-notification></user-message-notification>
+					<user-cart></user-cart>
+					<user-menu-dropdown></user-menu-dropdown>				
+				</span>
+				<span ng-if="!$vm.AuthService.isAuthenticated">
+					<div class="metabar-navbar-item navbar-button">
+						<button class="btn btn-primary btn-rounded" ng-click="$vm.openLoginModal()">登入</button>					
+					</div>
+					<div class="metabar-navbar-item navbar-button">
+						<button class="btn btn-brand btn-rounded" ui-sref="shop.register">註冊</button>
+					</div>	
+				</span>
+				<div class="metabar-navbar-item" ng-click="$vm.toggleMaterialSheet()">
+					<a href class="menu-toggle with-icon"><span class="toggler"></span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- <div class="metabar-inner shop-menu-navbar">
+		<shop-menu></shop-menu>
+	</div> -->
+</header>

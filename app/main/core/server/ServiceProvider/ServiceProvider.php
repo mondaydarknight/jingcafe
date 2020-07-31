@@ -9,6 +9,7 @@
 
 namespace JingCafe\Core\ServiceProvider;
 
+use ArrayObject;
 use Dotenv\Dotenv;
 use Dotenv\Exception\InvalidPathException;
 use Illuminate\Container\Container;
@@ -19,10 +20,16 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Session\DatabaseSessionHandler;
 use Illuminate\Session\FileSessionHandler;
 use Interop\Container\ContainerInterface;
-use JingCafe\Core\Router;
-use JingCafe\Core\Log\MixedFormatter;
-use JingCafe\Core\Session\Session;
 use JingCafe\Core\Authentication\Authenticator;
+use JingCafe\Core\Authentication\RepositoryVerification;
+use JingCafe\Core\Cache\RedisStore;
+use JingCafe\Core\Exception\BadRequestException;
+use JingCafe\Core\File\FileUploader;
+use JingCafe\Core\Log\MixedFormatter;
+use JingCafe\Core\Mail\Mailer;
+use JingCafe\Core\Router;
+use JingCafe\Core\Session\Session;
+use JingCafe\Core\Twig\CoreExtension;
 use JingCafe\Core\Util\ClassMapper;
 use JingCafe\Core\Util\Repository;
 use League\FactoryMuffin\FactoryMuffin;
@@ -43,20 +50,16 @@ use UserFrosting\Assets\UrlBuilder\AssetUrlBuilder;
 use UserFrosting\Assets\UrlBuilder\CompiledAssetUrlBuilder;
 use UserFrosting\Cache\TaggableFileStore;
 use UserFrosting\Cache\MemcachedStore;
-use UserFrosting\Cache\RedisStore;
 use UserFrosting\Config\ConfigPathBuilder;
 use UserFrosting\I18n\LocalePathBuilder;
 use UserFrosting\I18n\MessageTranslator;
 use UserFrosting\Sprinkle\Core\Error\ExceptionHandlerManager;
 use UserFrosting\Sprinkle\Core\Error\Handler\NotFoundExceptionHandler;
-use UserFrosting\Sprinkle\Core\Mail\Mailer;
 use UserFrosting\Sprinkle\Core\Alert\CacheAlertStream;
 use UserFrosting\Sprinkle\Core\Alert\SessionAlertStream;
 use UserFrosting\Sprinkle\Core\Throttle\Throttler;
 use UserFrosting\Sprinkle\Core\Throttle\ThrottleRule;
-use UserFrosting\Sprinkle\Core\Twig\CoreExtension;
 use UserFrosting\Sprinkle\Core\Util\CheckEnvironment;
-use UserFrosting\Support\Exception\BadRequestException;
 use UserFrosting\Support\Exception\NotFoundException;
 use UserFrosting\Support\Repository\Loader\ArrayFileLoader;
 
@@ -64,9 +67,6 @@ use UserFrosting\Support\Repository\Loader\ArrayFileLoader;
 
 
 class ServiceProvider {
-
-
-
 
 	public function register(ContainerInterface $container)
 	{
@@ -85,6 +85,7 @@ class ServiceProvider {
 			$session = $c->session;
 			$cache = $c->cache;
 			$environment = $c->environment;
+			
 			// Register database connection.
 			$c->db;
 
@@ -92,12 +93,18 @@ class ServiceProvider {
 
 			/** 
 			 * Set salt in authenticator storage
-			 * Combine IPAddress and UserAgent
+			 *
+			 * salt key: IPAddress + UserAgent device
 			 */
 			$authenticator->setSalt($environment['REMOTE_ADDR'] . $environment['HTTP_USER_AGENT']);
 
 			return $authenticator;
 		};
+
+		// $container['authGuard'] = function($c) {
+		// 	$authenticator = $c->authenticator;
+		// 	return new AuthGuard($authenticator);
+		// };
 
 
 		$container['cache'] = function($c) {
@@ -122,10 +129,18 @@ class ServiceProvider {
 			$classMapper = new ClassMapper;
 
 			$classMapper->setClassMapper('activity', 'JingCafe\Core\Database\Models\Activity');
+			$classMapper->setClassMapper('cancelReasons', 'JingCafe\Core\Database\Models\CancelReasons');
 			$classMapper->setClassMapper('category', 'JingCafe\Core\Database\Models\Category');
-			$classMapper->setClassMapper('user', 'JingCafe\Core\Database\Models\User');
+			$classMapper->setClassMapper('county', 'JingCafe\Core\Database\Models\County');
+			$classMapper->setClassMapper('logistic', 'JingCafe\Core\Database\Models\Logistic');
+			$classMapper->setClassMapper('order', 'JingCafe\Core\Database\Models\Order');
+			$classMapper->setClassMapper('payment', 'JingCafe\Core\Database\Models\Payment');
 			$classMapper->setClassMapper('product', 'JingCafe\Core\Database\Models\Product');
 			$classMapper->setClassMapper('shop', 'JingCafe\Core\Database\Models\Shop');
+			$classMapper->setClassMapper('user', 'JingCafe\Core\Database\Models\User');
+			$classMapper->setClassMapper('userLogistic', 'JingCafe\Core\Database\Models\UserLogistic');
+			$classMapper->setClassMapper('userPayment', 'JingCafe\Core\Database\Models\UserPayment');
+			$classMapper->setClassMapper('verification', 'JingCafe\Core\Database\Models\Verification');
 
 			return $classMapper;
 		};
@@ -165,7 +180,7 @@ class ServiceProvider {
 			 * Hacky fix to prevent sessions from being hit too much. Ignore CSRF middleware for requests for raw assets ;-)
 			 *
 			 * See https://github.com/laravel/framework/issues/8172#issuecomment-99112012 for more information 
-			 *	on why it's bad to hit Laravel sessions multiple times in rapid succession.
+			 * on why it's bad to hit Laravel sessions multiple times in rapid succession.
 			 */
 			$csrfBlacklist = $config['csrf.blacklist'];
 			$csrfBlacklist['^/' . $config['assets.raw.path']] = ['GET'];
@@ -174,8 +189,34 @@ class ServiceProvider {
 			return $config;
 		};
 
+		/**
+		 * Initialize CSRF guard middleware
+		 *
+		 * @todo Workaround we can pass storage into CSRF guard.
+		 * If we tried to directly pass the indexed portion of session
+		 * ex: $c-.session['site.csrf']
+		 * we would get an 'Indirect modification of overloaded element' error
+		 * If we tried to assign array, PHP would only modify local variable not session.
+		 * Since ArrayObject is an object, PHP will modify object itself, allowing to persist in the session
+		 */
 		$container['csrf'] = function($c) {
+			$csrfKey = $c->config['session.keys.csrf'];
 
+			if (!$c->session->has($csrfKey)) {
+				$c->session[$csrfKey] = new ArrayObject;
+			}
+
+			$csrfStorage = $c->session[$csrfKey];
+
+			$csrfFailure = function($request, $response, $next) {
+				$exception = new BadRequestException("The CSRF token was invalid or not provided.");
+				$exception->addUserMessage('CSRF_MISSING');
+				throw $exception;
+
+				return $next($request, $response);
+			};
+
+			return new Guard($c->config['csrf.name'], $csrfStorage, $csrfFailure, $c->config['csrf.storage_limit'], $c->config['csrf.strength'], $c->config['csrf.persistent_token']);
 		};
 
 		/**
@@ -221,10 +262,49 @@ class ServiceProvider {
 
 			return $capsule;
 		};
+		
+		/**
+	 	 * FileUploader service
+	 	 */
+		$container['fileUploader'] = function($c) {
+			$fileConfig = $c->config['file'];
+			$fileUplaoder = new FileUploader('files', $fileConfig);
 
-		$container['mailer'] = function($c) {
-
+			return $fileUplaoder;
 		};
+
+
+		/**
+		 * Mailer service
+		 */
+		$container['mailer'] = function($c) {
+			$mailer = new Mailer($c->mailerLogger, $c->config['mail']);
+
+			if ($c->config['debug.smtp']) {
+				$mailer->getPhpMailer()->SMTPDebug = 0;
+			}
+
+			return $mailer;
+		};
+
+		/**
+		 * Mail log services
+		 * @todo PHPMailer will use this to log SMTP activity.
+		 * @todo Extend service into additional handler.
+		 */
+		$container['mailerLogger'] = function($c) {
+			$log = new Logger('mail');
+
+			$logFile = $c->locator->findResource('log://jingcafe.mail.log', true, true);
+			$handler = new StreamHandler($logFile);
+			$formatter = new LineFormatter(null, null, true);
+
+			$handler->setFormatter($formatter);
+			$log->pushHandler($handler);
+
+			return $log;
+		};
+
 
 		/**
 		 * Laravel query logging with Monolog
@@ -246,6 +326,16 @@ class ServiceProvider {
 			return $logger;
 		};
 
+		/**
+		 * Repository for verification requests.
+		 */
+		$container['accountVerification'] = function($c) {
+			$classMapper = $c->classMapper;
+			$config = $c->config;
+
+			return new RepositoryVerification($classMapper, $config['verification.algorithm']);
+		};	
+
 	
 		$container['router'] = function($c) {
 			$routerCacheFile = false;
@@ -256,7 +346,7 @@ class ServiceProvider {
 
 			return (new Router)->setCacheFile($routerCacheFile);
 		};
- 	
+
 		/**
 		 * Start PHP session with the name and parameters specified in configuration file.
 		 */
@@ -279,6 +369,43 @@ class ServiceProvider {
 
 			return $session;
 		};
+
+		/**
+		 * Set the handler of error exception
+		 *
+		 *
+		 * The error hander combination
+		 * return $this->error = (object)[
+		 *		'status' 	=> $status,
+		 *		'title'	   => 'Error',
+		 *		'message'   => $e->getMessage(),
+		 *		'detail'	   => (object) [
+		 *			'file'		=>$e->getFile(),
+         *       	'code'	  	=> $e->getCode(),
+         *        	'line'	   => $e->getLine(),
+         *         	'trace'    	=> $e->getTrace()
+         *       ]
+         *   ];
+		 */
+		$container['errorHandler'] = function($c) {
+			return function($request, $response, $exception) use ($c) {
+				$status = $exception->getCode() ?: 500;
+				$error = [
+					'status' 	=> 'error',
+					'exception' => [['message' => $exception->getMessage()]],
+					'detail' => [
+						'file'	=> $exception->getFile(),
+						'line' => $exception->getLine()
+					]
+				];
+
+				return $response
+		            ->withStatus(500)
+		            ->withHeader('Content-Type', 'text/html')
+		            ->write(json_encode($error, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+			};
+		};
+
 
 		/**
 		 * Set up Twig as the view, adding template paths for all main domains and slim extension
@@ -315,18 +442,15 @@ class ServiceProvider {
 			// }
 
 			$slimExtension = new TwigExtension($c->router, $c->request->getUri());
-
 			$view->addExtension($slimExtension);
+			
+			$coreExtension = new CoreExtension($c);
+			$view->addExtension($coreExtension);
 
-			// Register the core UF extension whti Twig
-			// $coreExtension = new CoreExtension($c);
-			// $view->addExtension($coreExtension);
 			return $view;
 		};
 
 	}
-
-
 
 
 }

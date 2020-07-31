@@ -4,11 +4,14 @@ account:
   validators:
     no_leading_whitespace:
       message: VALIDATE.NO_LEAD_WS
-    # email:
-      # message: VALIDATE.INVALID_EMAIL
+    email:
+      message: VALIDATE.INVALID_EMAIL
 password:
   transformations: [escape, xss, trim]
   validators:
+    no_leading_whitespace:
+      message: VALIDATE.NO_LEAD_WS
     length:
       min: 5
-      max: 60
+      max: 50
+      message: VALIDATE.INVALID_PASSWORD

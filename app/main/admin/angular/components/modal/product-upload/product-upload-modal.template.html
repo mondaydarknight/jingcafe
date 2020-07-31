@@ -1,0 +1,52 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<h4 class="modal-title">產品上傳</h4>
+		<button type="button" class="close" data-label="Close" ng-click="$vm.cancel()">
+			<em aria-hidden="true" class="sn-link-close">&times;</em>
+		</button>		
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="container">
+				<div class="modal-upload-wrap">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th></th>
+									<th>產品名稱</th>
+									<th>產品別名</th>
+									<th>折扣(%)</th>
+									<th>產品金額</th>
+									<th>產品分類</th>
+									<th>產品簡述</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<img class="img-product-item" ng-src="{{::$vm.product.file.view.canvas}}" alt="">
+									</td>
+									<td>{{::$vm.product.name}}</td>
+									<td>{{::$vm.product.enName}}</td>
+									<td>{{::$vm.product.discount}}</td>
+									<td class="price">{{::$vm.product.price}}</td>
+									<td>{{::$vm.product.category.name}}</td>
+									<td>{{::$vm.product.characteristic}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="description">
+						<label>產品說明</label>
+						<p>{{::$vm.product.description}}</p>						
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-with-icon btn-brand" ng-click="$vm.confirm($event)"><i class="fa fa-check"></i>確認</button>
+		<button class="btn btn-with-icon btn-default" ng-click="$vm.cancel()"><i class="fa fa-times"></i>取消</button>
+	</div>
+</div>

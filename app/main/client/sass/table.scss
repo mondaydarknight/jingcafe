@@ -1,0 +1,115 @@
+
+.table {
+
+	& > thead > tr > th,
+	& > tbody > tr > th {
+		padding: 8px;
+		white-space: nowrap;
+		border-bottom: none;
+		line-height: 1.42857143;
+		border-top: 1px solid #ddd;
+	}
+
+	tr {
+		&:first-child {
+			th {
+				border-top: 0;
+			}
+		}
+	}
+
+	.img-product {
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover{
+            opacity: .8;
+        }
+    }
+}
+
+tfoot {
+	display: table-footer-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+.table-container-footer {
+	overflow: hidden;
+	width: 100%;
+	color: $text-primary-color;
+	line-height: 16px;
+	overflow: hidden;
+	text-overflow: clip;
+
+	.price-wrap {
+		padding-left: 0 !important;
+	}
+
+	label {
+		display: block;
+		text-align: right;
+	}
+
+}
+
+
+.table-scroll {
+	@include scrollbars(.4em, rgba(0, 0, 0, .5), $default);
+	position: relative;
+	max-height: 400px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
+	transition-delay: 0.05s;
+}
+
+
+.store-list-view {
+	
+	thead {
+		td {
+			border:1px solid #fff; 
+			border-width:0 1px 1px 0;
+			background-color: #c9e293;
+
+			&:last-child {
+				border: none;
+			}
+		}
+	}
+
+	tbody {
+		& > tr {
+			cursor:  pointer;
+
+			&:nth-child(even) {
+				background-color: #E9E9E9;
+			}
+
+			&:hover {
+				transform: scale(1.1);
+			}
+
+			a {
+				text-decoration: none;
+				&:hover {
+					color: $brand-primary !important;	
+				}
+			}
+		}
+	}
+}
+
+
+
+@media screen and (max-width: $resXS) {
+	.img-product {
+		height: 70px;
+		width: 70px;
+    }
+}
+
+

@@ -1,0 +1,70 @@
+
+<div class="widgets">
+	<div class="board zoom-in animated">
+		<div class="board-heading">
+			<h5 class="board-title"><button class="btn btn-default" ui-sref="admin.product.overview"><i class="fa fa-angle-left"></i> 返回</button> 產品上傳</h5>
+		</div>
+		<div class="board-body">
+			
+			<form name="$vm.uploadForm" ng-submit="$vm.uploadForm.$valid && $vm.upload($event)" novalidate>
+				<div class="row">
+					<div class="col-md-6 col-12">
+						<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.uploadForm.name.$invalid && ($vm.uploadForm.name.$dirty || $vm.uploadForm.$submitted)}">
+							<label class="form-control-label">產品名稱</label>
+							<input type="text" name="name" class="form-control" ng-model="$vm.product.name" placeholder="產品名稱" required>
+		 					<span class="help-block error-block basic-block">請填寫產品名稱</span>		 					
+						</div>
+						<div class="form-group has-feedback clearfix">
+							<label class="form-control-label">產品別名</label>
+							<input type="text" name="enName" class="form-control" ng-model="$vm.product.enName" placeholder="產品名稱 (可不填)">
+						</div>
+						<div class="form-group has-feedback clearfix">
+							<label class="form-control-label">折扣 (%)</label>							
+							<input type="number" name="discount" class="form-control" ng-model="$vm.product.discount" placeholder="折">
+						</div>
+						<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.uploadForm.price.$invalid && ($vm.uploadForm.price.$dirty || $vm.uploadForm.$submitted)}">
+							<label class="form-control-label">產品金額</label>							
+		 					<input type="number" name="price" class="form-control" ng-model="$vm.product.price" placeholder="產品金額" required>
+		 					<span class="help-block error-block basic-block">請填寫產品金額</span>							
+						</div>
+						<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.uploadForm.category.$error.required && ($vm.uploadForm.category.$dirty || $vm.uploadForm.$submitted)}">
+							<label class="form-control-label">產品分類</label>
+							<select name="category" class="form-control" ng-options="category as category.name for category in $vm.categories track by category.id" ng-model="$vm.product.category" required></select>
+		 					<span class="help-block error-block basic-block">請選擇產品分類</span>
+						</div>
+						<div class="form-group has-feedback clearfix">
+							<label class="form-control-label">產品照片</label>
+							<file theme="default" file-limit="" file-addmore download file-model="$vm"></file>		
+						</div>
+					</div>
+					<div class="col-md-6 col-12">								
+						<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.uploadForm.amount.$invalid && ($vm.uploadForm.amount.$dirty || $vm.uploadForm.$submitted)}">
+							<label class="form-control-label">庫存量</label>
+							<input type="number" name="amount" class="form-control" ng-model="$vm.product.amount" placeholder="數量" required>
+							<span class="help-block error-block basic-block">請填寫庫存量</span>
+						</div>						
+						<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.uploadForm.status.$error.required && ($vm.uploadForm.status.$dirty || $vm.uploadForm.$submitted)}">
+							<label class="form-control-label">狀態設定</label>
+							<select name="status" class="form-control" ng-options="flag.enabled as flag.name for flag in $vm.flagEnabled" ng-model="$vm.product.flagEnabled" required></select>
+							<span class="help-block error-block basic-block">請選擇狀態設定</span>
+						</div>
+						<div class="form-group has-feedback clearfix">
+							<label class="form-control-label">產品簡述</label>
+							<textarea name="characteristic" class="form-control" ng-model="$vm.product.characteristic" placeholder="產品簡述" style="height: 10rem;"></textarea>
+		 					<!-- <span class="help-block error-block basic-block">請填寫產品簡述</span> -->
+						</div>
+						<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.uploadForm.description.$invalid && ($vm.uploadForm.description.$dirty || $vm.uploadForm.$submitted)}">
+							<label class="form-control-label">產品說明</label>
+							<textarea name="description" class="form-control" ng-model="$vm.product.description" placeholder="產品說明" required style="height: 14rem;"></textarea>
+		 					<span class="help-block error-block basic-block">請填寫產品說明</span>
+						</div>
+					</div>
+				</div>
+				<div class="text-center">
+					<button class="btn btn-brand btn-with-icon"><i class="fa fa-check"></i>提交</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

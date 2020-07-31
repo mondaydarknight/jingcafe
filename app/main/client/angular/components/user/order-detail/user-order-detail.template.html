@@ -1,0 +1,206 @@
+
+<div class="plank animated">
+	<div class="plank-heading">
+		<h5 class="plank-title">
+			<button class="btn btn-default btn-with-icon" ng-click="$vm.directToLastPage()">
+				<i class="fa fa-angle-left fa-1x"></i>返回
+			</button> 訂單明細
+		</h5>
+	</div>
+	<div class="plank-body">
+		<div id="order-timeline"></div>		
+		<h5 class="outline outline-light">訂單</h5>
+		<div class="order order-detail">
+			<div class="order-wrap">
+				<div class="order-header">
+					<div class="order-header-bottom with-column">
+						<div class="order-column">
+							<label class="item-link">訂單編號</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">總金額</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">訂購狀態</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">訂購日期</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">繳費期限</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">出貨日期</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">取消日期</label>
+						</div>						
+					</div>
+				</div>
+				<div class="order-content">
+					<div class="order-content">
+						<div class="order-content-wrap">
+							<div class="order-content-item">
+								<div class="item-fragment">
+									<span class="text-normal">{{::$vm.order.id}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="total-price">{{::$vm.order.totalPrice}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="status">{{::$vm.order.statusName}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="payment-detail">{{::$vm.order.createdAt}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="payment-detail">{{::$vm.order.expiredAt}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="payment-detail">{{::$vm.order.producedAt}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="payment-detail">{{::$vm.order.cancelAt}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h5 class="outline outline-light">產品</h5>
+		<div class="order order-detail">
+			<div class="order-wrap">
+				<div class="order-header">
+					<div class="order-header-bottom with-column">
+						<div class="order-column">
+							<label class="item-link">產品</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">數量</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">單價</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">金額</label>
+						</div>			
+					</div>
+				</div>
+				<div class="order-content">
+					<div class="order-content">
+						<div class="order-content-wrap">
+							<div class="order-content-item" ng-repeat="product in ::$vm.order.products">
+								<div class="item-fragment">
+									<span class="product-name">{{::product.name}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="product-quantity">{{::product.quantity}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="product-price">{{::product.price}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="total-price">{{::product.totalPrice}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h5 class="outline outline-light">配送方式</h5>
+		<div class="order order-detail">
+			<div class="order-wrap">
+				<div class="order-header">
+					<div class="order-header-bottom with-column">
+						<div class="order-column">
+							<label class="item-link">門市</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">運費</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">配送天數</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">收件人</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">收件人電話</label>
+						</div>						
+						<div class="order-column">
+							<label class="item-link">住址</label>
+						</div>			
+					</div>
+				</div>
+				<div class="order-content">
+					<div class="order-content">
+						<div class="order-content-wrap">
+							<div class="order-content-item">
+								<div class="item-fragment">
+									<span class="text-normal">{{::$vm.order.userLogistic.logistic.name}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="product-price">{{::$vm.order.logisticFee}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="text-normal">{{::$vm.order.userLogistic.logistic.average_time}}天</span>
+								</div>
+								<div class="item-fragment">
+									<span class="text-normal">{{::$vm.order.userLogistic.username}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="text-normal">{{::$vm.order.userLogistic.phone}}</span>
+								</div>
+								<div class="item-fragment">
+									<span class="payment-detail">{{::$vm.order.userLogistic.address}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h5 class="outline outline-light">付款</h5>
+		<div class="order order-detail">
+			<div class="order-wrap">
+				<div class="order-header">
+					<div class="order-header-bottom with-column">
+						<div class="order-column">
+							<label class="item-link">付款方式</label>
+						</div>
+						<div class="order-column">
+							<label class="item-link">帳戶後五碼</label>
+						</div>						
+					</div>
+				</div>
+				<div class="order-content">
+					<div class="order-content-wrap">
+						<div class="order-content-item">
+							<div class="item-fragment">
+								<span class="text-normal">{{::$vm.order.userPayment.payment.name}}</span>
+							</div>
+							<div class="item-fragment">
+								<span class="product-price">{{::$vm.order.userPayment.account}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h5 class="outline outline-light">留言</h5>
+		<div class="order order-detail">
+			<div class="order-wrap">
+				<div class="order-content">
+					<div class="order-content-wrap" style="min-height: 30px;">
+						<div class="order-content-item">
+							<span class="text-normal" style="display: flex; justify-content: flex-start;">{{::$vm.order.message}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

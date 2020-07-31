@@ -1,8 +1,6 @@
 <?php
 
 
-
-
 namespace JingCafe\Core\File;
 
 
@@ -37,7 +35,7 @@ abstract class FileRepositoryLoader {
 		return $result;
 	}
 
-	public function loadFile($path, $skipMissing)
+	public function loadFile($path, $skipMissing = false)
 	{
 		if (!file_exists($path)) {
             if ($skipMissing) {

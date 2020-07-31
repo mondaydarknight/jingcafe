@@ -1,0 +1,27 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<h4 class="modal-title">取消訂單</h4>
+		<button type="button" class="close" data-label="Close" ng-click="$vm.cancel()">
+			<em aria-hidden="true" class="sn-link-close">&times;</em>
+		</button>		
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="container">
+				<div class="card text-center">
+					<div class="card-header">請選擇取消原因</div>
+					<div class="card-body">
+						<form name="$vm.cancelForm" ng-submit="$vm.cancelForm.$valid && $vm.confirm($event)" novalidate>
+							<h5 class="card-title">取消原因</h5>
+							<div class="form-group has-feedback row clearfix" ng-class="{'has-error': $vm.cancelForm.reason.$error.required && ($vm.cancelForm.reason.$dirty || $vm.cancelForm.$submitted)}">
+								<select name="reason" class="form-control" ng-options="cancel.id as cancel.reason for cancel in $vm.reasons" ng-model="$vm.reasonId" required></select>
+								<span class="help-block error-block basic-block">請選擇取消原因</span>
+							</div>
+							<button class="btn btn-info no-transform">確認</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

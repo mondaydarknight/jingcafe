@@ -18,7 +18,7 @@ export default class HeaderService {
 	}
 
 	get shopMenuItems() {
-		if (angular.isArray(this._shopMenuItems) && this._shopMenuItems.length > 0) {
+		if (this._shopMenuItems && this._shopMenuItems.length) {
 			return this._shopMenuItems;
 		}
 
@@ -30,22 +30,21 @@ export default class HeaderService {
 	 * constitue shop menu of  all config routes for shop menu components 
 	 */
 	constituteShopMenuRoutes() {
-		if (angular.isArray(this._shopMenuItems) && this._shopMenuItems.length > 0) {
-			return this._shopMenuItems;
-		}
-
 		this.$state.get()
 			.filter((route) => route.shopMenu)
 			.map((route) => {
 				let shopItem = {
+					name: route.shopMenu.name,
 					title: route.shopMenu.title,
-					href: route.name
+					href: route.name,
+					icon: route.shopMenu.icon
 				};
-
+				
 				if (route.shopMenu.mainSubject) {
 					let shopItemMix = angular.extend(shopItem, {shopItems: [], isAdmin: route.isAdmin});
 					this._shopMenuItems.push(shopItemMix);
 				} else {
+					angular.extend(shopItem, {subMenu: true});
 					this._shopMenuItems[this._shopMenuItems.length - 1].shopItems.push(shopItem);
 				}
 			});

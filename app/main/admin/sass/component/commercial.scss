@@ -1,0 +1,61 @@
+
+
+.login-commercial {
+	position: relative;
+	height: 500px;
+	background-color: $default;
+	transition: all .4s ease-in-out;
+	display: flex;
+	flex-direction: column;
+
+    .commercial-heading {
+    	display: block;
+    	padding-top: 60px;
+    	text-align: center;		
+		text-overflow: ellipsis;
+	    word-break: break-word;
+	 	color: $default;
+	 	width: 100%;
+
+		.commercial-title {
+	    	vertical-align: bottom;
+	    	font-size: 32px;
+	    	line-height: 57px;
+	    	font-weight: 600;
+	    	color: $default;	    	
+	    }
+
+    }
+
+    /**
+     * background-size: contain, cover, width height
+     */
+    .commercial-content {
+    	position: relative;    	
+    	display: flex;
+		margin-top: 8px;
+    	box-shadow: 0 0 1px #999;
+    	background-size:     cover;             
+    	background-repeat:   no-repeat;
+    	background-position: center center;
+    	resize: both;
+    	top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+    	border-radius: 2px;
+    	overflow: hidden;
+    	white-space: nowrap;
+    }
+    
+}
+
+@media screen and (max-width: $resXL) {
+
+}
+
+@media screen and (max-width: $resS) {
+	// .commercial-content {
+	// 	background-size: contain !important;
+	// }
+}

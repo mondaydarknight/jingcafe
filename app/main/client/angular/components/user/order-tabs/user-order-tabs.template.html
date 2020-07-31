@@ -1,0 +1,16 @@
+<!-- 
+<div class="row">
+	<div class="col-md-6 offset-md-3">
+		<div class="search">
+			<input type="search" name="search" ng-model="$vm.searchOrderId" ng-change="$vm.fileterOrder()" placeholder="搜尋訂單編號" aria-label="search">
+		</div>
+	</div>
+</div> -->
+<div id="order-view">
+	<order-unpaid title="待付款" type="unpaid"></order-unpaid>
+	<order-produced title="待出貨" type="produced"></order-produced>
+	<order-completed title="完成" type="completed"></order-completed>
+	<order-canceled title="取消" type="canceled"></order-canceled>	
+</div>
+
+<div ui-view="panel" autoscroll="true"></div>

@@ -1,0 +1,71 @@
+<!-- <div class="fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true"> -->
+	<!-- <div class="modal-dialog" role="document"> -->
+<div class="modal-content">
+	<div class="modal-header">
+		<button class="btn btn-default back-to-login" ng-click="$vm.openLoginWrapper(true)"><i class="fa fa-angle-left"></i> 返回</button>	
+		<button type="button" class="close" data-label="Close" ng-click="$vm.cancel()">
+			<em aria-hidden="true" class="sn-link-close">&times;</em>
+		</button>
+	</div>
+	<div class="modal-body">
+		<div class="row">
+			<div class="login-wrapper col-md-10 col-sm-10 col-10 offset-md-1 offset-sm-1 offset-1">
+				<div class="text-center">
+					<h2 class="modal-title">登入</h2>
+					<alert class="slide-down" ng-show="$vm.alert.isOpen" alert-class="$vm.alert.class"></alert>
+				</div>
+				<form name="$vm.signIn" ng-submit="$vm.signIn.$valid && $vm.login()" novalidate>
+					<div class="form-group has-feedback clearfix" ng-class="{'has-success': $vm.signIn.account.$valid && $vm.signIn.account.$dirty,'has-error': $vm.signIn.account.$invalid && ($vm.signIn.account.$dirty || $vm.signIn.$submitted)}">
+						<label class="col-form-label"><i class="ace-icon fa fa-envelope"></i>信箱帳號</label>
+						<input type="email" name="account" class="form-control form-control-success form-control-error" ng-model="$vm.user.account" required autofocus>
+						<span class="help-block error-block basic-block">信箱帳號有誤</span>
+					</div>
+					<div class="form-group has-feedback clearfix" ng-class="{'has-success': $vm.signIn.password.$valid && $vm.signIn.password.$dirty, 'has-error': $vm.signIn.password.$invalid && ($vm.signIn.password.$dirty || $vm.signIn.$submitted)}">
+						<label class="col-form-label" style="display: inline-block;"><i class="ace-icon fa fa-key"></i>密碼</label>
+						<div class="forget-password">
+							<div ng-click="$vm.openLoginWrapper(false, $event)" class="forget-password-link">忘記密碼?</div>
+						</div>
+						<input type="password" name="password" class="form-control form-control-success form-control-error" ng-model="$vm.user.password" required>
+						<span class="help-block error-block basic-block">密碼有誤</span>
+					</div>
+					<div class="text-center">
+						<button type="submit" class="btn btn-info btn-block no-transform">
+							<i class="fa fa-spinner fa-spin" style="display: none;"></i>登入
+						</button>
+						<a href ui-sref="shop.register" ng-click="$vm.cancel()" class="btn btn-link">尚未註冊</a>
+					</div>
+				</form>
+			</div>
+
+			<div class="forget-password-wrapper col-md-10 col-sm-10 col-10 offset-md-1 offset-sm-1 offset-1">
+				<div class="text-center">
+					<h2 class="modal-title">重設密碼</h2>
+					<!-- <alert class="slide-down"></alert> -->
+				</div>
+				<form name="$vm.forget" ng-submit="$vm.forget.$valid && $vm.sendVerifiedEmail()" novalidate>
+					<div class="form-group has-feedback clearfix" ng-class="{'has-error': $vm.forget.account.$invalid && ($vm.forget.account.$dirty || $vm.forget.$submitted)}">
+						<label class="col-form-label"><i class="ace-icon fa fa-envelope"></i>信箱帳號</label>
+						<input type="email" name="account" class="form-control" ng-model="$vm.forgetAccount" required>
+						<span class="help-block error-block basic-block">信箱帳號有誤</span>
+					</div>
+					<div class="text-center" style="margin: 20px 0;">
+						<button type="submit" class="btn btn-info btn-block no-transform">送出</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

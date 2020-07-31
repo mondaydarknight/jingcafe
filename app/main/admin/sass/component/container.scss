@@ -1,0 +1,40 @@
+
+
+.pie-chart-container {
+	position: relative;
+	padding: 0 15px;
+	float: left;
+	height: 130px;
+	box-sizing: border-box;
+}
+
+
+@media screen and (min-width: 1325px) {
+    .pie-chart-container {
+    	width: 25%;
+    }
+}
+
+@media screen and (max-width: 1325px) and (min-width: 700px) {
+	.pie-chart-container {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.pie-chart-container {
+		width: 100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+

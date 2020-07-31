@@ -1,0 +1,49 @@
+
+<div class="introduction">
+	<div class="introduction-wrap">
+		<div class="view-landscape"></div>
+		<div class="container">
+			<section>
+				<div class="box box-default">
+					<div class="box-heading text-center">
+						<h2 class="outline" style="display: inline-block;">關於{{::$vm.shopBase.shop.brand}}</h2>
+					</div>
+					<div class="box-body">
+						<div class="row">
+							<div class="col-lg-5 col-md-5 col-sm-5 col-12 offset-lg-1 offset-md-1">
+								<div class="introduction-profile-wrap">
+									<img class="introduction-profile" src="/assets/img/bg/stock-coffee-atmosphere.jpg" alt="">
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-7 col-12">
+								<div class="introduction-outline">
+									<h2 class="outline">{{::$vm.shopBase.shop.highlight}}</h2>
+									<h4 class="outline outline-light">{{::$vm.shopBase.shop.enHighlight}}</h4>
+									<p class="outline-content">{{::$vm.shopBase.shop.introduction}}</p>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="text-center">
+				<h2 class="outline">特色</h2>
+				<div class="feature">
+					<div class="feature-item" ng-repeat="feature in ::$vm.features">						
+						<div class="feature-item-inner">
+							<div class="feature-content">
+								<img class="feature-img" ng-src="{{::feature.image}}" alt="">
+							</div>
+							<div class="feature-content">
+								<h2 class="feature-title">{{::feature.title}}</h2>
+							</div>
+						</div>
+					</div>					
+				</div>		
+			</section>
+		</div>
+	</div>
+</div>
+
+
+

@@ -1,0 +1,44 @@
+
+
+.main-layout {
+	background-color: #F0F3F4;
+	min-height: 700px;
+	padding: 66px 0 34px;
+
+	&-content {
+		padding: 16px 32px 8px 40px;
+	}
+
+	&.admin-layout {
+		margin-left: 180px;
+	}
+
+	&.login-layout {
+		background-color: #fafafa;
+	}
+
+}
+
+
+
+@media screen and (max-width: $resXXL) and (min-width: $resXS) {
+	.admin-layout {
+		margin-left: 50px !important;
+	}
+}
+
+@media screen and (max-width: 590px) {
+	.admin-layout {
+		padding-bottom: 76px;
+	}
+}
+
+@media screen and (max-width: $resXS) {
+	.admin-layout {
+		margin-left: 0;
+
+		&-content {
+			padding: 8px 20px;	
+		}
+	}
+}

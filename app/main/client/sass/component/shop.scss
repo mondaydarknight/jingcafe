@@ -1,0 +1,7 @@
+
+.shop-page-wrapper {
+	transition: margin-top .3s cubic-bezier(.4,0,.2,1);
+    background-color: white;
+    transition: transform .2s cubic-bezier(.4,0,.2,1),-webkit-transform .2s cubic-bezier(.4,0,.2,1);
+}
+

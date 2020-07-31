@@ -1,0 +1,47 @@
+
+
+body {
+	$font-family:  $font-family-medium;
+
+
+	a {
+		-webkit-transition: color .2s ease;
+		transition: color .2s ease;
+		list-style: none;
+		text-decoration: none;
+	}
+}
+
+.widgets {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.price {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: $font-bold;
+	color: $brand-primary;
+	text-align: center;
+	font-family: $font-family-monospace;
+	text-overflow: ellipsis;
+	word-break: break-word;
+}
+
+.description-column {
+	max-width: 180px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.remarkable-text {
+	font-size: 16px;
+	font-family: $font-family-monospace;
+	font-weight: $font-normal;
+	line-height: 32px;
+	color: #575962;
+	vertical-align: baseline;
+}

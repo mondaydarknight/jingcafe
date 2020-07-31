@@ -1,0 +1,58 @@
+
+
+<main class="">
+	<admin-header></admin-header>
+
+	<div loader="bounced"></div>
+
+	<div class="main-layout">
+		<div class="main-layout-content">
+			<div class="board">
+				<div class="board-body">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 col-sm-7 col-12">					
+								<div class="login-commercial">									
+									<div class="commercial-content" style="background-image: url(/assets/img/commercial/social3_04.jpg);">
+										<div class="commercial-heading">
+										<h5 class="commercial-title">賣家中心</h5>
+										<p>使用<b>JingCafe</b> 賣家中心， 管理有效率</p>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-5 col-12">
+								<form name="loginForm" class="login-form" ng-submit="loginForm.$valid && $vm.login()" novalidate>
+									<div class="board">
+										<div class="board-body">									
+											<div class="login-form-wrap">
+												<h5 class="login-form-title">賣家登入</h5>
+												<div type="alert"></div>
+												<div class="login-form-content">
+													<div class="form-group has-feedback clearfix" ng-class="{'has-error': loginForm.account.$invalid && (loginForm.account.$dirty || loginForm.$submitted)}">
+														<label class="control-label">帳號</label>											
+														<input type="email" name="account" class="form-control" ng-model="$vm.admin.account" placeholder="信箱帳號" autofocus required>
+														<span class="help-block error-block basic-block">請輸入帳號</span>
+													</div>
+													<div class="form-group has-feedback clearfix" ng-class="{'has-error': loginForm.password.$invalid && (loginForm.password.$dirty ||loginForm.$submitted)}">
+														<label class="control-label">密碼</label>											
+														<input type="password" name="password" class="form-control" ng-model="$vm.admin.password" placeholder="密碼" required>
+														<span class="help-block error-block basic-block">請輸入密碼</span>
+													</div>
+													<button type="submit" class="btn btn-primary btn-rounded btn-block no-transform">
+														<i class="fa fa-spinner fa-spin"></i> 登入
+													</button>	
+												</div>
+											</div>								
+										</div>
+									</div>
+								</form>																			
+							</div>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</main>

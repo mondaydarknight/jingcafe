@@ -1,0 +1,150 @@
+<!-- <form name="$vm.$order" novalidate>						
+								<div class="product-list">
+									<div class="product-list-wrap">
+										<div class="product-list-head">
+											<span class="product-list-head-item">商品</span>
+											<span class="product-list-head-item">單價</span>
+											<span class="product-list-head-item">數量</span>
+											<span class="product-list-head-item">總計</span>
+											<span class="product-list-head-item">操作</span>
+										</div>
+
+										<div class="product-list-content">
+											<div class="product-content-item-wrap" ng-repeat="product in $vm.products">
+												<div class="main-item">
+													<div class="product-content-item">
+													<div class="product-pic" style="background-image: url({{::product.profile}});"></div>
+														<span class="product-name">{{::product.name}}</span>
+													</div>	
+												</div>
+												<div class="sub-item">
+													<div class="product-content-item">
+														<span class="product-price">{{::product.price | currency: '$NT': 0}}</span>
+													</div>
+													<div class="product-content-item">
+														<span class="quantity">{{::product.quantity}}</span>
+													</div>
+													<div class="product-content-item">
+														<span class="product-total-price">{{::product.totalPrice | currency:'$NT': 0}}</span>
+													</div>
+													<div class="product-content-item">
+														<div class="content-item-inner"><button type="button" class="btn btn-cancel" data-label="Close" ng-click="$vm.removeProduct($index)">
+															<em aria-hidden="true" class="sn-link-close">&times;</em>
+														</button></div>	
+													</div>												
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form> -->
+
+
+	<!-- <verification-step title="會員資料" form="$vm.$member">
+							<form name="$vm.$member" novalidate>
+								<div class="row">
+									<div class="col-md-10 col-10 offset-md-1 offset-1">
+										<div class="row">
+											<div class="col-sm-8 col-12 offset-sm-2 text-center">
+												<div class="alert alert-info" ng-click="$vm.toggleRenderUserInfo($event)">
+													<label class="custom-checkbox checkbox-inline">
+														<input class="user-basic-info" type="checkbox">
+														<span>同會員資料</span>
+													</label>
+												</div>							
+											</div>
+											<div class="col-sm-6 col-12">
+												<div class="form-group has-feedback row clearfix" ng-class="{'has-error': $vm.$member.username.$invalid && ($vm.$member.username.$dirty || $vm.$member.$submitted)}">
+													<label class="col-sm-3 control-label">姓名</label>
+													<div class="col-sm-9">
+														<input type="text" name="username" class="form-control" ng-model="$vm.checkoutParams.user.username" placeholder="付款人姓名" required> 
+														<span class="help-block error-block basic-block">請填寫付款人姓名</span>
+													</div>
+												</div>
+												<div class="form-group has-feedback row clearfix" ng-class="{'has-error': $vm.$member.phone.$invalid && ($vm.$member.phone.$dirty || $vm.$member.$submitted)}">
+											 		<label class="col-sm-3 control-label">電話</label>
+											 		<div class="col-sm-9">
+											 			<input type="text" name="phone" class="form-control" ng-model="$vm.checkoutParams.user.phone" placeholder="電話" required>
+											 			<span class="help-block error-block basic-block">請填寫電話</span>
+											 		</div>
+											 	</div>
+											</div>
+											<div class="col-sm-6 col-12">
+												<div class="form-group has-feedback row clearfix" ng-class="{'has-error': $vm.$member.email.$invalid && ($vm.$member.email.$dirty || $vm.$member.$submitted)}">
+											 		<label class="col-sm-3 control-label">信箱帳號</label>
+											 		<div class="col-sm-9">
+											 			<input type="email" name="email" class="form-control" ng-model="$vm.checkoutParams.user.email" placeholder="信箱帳號" required>
+											 			<span class="help-block error-block basic-block">請填寫信箱帳號</span>
+											 		</div>
+											 	</div>
+											</div>
+										</div>											
+									</div>
+								</div>
+							</form>
+						</verification-step> -->
+
+
+
+
+
+
+							
+							<!-- <form name="$vm.$logistic" novalidate="">
+								<div class="row">
+									<div class="col-md-8 offset-md-2">	
+										<div class="form-group has-feedback row clearfix" ng-class="{'has-error': !$vm.checkoutParams.logistic.length && $vm.$logistic.$submitted}">
+											<label class="col-sm-3 control-label">選擇取貨方式</label>
+											<div class="col-sm-9">
+												<div class="logistic-container">
+													<div class="logistic-container-wrap">
+														<div class="logistic-item" ng-repeat="logistic in ::$vm.logistics" ng-click="$vm.selectLogisticRadio($event, $index, logistic)">
+															<div class="item-thumbnail">
+																<input type="radio" name="logistic" class="select-box">
+																<img ng-src="{{::logistic.profile}}" class="item-thumbnail-graph" width="50" height="50">
+															</div>
+															<span class="item-link">{{::logistic.name}}</span>
+														</div>		
+													</div>
+												</div>
+											</div>
+											<span class="help-block error-block basic-block">請選擇取貨方式</span>
+										</div>
+										<div class="form-group has-feedback row clearfix" ng-class="{'has-error': $vm.$logistic.county.$error.required && ($vm.$logistic.county.$dirty || $vm.$logistic.$submitted)}" element-display="county" init-display="false">
+											<label class="col-sm-3 control-label">選擇付款方式</label>
+											<div class="col-sm-9">
+												<select name="county" class="form-control" ng-options="county.name for county in $vm.counties" ng-model="$vm.checkoutParams.logistic.county" ng-change="$vm.selectStoresByCounty()" required></select>	
+												<span class="help-block error-block basic-block">選擇縣市</span>
+											</div>
+										</div>
+										
+										<div class="form-group has-feedback row clearfix" ng-class="{'has-error': $vm.$logistic.address.$invalid && ($vm.$logistic.address.$dirty || $vm.$logistic.$submitted)}">
+											<label class="col-sm-3 control-label">選擇門市</label>
+											<div class="col-sm-9">
+												<div class="text-box">
+													<input type="text" name="address" class="form-control highlight" ng-model="$vm.checkoutParams.logistic.address" readonly required>
+													<label name="address" class="text-normal highlight" required>{{$vm.checkoutParams.logistic.address}}</label>
+												</div>
+												<div class="store-list-view" style="display: none;">
+													<div class="search">
+														<input type="search" name="filterStoreItems" placeholder="搜尋地址關鍵字" aria-label="search">
+													</div>
+													<div class="table-responsive table-scroll">
+														<table class="table" width="100%" cellspacing="5" cellspacing="0" bgcolor="#ffffff">
+															<thead>
+																<tr>
+																	<td align="center" width="20%">店號</td>
+																	<td align="center" width="20%">店名</td>
+																	<td align="center">地址</td>
+																</tr>
+															</thead>
+															<tbody></tbody>
+														</table>
+													</div>
+												</div>												
+											</div>
+											<span class="help-block error-block basic-block">請選擇門市</span>
+										</div>
+									</div>
+								</div>
+							</form> -->

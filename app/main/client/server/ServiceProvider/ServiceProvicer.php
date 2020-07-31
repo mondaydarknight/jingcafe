@@ -7,14 +7,7 @@
  * @author Mong cheng
  */
 
-
 namespace JingCafe\Client;
-
-
-
-
-
-
 
 class ServiceProvider {
 

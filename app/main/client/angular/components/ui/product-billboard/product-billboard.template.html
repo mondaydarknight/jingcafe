@@ -1,0 +1,34 @@
+
+
+<div class="box box-default">
+	<div class="box-body">
+		<div class="product-billboard">
+			<div class="product-billboard-wrap">
+				<div class="product-billboard-heading">
+					<h5 class="product-billboard-link active">熱銷產品</h5>
+				</div>
+				<div class="product-billboard-content">
+					<div class="product-billboard-arrow" ng-click="$vm.prev()">
+						<div class="product-billboard-arrow-inner">
+							<i class="fa fa-angle-left"></i>
+						</div>						
+					</div>
+					<div class="product-billboard-view">
+						<div class=product-billboard-view-wrap>
+							<div class="product-billboard-item" ng-repeat="product in ::$vm.recommendProducts" ui-sref="shop.product.detail({'productId': product.id})">
+								<img class="product-img" ng-src="{{::product.profile}}" alt="">
+								<label class="product-name">{{::product.name}}</label>
+								<span class="product-price">{{::product.price | currency: '$NT': 0}}</span>
+							</div>							
+						</div>
+					</div>
+					<div class="product-billboard-arrow active" ng-click="$vm.next()">
+						<div class="product-billboard-arrow-inner">
+							<i class="fa fa-angle-right"></i>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>

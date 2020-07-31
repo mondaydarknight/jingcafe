@@ -1,3 +1,20 @@
+::-webkit-scrollbar {
+  width: 0.5em;
+    height: 0.5em; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d9d9d9;
+    cursor: pointer; 
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+.test-image {
+	background: url('/assets/img/1suna9X_mrEZ.png') repeat left top;
+}
 
 html {
 	@include main-background();
@@ -7,6 +24,46 @@ html {
 
 body {
 	@include main-background();
+}
+
+html, body {
+	font-family: $font-family-base;
+	letter-spacing: 0;
+    font-weight: 400;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: "liga" on;
+    color: rgba(0,0,0,.84);
+    font-size: 14px;
+	font-weight: normal;
+	overflow-x: hidden;
+	background-color: $default;
+	line-height: 1.4;
+
+	-moz-appearance: checkbox-small;
+	-moz-appearance: dialog;
+	-moz-appearance: radio-small;
+	-moz-appearance: scrollbar;
+	-moz-appearance: tab-left-edge Obsolete;
+	-moz-appearance: window;
+}
+
+
+
+
+body::-moz-scrollbar {
+    width: 1em;
+}
+ 
+body::-moz-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-moz-scrollbar-thumb {
+  	background-color: darkgrey;
+  	outline: 1px solid slategrey;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -22,6 +79,15 @@ label, p, span, div {
 	font-weight: normal;
 }
 
+main {
+    position: relative;
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+    box-sizing: border-box;
+}
+
 a {
 	@include link-hover(0.1s);
 	background-color: transparent;
@@ -30,6 +96,24 @@ a {
     color: $text-primary-color;
 }
 
+a, button, input {
+	-webkit-tap-highlight-color: transparent;
+}
+
+ul, menu, dir {
+	display: block;
+	list-style-type: disc;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+}
+
+li {
+	list-style: list-item;
+	text-align: -webkit-match-parent;
+}
 
 .home {
   	padding: 20px 20px 0px 20px;
@@ -54,89 +138,68 @@ a {
 	padding: 0;
 }
 
-.navbar-brand {
-
-	h1 {
-		margin: 0;
-		float: left;
-		font-size: 30px;
-		color: $text-primary-color;
-	}
-
-	span {
-		color: $brand-primary;
-	}
-}
-
 .with-scroll {
 	height: calc(100% - 44px);
 	overflow-y: auto;
 }
 
-.interface {
+.surface {
 	@include scrollbars(.4em, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.7));
 	color: $text-default-color;
 	background-color: $default;
-	border: none;
-	position: relative;
-	margin-bottom: 30px;
-	transition: none;
 	background-attachment: fixed;
+	transition: none;
+	top: 0;
+    height: 100%;
+    width: 100%;
+    outline: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
-	&.animation {
-		@include animation-duration(0.5s);
-	}
+.main-interface {
+	border: none;
+	height: auto;
+	position: relative;
+	transition: none;
+	background-color: #f5f5f5;
+	margin-top: 60px;
 
-	&.small-panel {
-		height: $small-panel-height;
-	}
-
-	&.xsmall-panel {
-		height: $xsmall-panel-height;
-	}
-
-	&.medium-panel {
-		height: $medium-panel-height;
-	}
-
-	&.xmedium-panel {
-		height: $extra-medium-panel-height;
-	}
-
-	&.large-panel {
-		height: $large-panel-height;
+	&.logistic-view {
+		background-color: #f2f3f8;
+		min-height: 650px;
 	}
 
 	&.viewport {
 		height: calc(100vh -218px);
 	}
-	
 }
 
-.brand-name {
-	border: 1px solid #F7F7F0;
-	padding-bottom: 20px;
-	padding-top: 15px;
+@media screen and (min-width: $resXXL) {
+	.main-interface {
+		min-height: 700px;
+	}	
+}
 
-	.nav-stacked {
-		li {
-			a {
-				background-color: $default;
-				color: #696763;
-				font-family: $font-family-roboto;
-				font-size: 14px;
-				padding: 5px 25px;
-				text-decoration: none;
-				text-transform: uppercase;
 
-				&:hover {
-					background-color: $default;
-					color: #696763;
-				}
-			}
-		}
+@media screen and (max-height: $resXXL) {
+	.main-interface {
+		min-height: 550px;
 	}
 }
+
+@media screen and (max-height: $resM) {
+	.main-interface {
+		min-height: 400px;
+	}
+}
+
+@media screen and (max-width: $resXXS) {
+	.main-interface {
+		min-height: 350px;
+	}
+}
+
 
 .well {
 	background: $default;
@@ -163,5 +226,28 @@ a {
 	src: local('Courgette Regular'), local('Courgette-Regular'), url(https://fonts.gstatic.com/s/courgette/v4/Gkr63O-aJXf4Mv4t7cBUchJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
   	unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
+
+
+@keyframes rotation {
+	from {
+		transform: rotate(0);
+	}
+
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+
+@keyframes blink {
+	from {
+		opacity: .5;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
 
 

@@ -1,5 +1,6 @@
 import {CONSTANTS} from './config/constants';
 
+
 import extendToastConfig from './config/constants';
 
 import routeApplication from './config/route';
@@ -10,5 +11,8 @@ angular
 	.constant('CONSTANTS', CONSTANTS)
 	.config(extendToastConfig)
 	.config(routeApplication)
+	// .config(['$qProvider', function($qProvider) {
+	// 	$qProvider.errorOnUnhandledRejections(false);
+	// }])
 
 

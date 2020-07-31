@@ -1,0 +1,127 @@
+
+<div class="fileuploader fileuploader-theme-{{::$vm.theme}}">
+	<input type="file" name="files" file-parser class="file">
+
+	<div class="fileuploader-input file-theme" ng-click="$vm.selectFile($event)" ng-if="::$vm.theme == 'default'">
+		<div class="fileuploader-input-caption"><span>Choose file</span></div>
+		<div class="fileuploader-input-button"><span>選取檔案</span></div>
+	</div>
+
+	<div class="fileuploader-items file-theme" ng-if="::$vm.theme == 'cloud'">
+		<ul class="fileuploader-items-list">
+			<li class="fileuploader-thumbnails-input">
+				<div class="fileuploader-thumbnails-input-inner">+</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="fileuploader-items">
+		<ul class="fileuploader-items-list">
+			<li ng-repeat="file in $vm.filesMapper" class="fileuploader-item {{::file.class.format}} {{::file.class.extension}}">
+				<div class="columns">
+					<div class="column-thumbnail">
+						<div class="fileuploader-item-image fileupload-no-thumbnail" ng-class="{'fileuploader-loading': file.isUploading}">
+							<div ng-if="!file.view.isImage" ng-style="::{'background-color': file.view.style}" class="fileuploader-item-icon ::{{file.view.class}}">
+								<i>{{::file.extension}}</i>
+							</div>
+							<img ng-if="file.view.isImage" ng-src="{{::file.view.canvas}}">
+						</div>
+					</div>
+					<div class="column-title">
+						<div title="{{::file.name}}">{{::file.name}}</div>
+						<span>{{::file.sizeCapacity}}</span>
+					</div>
+					<div class="column-actions">
+						<a href ng-if="::$vm.isDownload" class="fileuploader-action fileuploader-action-download" title="Download" download=""><i class="download"></i></a>
+						<a href class="fileuploader-action fileuploader-action-remove" title="Remove" ng-click="$vm.removeFile($index)"><i class="cancel"></i></a>
+					</div>
+				</div>
+				<div class="progress-bar2">
+					<div class="fileuploader-progressbar">
+						<div class="bar"></div>
+						<span>{{::file.progress}}</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<span class="help-block basic-block" ng-show="$vm.isBeyondLimit">超過上傳限制</span>
+	</div>
+</div>
+
+
+<!-- <div class="fileuploader fileuploader-theme-default">
+	<input type="hidden" name="fileuploader-list-files" value="[&quot;uploads/1.xlsx&quot;,&quot;uploads/i18n.sqlite&quot;]">
+	<input type="file" name="files[]" multiple="multiple" style="position: absolute; z-index: -9999; height: 0px; width: 0px; padding: 0px; margin: 0px; line-height: 0; outline: 0px; border: 0px; opacity: 0;">
+	<div class="fileuploader-input">
+		<div class="fileuploader-input-caption">
+			<span>2  files were chosen</span>
+		</div>
+		<div class="fileuploader-input-button">
+			<span>Choose Files</span>
+		</div>
+	</div>
+	<div class="fileuploader-items">
+		<ul class="fileuploader-items-list">
+			<li class="fileuploader-item file-type-application file-ext-xlsx">
+				<div class="columns">
+					<a href="uploads/1.xlsx" target="_blank">
+						<div class="column-thumbnail">
+							<div class="fileuploader-item-image fileupload-no-thumbnail">
+								<div style="background-color: #591605" class="fileuploader-item-icon">
+									<i>xlsx</i>
+								</div>
+							</div>
+						</div>
+						<div class="column-title">
+							<div title="1.xlsx">1.xlsx</div>
+							<span>11.3 KB</span>
+						</div>
+					</a>
+					<div class="column-actions">
+						<a href="uploads/1.xlsx" class="fileuploader-action fileuploader-action-download" title="Download" download=""></a>
+						<a class="fileuploader-action fileuploader-action-remove" title="Remove"><i></i></a>
+					</div>
+				</div>
+			</li>
+			<li class="fileuploader-item file-type-application file-ext-sqlite">
+				<div class="columns">
+					<a href="uploads/i18n.sqlite" target="_blank">
+						<div class="column-thumbnail">
+							<div class="fileuploader-item-image fileupload-no-thumbnail">
+								<div style="background-color: #0c0300" class="fileuploader-item-icon">
+									<i>sqlite</i>
+								</div>
+							</div>
+						</div>
+						<div class="column-title">
+							<div title="i18n.sqlite">i18n.sqlite</div>
+							<span>426 KB</span>
+						</div>
+					</a>
+					<div class="column-actions">
+						<a href="uploads/i18n.sqlite" class="fileuploader-action fileuploader-action-download" title="Download" download=""><i></i>
+						</a>
+						<a class="fileuploader-action fileuploader-action-remove" title="Remove"><i></i></a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

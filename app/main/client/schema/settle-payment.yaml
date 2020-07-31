@@ -1,0 +1,26 @@
+---
+secretKey:
+  transformations: [escape, xss, trim]
+secretId:
+  transformations: [escape, xss, trim]
+username:
+  transformations: [escape, xss, trim]
+  validators:
+    string:
+      message: VALIDATE.INVALID_STRING
+branchName:
+  transformations: [escape, xss, trim]
+  validators:
+    string:
+      message: VALIDATE.INVALID_STRING
+account:
+  transformations: [escape, xss, trim]
+  validators:
+    length:
+      equal: 5
+      message: VALIDATE.INVALID_LENGTH
+# payPrice:
+#   transformations: [escape, xss, trim]
+#   validators:
+#     integer:
+#       message: VALIDATE.INVALID_INTEGER

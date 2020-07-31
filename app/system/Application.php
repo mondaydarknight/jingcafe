@@ -1,11 +1,15 @@
 <?php
 
-
-
-
+/**
+ * Server environment application.
+ * 
+ *
+ *
+ *
+ * @author Mong Cheng
+ */
 
 namespace JingCafe;
-
 
 use RocketTheme\Toolbox\Event\EventDispatcher;
 use RocketTheme\Toolbox\Event\Event;
@@ -31,6 +35,7 @@ class Application {
 	{
 		$this->container = new Container;
 		// Facade::setFacadeContainer($this->container);
+		
 	}
 
 	/**
@@ -88,19 +93,19 @@ class Application {
 	public function run()
 	{	
 		$this->setupConfiguration();
-		
+
 		$this->app = new App($this->container);
 
 		$this->container->settings = $this->container->config['settings'];
 
 		$appEvent = new AppEvent($this->app);
 
-		$this->dispatchEvent('onAppInitialize', $appEvent);
+		$this->dispatchEvent('onAppInitialization', $appEvent);
 
 		$this->loadRoutes();
 
 		$this->dispatchEvent('onGlobalMiddleware', $appEvent);
-
+		
 		$this->app->run();
 	}
 
@@ -114,7 +119,7 @@ class Application {
 		$mainDomainManager = $this->container->mainDomainManager;
 		
 		try {
-			$mainDomainManager->initLoadSchema(\JingCafe\APP_DIR . '/config.json');
+			$mainDomainManager->initLoadSchema($schemaPath);
 		} catch (FileNotFoundException $e) {
 			if ($isWeb) {
 				$this->renderJingCafeErrorPage($e->getMessage());
@@ -132,6 +137,8 @@ class Application {
 		$mainDomainManager->registerAllServices();
 		$this->dispatchEvent('onMainDomainRegisterServices');
 	}
+
+	
 
 
 	/**
@@ -161,7 +168,29 @@ class Application {
 		exit($errorMessage . PHP_EOL);
 	}
 
+	/**
+	 * @deprecated
+	protected function initServerEnvironment()
+	{
+		if (isset($_SERVER['HTTP_ORIGINN'])) {
+			header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+			header('Access-Control-Allow-Credentials: true');
+			header('Access-Control-Max-Age: 86400');
+		}
 
+		if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+	   	 	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
+	   	 		header("Access-Control-Allow-Methods: GET, POST, OPTIONS");	
+	   	 	}
+	        
+		    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {		    	
+		        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+		    }
+
+		}
+	}
+	*/
 }
 
 

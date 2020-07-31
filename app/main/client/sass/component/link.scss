@@ -1,0 +1,58 @@
+
+.link {
+	display: inline-block;
+	position: relative;
+	color: #FE980F;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none !important;
+	cursor: pointer;
+	line-height: 1.2;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+	word-wrap: break-word;
+    word-break: break-all;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: $font-family-medium;
+	letter-spacing: 0;
+	font-weight: $font-light;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-moz-font-feature-settings: "liga" on;
+}
+
+/*********************
+ * text-rendering:
+ * geometricPrecision
+ * optimizeLegibility
+ * optimizeSpeed
+ * auto 
+ * inherit
+ * none
+ * unset
+ *********************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

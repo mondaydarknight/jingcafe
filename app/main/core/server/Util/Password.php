@@ -73,7 +73,7 @@ class Password
 
 		} elseif (static::getHashType($hash) === 'legacy') {
 			/** 
-			 * Homegroun implementation (assuming that current install has been using a cost parameter of 12)
+			 * Homegrown implementation (assuming that current install has been using a cost parameter of 12)
 			 * Used for manual implementation of bcrypt
 			 */
 

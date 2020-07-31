@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="cassette">
+		<div class="row">
+			<div class="col-md-3 col-sm-12 col-12">
+				<div class="product-category-sidebar">
+					<!-- <h2 class="panel-title">搜尋結果</h2> -->
+					<!-- <div class="product-category">
+						<ul class="product-measure-items">
+							<li><a href=""><span class="pull-right">(number)</span>{{name}}</a></li>
+						</ul>
+					</div> -->
+					<div class="product-category-sidebar-heading">
+						<i class="fa fa-list"></i>
+						<span class="remarkable-text" style="display: inline-block;">產品分類</span>
+					</div>
+					<div class="product-list sidebar-mode">
+						<div class="product-list-wrap">
+							<div class="product-list-content">
+								<div class="product-content-item-wrap" ng-repeat="category in ::$vm.categories" ng-class="{'active': $vm.isActiveId === $index}" ui-sref="shop.product.list({'productCategory': category.uri})" ng-click="$vm.directToProductPage($index)">
+									<span class="text-title">{{::category.name}}</span>
+								</div>						
+							</div>			
+						</div>
+					</div>						
+				</div>			
+			</div>
+			<div class="col-md-9 col-sm-12 col-12 pull-right">
+				<div ui-view="section" autoscroll="true" ng-cloak></div>
+			</div>
+		</div>
+	</div>
+</div>

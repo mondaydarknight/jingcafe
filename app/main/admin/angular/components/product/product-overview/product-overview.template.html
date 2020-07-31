@@ -1,0 +1,66 @@
+
+<div class="widgets">
+	<div class="row">
+		<div class="col-md-12 col-sm-12 col-12">
+			<div class="board zoom-in animated">
+				<div class="board-heading">
+					<h5 class="board-title">產品管理</h5>
+				</div>
+				<div class="board-body">			
+					<div class="product-overview">
+						<div class="product-overview-header">
+							<label class="search-tip">共{{$vm.products.length}}筆資料</label>							
+							<button href ui-sref="admin.product.upload" class="btn btn-default">上傳產品</button>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-product-list">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th></th>
+										<th>產品名稱</th>
+										<th>原名</th>
+										<th>產品編號</th>
+										<th>類型</th>
+										<th>折扣 (%)</th>
+										<th style="text-align: center;">金額</th>
+										<th>庫存</th>
+										<th>產品簡述</th>
+										<th>產品內容</th>
+										<th>狀態</th>
+										<th>更新日期</th>
+										<th>設定</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="product in $vm.products">
+										<td>{{::$index + 1}}</td>
+										<td><img class="img-product-item" ng-src="{{::product.profile}}" alt=""></td>
+										<td><p class="space-limitation">{{::product.name}}</p></td>
+										<td><p class="space-limitation">{{::product.enName}}</p></td>
+										<td>{{::product.productKey}}</td>
+										<td><small>{{::product.category.name}}</small></td>
+										<td style="text-align: center; font-size: 15px; color: #2dacd1;">{{::product.discount}}</td>
+										<td class="price" style="width: 60px;">{{::product.price}}</td>
+										<td style="text-align: center;">{{::product.amount}}</td>
+										<td><p class="space-limitation">{{::product.characteristic}}</p></td>
+										<td class="description-column">{{::product.description}}</td>
+										<td><small>{{::product.enabled}}</small></td>
+										<td>{{::product.updatedAt}}</td>
+										<td>
+											<a href class="btn btn-sm btn-info" ng-click="$vm.directToUploadPage($event, product)">修改</a>
+											<a href class="btn btn-sm btn-danger" ng-click="$vm.removeProduct($index)">刪除</a>
+										</td>
+									</tr>
+								</tbody>
+								<tfoot></tfoot>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

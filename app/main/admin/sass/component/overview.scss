@@ -1,0 +1,20 @@
+
+
+.product-overview {
+	&-header {
+		position: relative;
+		padding: 5px 10px;
+		display: inline-block;
+		height: 50px;	
+
+		.search-tip {
+			font-size: normal;
+			font-weight: $font-light;
+			font-family: $font-family-medium;	
+			line-height: 30px;
+			color: $text-title-color;
+			padding-right: 30px;
+			text-align: center;
+		}
+	}
+}

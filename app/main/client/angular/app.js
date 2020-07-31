@@ -5,24 +5,28 @@ import 'angular-sanitize';
 import 'angular-ui-bootstrap';
 import 'angular-ui-router';
 import 'angular-xeditable';
+import 'angular-cookies';
+
+import "jquery.fancybox/source/jquery.fancybox.css";
+import "jquery.fancybox/source/jquery.fancybox";
 
 angular.module('jingcafe', [
-	'ui.bootstrap',
 	'ui.router',
+	'ui.bootstrap',
 	'ngSanitize',
 	'ngTouch',
 	'ngAnimate',
 	'toastr',
 	'xeditable',
-	// 'ngCookies',
+	'ngCookies',
 
 	'jingcafe.run',
 	'jingcafe.config',
 	'jingcafe.components',
 	// 'jingcafe.filters',
-	// 'jingcafe.directives',
-	'jingcafe.services',
+	'jingcafe.directives',
 	'jingcafe.factories',
+	'jingcafe.services'
 	// 'jingcafe.providers',
 	// 'jingcafe.controllers',
 	
@@ -33,7 +37,6 @@ angular.module('jingcafe', [
 import "./index.run";
 
 import "./index.config";
-
 
 import "./index.component";
 

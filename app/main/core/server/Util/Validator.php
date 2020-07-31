@@ -19,14 +19,41 @@ class Validator
 	 */
 	protected $validUrlPrefixes = ['http://', 'https://', 'ftp://'];
 
+    /**
+     * Validate the value is isset and not null or ''
+     *
+     * @param string    $value
+     * @param string    $message
+     * @throws InvalidArgumentException
+     */
+    public static function validateRequired($value, $message = null)
+    {
+        $message = isset($message) ? $message : 'VALIDATE.REQUIRED';
+
+        if (!is_string($value) || $value === '') {
+            throw new InvalidArgumentException($message);
+        }
+
+        return $value;
+    }   
+
+
 	/**
 	 * Validate the value is the string and change their type.
-	 * @var string 	$value
-	 * @return string|false
+	 * @param string       $value
+     * @param string|null  $message
+	 * @throws InvalidArgumentException
+     * @return string
 	 */
-	public static function validateString($value) 
+	public static function validateString($value, $message = null) 
 	{
-		return filter_var($value, FILTER_SANITIZE_STRING);
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_STRING';
+
+        if (($string = filter_var($value, FILTER_SANITIZE_STRING)) === false) {
+            throw new InvalidArgumentException($message);
+        }
+		
+        return $string;
 	}
 
 
@@ -37,10 +64,12 @@ class Validator
 	 */
 	public static function validateInteger($value, $message = null) 
 	{
-		if (!$integer = filter_var($value, FILTER_VALIDATE_INT)) {
-			throw new InvalidArgumentException($message);
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_INTEGER';
+        
+		if (($integer = filter_var($value, FILTER_VALIDATE_INT)) === false) {
+            throw new InvalidArgumentException($message);
 		}
-		
+	       
 		return $integer;
 	}
 
@@ -48,10 +77,12 @@ class Validator
 	 * Validate the value is the numeric and change their type.
 	 * @param string|numeric
 	 */
-	public static function validateNumeric($value)
+	public static function validateNumeric($value, $message = null)
 	{
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_NUMERIC';
+
 		if (!is_numeric($value)) {
-			throw new InvalidArgumentException('numeric data error');
+			throw new InvalidArgumentException($message);
 		}
 
 		return $value + 0;
@@ -65,6 +96,8 @@ class Validator
 	 */
 	public static function validateFloat($value, $message = null) 
 	{
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_FLOAT';
+
 		if (!$float = filter_var($value, FILTER_VALIDATE_FLOAT)) {
 			throw new InvalidArgumentException($message);
 		}
@@ -79,11 +112,14 @@ class Validator
 	 */
 	public static function validateEmail($value, $message = null) 
 	{
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_EMAIL';
+
 		if (!$email = filter_var((string) $value, FILTER_VALIDATE_EMAIL)) {
-			throw new InvalidArgumentException('Email format is wrong.');
+			throw new InvalidArgumentException($message);
 		}
 
 		list($name, $domain) = explode('@', $email);
+
 		if (!checkdnsrr($domain, 'MX')) {
 			throw new InvalidArgumentException($message);
 		}
@@ -97,12 +133,13 @@ class Validator
 	 * 
 	 * @param string 
 	 */
-	public static function validatePhone($value) 
-	{
+	public static function validatePhone($value, $message = null) 
+	{  
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_PHONE';
 		$value = preg_replace('/[^0-9]/', '', $value);
 
 		if (strlen($value) !== 10 || mb_substr($value, 0, 2) !== '09') {
-			throw new InvalidArgumentException('無效的電話號碼');
+			throw new InvalidArgumentException($message);
 		}
 
 		return $value;
@@ -127,7 +164,7 @@ class Validator
             }
         }
 
-        throw new InvalidArgumentException($message);
+        throw new InvalidArgumentException(isset($message) ? $message : 'VALIDATE.URL');
     }
 
     /**
@@ -148,7 +185,7 @@ class Validator
             }
         }
 
-        throw new InvalidArgumentException($message);
+        throw new InvalidArgumentException(isset($message) ? $message : 'VALIDATE.URL_ACTIVE');
     }
 
     /**
@@ -162,7 +199,7 @@ class Validator
     public static function validateAlpha($value, $message)
     {
         if (!preg_match('/^([a-z])+$/i', $value)) {
-        	throw new InvalidArgumentException($message);
+        	throw new InvalidArgumentException(isset($message) ? $message : 'VALIDATE.ALPHA');
         }
 
         return $value;
@@ -209,7 +246,7 @@ class Validator
     public static function validateRegex($value, $message = null, $expression)
     {   
     	if (!preg_match($expression, $value)) {
-    		throw new InvalidArgumentException($message);
+    		throw new InvalidArgumentException(isset($message) ? $message : 'VALIDATE.INVALID_REGEX');
     	}
         
         return $value;
@@ -223,11 +260,11 @@ class Validator
      * @throws InvalidArgumentException
      * @return bool
      */
-    public static function validateDate($value, $message = null)
+    public static function validateDate($value, $message)
     {
         $isDate = false;
         if (!$value instanceof \DateTime || strtotime($value) === false) {
-            throw new InvalidArgumentException($message);
+            throw new InvalidArgumentException(isset($message) ? $message : 'VALIDATE.DATE');
         } 
 
         return $value;
@@ -284,8 +321,10 @@ class Validator
 
 
 
-    public static function validateMin($value, $message = null, $params)
+    public static function validateMin($value, $message, $params)
     {
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_LENGTH_MIN';
+        
         if (static::stringLength($value) < (int)$params[0]) {
             throw new InvalidArgumentException($message);
         }
@@ -294,14 +333,28 @@ class Validator
     }
 
 
-    public static function validateMax($value, $message = null, $params)
+    public static function validateMax($value, $message, $params)
     {
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_LENGTH_MAX';
+        
         if (static::stringLength($value) > (int)$params[0]) {
             throw new InvalidArgumentException($message);
         }
 
         return $value;
     }
+
+    public static function validateEqual($value, $message, $params)
+    {
+        $message = isset($message) ? $message : 'VALIDATE.INVALID_LENGTH';
+
+        if (static::stringLength($value) !== (int)$params[0]) {
+            throw new InvalidArgumentException($message);
+        }
+
+        return $value;
+    }
+
 
     protected static function stringLength($value)
     {

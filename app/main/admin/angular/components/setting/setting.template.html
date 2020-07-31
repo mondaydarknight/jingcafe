@@ -1,0 +1,27 @@
+
+
+<div class="widgets">
+	<div class="row">
+		<div class="col-md-9 col-sm-12 col-12">
+			<div class="board zoom-in animated">
+				<div class="board-heading">
+					<h5 class="board-title">設定</h5>
+				</div>
+				<div class="board-body">
+					<div class="container-">
+						<form name="settingForm" ng-submit="settingForm.$valid && $vm.update()" novalidate>
+							<div class="form-group has-feedback row clearfix" ng-class="{'has-error': settingForm.freeLogisticPrice.$invalid && (settingForm.freeLogisticPrice.$dirty || settingForm.$submitted)}">
+								<label class="form-control-label">免運費金額</label>
+								<input type="text" name="freeLogisticPrice" class="form-control" ng-model="$vm.adminLayout.shop.freeLogisticPrice" onkeypress="return event.charCode >= 48 && event.charCode <= 57;" required>
+								<span class="help-block error-block basic-block from-control-feedback">請填寫免運費金額</span>
+							</div>
+							<div class="text-center">
+								<button class="btn btn-material width-fixed no-transform">提交</button>
+							</div>
+						</form>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,43 @@
+---
+id:
+  transformations: [escape, trim]
+  validators:
+    integer:
+      message: VALIDATE.INVALID_INTEGER
+name:
+  transformations: [escape, xss, trim]
+  validators:
+    length:
+      max: 100
+      min: 2
+      message: 'VALIDATE.INVALID_LENGTH'
+enName:
+  transformations: [escape, xss, trim]
+amount:
+  transformations: [trim]
+  validators:
+    integer:
+      message: VALIDATE.INVALID_INTEGER
+discount:
+  transformations: [trim]
+  validators:
+    integer:
+      message: VALIDATE.INVALID_INTEGER
+price:
+  transformations: [escape, trim]
+  validators:
+    integer:
+      message: VALIDATE.INVALID_INTEGER
+categoryId:
+  transformations: [escape, trim]
+characteristic:
+  transformations: [trim]
+productKey: 
+  transformations: [escape, xss, trim]
+description:
+  transformations: [trim]
+flagEnabled:
+  transformations: [trim]
+  validators:
+    boolean:
+      message: VALIDATE.INVALID_BOOLEAN

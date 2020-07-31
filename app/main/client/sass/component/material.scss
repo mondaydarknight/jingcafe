@@ -1,0 +1,240 @@
+
+.material-input {
+	background: #F0F0E9;
+  	border: medium none;
+  	color: $item-color;
+  	display: block;
+  	font-family: $font-family-roboto;
+  	font-size: 14px;
+  	font-weight: 300;
+  	height: 40px;
+  	margin-bottom: 10px;
+  	outline: medium none;
+  	padding-left: 10px;
+  	width: 100%;
+	line-height: 25px;
+}
+
+.material-button {
+	border: medium none;
+	border-radius: 0;
+	color: $default;
+	display: block;
+	font-family: $font-family-roboto;
+	padding: 6px 25px;
+}
+
+/************************
+      Material sheet
+*************************/
+.material-sheet {
+	@include link-hover(500ms);	
+  	position: absolute;
+	display: none;
+    z-index: 900;
+    overflow: hidden;
+    font-size: 15px;
+    text-align: center;
+    padding: 15px;
+    pointer-events: auto;
+  	word-spacing: normal;
+  	white-space: normal;
+  	line-break: auto;
+  	word-wrap: break-word;
+  	background-clip: padding-box;
+	-webkit-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+	-moz-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+	box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+	transform-orgin: center;
+	transition: 0.4s cubic-bezier(0.28, 0.55, 0.385, 1.65);
+  	
+	// For wibkit enabled browsers, this makes scrolling behave much more like the standard browser behavior.
+	// At least it works well in iPhone
+	-webkit-overflow-scrolling: touch;
+	scroll-behavior: smooth;
+	overflow-x: scroll;
+
+	transition: all 0.6s ease-in-out 0.2s backwards;
+
+  	&.active {
+  		@include fade-in-up(400ms);
+    	display: block;
+  	}
+
+  	&-inner {
+    	display: block;
+    	position: relative;
+    	background: $default;
+    	-webkit-border-radius: 5px;
+    	border-radius: 5px;
+    	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);
+    	box-shadow: 0 1px 2px rgba(0,0,0,.25), 0 0 1px rgba(0,0,0,.35);  
+    	overflow: auto;
+    	-webkit-overflow-scrolling: touch;
+    	-webkit-transition: all .5s linear;
+	    transition: all .5s linear;
+	    transition-property: top, height;	    
+  	}
+
+  	/**
+     * Selector <ul>
+     */
+   	&-menu {
+      	margin: 0;
+      	padding: 0;
+      	list-style: none;
+      	list-style-type: disc;
+	 }
+
+	/**
+	 * Selector <li>
+	 */
+	&-item {
+		text-align: left;
+		width: 100%;
+		white-space: nowrap;
+		font-family: $font-family-medium;
+		font-weight: $font-light;		       
+
+		&.item-wrap {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding-top: 10px;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			list-style: none;
+			// border-top: 1px solid rgba(255, 255, 255, .2);
+			// padding: 40px 0 35px;
+			border-bottom: 1px solid #ebedf2;
+		}
+	}
+
+	&-title {
+		font-size: 15px;
+		color: #b8bccc;
+		line-height: 1.2;
+		font-weight: 500;
+		text-align: center;
+		font-family: $font-family-medium;
+		margin-bottom: 5px;
+	}
+
+	&-link {
+       	font-size: 16px;
+		text-decoration: none !important;
+       	border-color: rgba(0, 0, 0, 0.6);
+       	font-family: $font-family-medium;
+       	color: #9699a2;
+       	padding: 11px 0;
+       	line-height: 1.3;
+       	font-weight: 500;
+       	text-align: center;
+    	overflow: hidden;
+	    text-overflow: ellipsis;
+	    vertical-align: bottom;
+	    word-wrap: break-word;
+	    word-break: break-all;
+	    cursor: pointer;
+	    border-radius: 4px;
+
+	    &:hover {
+	    	background-color: $border-color;
+	    	color: $brand-primary;
+	    }
+    }		        
+}
+
+
+
+
+@media screen and (max-width: $resM) {
+	.material-sheet {
+		position: fixed;
+	    left: 0;
+	    right: 0;
+	    top: 4rem;
+	    padding: 0;
+	    width: 100%;
+	    height: auto;
+	    margin: auto;
+	    z-index: 30;
+
+	    &-inner {
+	      	max-width: 240px;
+	      	width: 100%;
+	      	max-width: 100%;
+	      	height: auto;
+	      	overflow: visible;
+	      	-webkit-border-radius: 0;
+	      	border-radius: 0;	
+	  	}	
+	}
+}
+
+.material-select {
+	position: relative;
+	display: block;
+	outline: 0;
+	background: $default;
+	border-radius: 4px;
+	border: 1px solid #bfbfbf;
+	cursor: pointer;
+
+	&::before {
+		// position: absolute;
+		// z-index: 4;
+		// content: '';
+		// pointer-events: none;
+		// right: -1px;
+		// width: 2.5rem;
+		// height: 100%;
+		// background-color: $default;
+		// border: 1px solid #bfbfbf;
+		// border-left: none;
+		// border-radius: 0 4px 4px 0;
+	}
+
+	&::after {
+		position: absolute;
+		z-index: 5;
+		content: '';
+		pointer-events: none;
+		right: 1rem;
+		top: 50%;
+		margin-top: -5px;
+		display: inline-block;
+		width: 5px;
+		height: 5px;
+		transform: rotate(45deg);
+		border: 1px solid #565656;
+		border-left: none;
+		border-top: none;
+	}
+
+	select {
+		position: relative;
+		background: transparent;
+		color: #6f727d;
+		width: 100%;
+		box-sizing: border-box;
+		border: 0;
+		padding: .3em .2em .3em .6em;
+		outline: none;
+		font-size: 1.1rem;
+		font-weight: 500;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		cursor: pointer;
+
+		& > option {
+			border: none;
+		    outline: none;
+		    padding: .4rem;
+			cursor: pointer;
+		}
+	}
+}

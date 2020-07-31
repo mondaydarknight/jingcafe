@@ -137,6 +137,19 @@ class Session implements ArrayAccess
 		} else {
 			Arr::set($_SESSION, $key, $value);
 		}
+
+		return $this;
+	}
+
+	/**
+	 * Remove the value of session key
+	 * 
+	 * @param string|null
+	 */
+	public function remove($key)
+	{
+		unset($_SESSION[$key]);
+		return $this;
 	}
 
 	/**

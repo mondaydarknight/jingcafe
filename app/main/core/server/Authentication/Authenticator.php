@@ -11,13 +11,15 @@ use Birke\Rememberme\Triplet as PersistentTriplet;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Interop\Container\ContainerInterface;
 use JingCafe\Core\Exception\AccountInvalidException;
-use JingCafe\Core\Exception\InvalidCredentialsException;
 use JingCafe\Core\Exception\AccountNotVerifiedException;
 use JingCafe\Core\Exception\AuthCompromisedException;
+use JingCafe\Core\Exception\AuthExpiredException;
+use JingCafe\Core\Exception\InvalidCredentialsException;
 use JingCafe\Core\Session\Session;
 use JingCafe\Core\Database\Models\User;
 use JingCafe\Core\Util\ClassMapper;
 use JingCafe\Core\Util\Password;
+use JingCafe\Core\Util\Validator;
 
 
 /**
@@ -35,6 +37,11 @@ class Authenticator extends PersistentAuthenticator
 	 */
 	private static $authenticatorInstance;
 
+	/**
+	 * The rank of administrator token
+	 * @var string
+	 */ 
+	protected $administratorToken = 'A';
 
 	/**
 	 * @var ClassMapper
@@ -78,7 +85,7 @@ class Authenticator extends PersistentAuthenticator
 
 	}
 
-	public static function create(ClassMapper $classMapper, Session $session, $config, $cache)
+	public static function create(ClassMapper $classMapper, Session $session, $config, $cache = null)
 	{
 		if (!isset(static::$authenticatorInstance)) {
 			static::$authenticatorInstance = new static();
@@ -97,26 +104,29 @@ class Authenticator extends PersistentAuthenticator
 	 *
 	 * @param array 	$userParams
 	 * @param bool 		$isRememberMe
+	 * @param bool 		$isAdmin
 	 * @return User 	
 	 */
-	public function authenticate($userParams = [], $isRememberMe = false)
-	{		
-		$user = $this->classMapper->staticMethod('user', 'where', 'account', $userParams['account'])->first();
-
+	public function authenticate($userParams = [], $isRememberMe = false, $isAdmin = false)
+	{
+		$userColumns = $isAdmin ? ['account' => $userParams['account'], 'rank' => $this->administratorToken] : ['account' => $userParams['account']];
+		
+		$user = $this->classMapper->staticMethod('user', 'where', $userColumns)->first();
+		
 		if (!$user) {
 			throw new InvalidCredentialsException();
 		}
-
+		
 		if (!$user->password) {
 			throw new InvalidCredentialsException();
 		}
 
-		if (!is_bool($user->flag_enabled)) {
+		if (!Validator::validateBoolean($user->flag_enabled)) {
 			throw new AccountDisabledException();
 		}
 
-		if (!is_bool($user->flag_verified)) {
-			throw new AccountNotVerifiedException();
+		if (!Validator::validateBoolean($user->flag_verified)) {
+			throw new AccountNotVerifiedException($user);
 		}
 
 		if (!Password::verify($userParams['password'], $user->password)) {
@@ -139,7 +149,7 @@ class Authenticator extends PersistentAuthenticator
 	 */
 	public function requestLogin($user, $isRememberMe = false)
 	{
-		$this->clearUserSessionFromCache();
+		// $this->clearUserSessionFromCache();
 		$this->session->regenerateId(true);
 
 		$isRememberMe ? $this->createCookie($user->id) : $this->clearCookie();
@@ -147,8 +157,6 @@ class Authenticator extends PersistentAuthenticator
 		$key = $this->config['session.keys.current_user_id'];
 		$this->session[$key] = $user->id;
 		$this->viaRemember = false;
-		
-		// $user->onLogin();
 	}
 
 	/**
@@ -156,30 +164,30 @@ class Authenticator extends PersistentAuthenticator
 	 *
 	 * Logs the currently authenticated user out, destroying the PHP session and clearing the persistent session.
 	 *
-	 * This can optionally remove presistent sessions across all browsers / devices, since there are be RememberMe cookie and corresponding database entries in multiple browsersdevices 
+	 * This can optionally remove presistent sessions across all browsers / devices, since there are be RememberMe cookie and corresponding database entries in multiple browsers devices 
 	 * @link http://jaspan.com/improved_persistent_login_cookie_best_practice.
 	 * @param bool 	If set to true, ensure that user is logged out from all browsers and all devices.
 	 */
-	public function logoutRequest($isCompleteDelete = false)
+	public function requestLogout($isDeleteAllPersistent = false)
 	{		
-		$currentUserId = $this->session->get($config['session.keys.current_user_id']);
+		$currentUserId = $this->session->get($this->config['session.keys.current_user_id']);
 
-		if ($isCompleteDelete) {
+		if ($isDeleteAllPersistent) {
 			$this->persistenceStorage->cleanAllTriplets($currentUserId);
 		}
 
 		$this->clearCookie();
 
 		if ($currentUserId) {
-			$currentUser = $this->classMapper('user', 'find', $currentUserId);
-			if ($currentUser) {
-				$currentUser->onLogout();	
-			}			
+			$currentUser = $this->classMapper->staticMethod('user', 'find', $currentUserId)->get();
+			// if ($currentUser) {
+			// 	$currentUser->onLogout();	
+			// }			
 		}
 
 		$this->user = null;
 
-		$this->clearUserSessionFromCache();
+		// $this->clearUserSessionFromCache();
 		
 		$this->session->destroy();
 
@@ -197,7 +205,7 @@ class Authenticator extends PersistentAuthenticator
 	 * @throws AccountInvalidException
 	 * @throws AccountDisabledException
 	 */
-	public function isCurrentUserExist()
+	public function getCurrentOnlineUser()
 	{
 		if ($this->user) {
 			return $this->user; 
@@ -265,7 +273,7 @@ class Authenticator extends PersistentAuthenticator
 	 */
 	protected function clearUserSessionFromCache()
 	{
-		$this->cache->tags([$this->config['cache.prefix'], '_s' . session_id()])->flush();
+		$this->cache->tags([$this->config['cache.prefix'], '_s' . session_id()])->flush();		
 	}
 
 	/**
@@ -304,8 +312,6 @@ class Authenticator extends PersistentAuthenticator
 	{
 		$loginResult = $this->login();
 
-		// var_dump($loginResult->isSuccess());
-
 		if ($loginResult->isSuccess()) {
 			// Update in session
 			$this->session[$this->config['session.keys.current_user_id']] = $loginResult->getCredential();
@@ -337,7 +343,7 @@ class Authenticator extends PersistentAuthenticator
 
 		$triplet = PersistentTriplet::fromString($cookieValue);
 
-		if (!$triplet->isValid) {
+		if (!$triplet->isValid()) {
 			return false;
 		}
 

@@ -1,0 +1,190 @@
+{% extends "mail/base.html.twig" %}
+
+{% block domain %}
+	<table align="center" cellpadding="0" cellspacing="0" class="android-container" width="100%">
+		<tr>
+			<td align="left" valign="top" width="100%" style="background: repeat-x url(http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg) #ffffff;">
+				<center>
+					<img src="http://s3.amazonaws.com/swu-filepicker/SBb2fQPrQ5ezxmqUTgCr_transparent.png" class="force-width">
+					<table cellspacing="0" cellpadding="0" width="100%" bgcolor="#fffff" background="http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg" style="background-color: transparent;">
+						<tr>
+							<td width="100%" height="80" valign="top" style="text-align: center; vertical-align: middle;">
+								<center>
+									<table cellpadding="0" cellspacing="0" width="600" class="w320">
+										<tr>
+											<td class="pull-left mobile-header-padding-left" style="vertical-align: middle;">
+												<a href=""><img src="{{ site.uri.public }}/assets/img/icon/brand.png" width="146" height="47"></a>
+											</td>
+											<td class="pull-right mobile-header-padding-right" style="color: #4d4d4d">
+												<a href=""><img width="38" height="47" src="http://s3.amazonaws.com/swu-filepicker/LMPMj7JSRoCWypAvzaN3_social_09.gif" alt="facebook" /></a>
+											</td>
+										</tr>
+									</table>
+								</center>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" valign="top" width="100%" style="background-color: #f7f7f7;" class="content-padding">
+								<center>
+									<table cellpadding="0" cellspacing="0" width="600" class="w320 wrapper">
+										<tbody>
+											<tr>
+												<td class="main-content">
+													<center>
+														<table cellpadding="0" cellspacing="0" width="100%">
+															<tr>
+																<td>
+																	<h1 class="header-lg">{{ site.title }}訂購成功</h1>
+																	<p><strong>{{ user.username }}</strong> 會員您好</p>					
+																	<p class="text-content">感謝您的訂購，請在訂購完成五天內依訂購金額，將款項匯至下方帳戶；您可選擇ATM轉帳、提款機ATM轉帳或臨櫃無摺存款</p>
+																	<p class="text-content" style="margin: 15px 0;">提醒您至【購買清單-總覽】查看交易進度並完成接續的交易動作。</p>	
+																	<p class="alert alert-danger" style="margin: 15px 0;">請在 {{ expiredAt }} 完成繳費動作，逾時視為取消訂單</p>
+																	
+																	<center>
+																		<table class="info info-block block-rounded" cellpadding="0" cellspacing="0" width="100%" style="margin: 40px 0;">	
+																			<tbody>
+																				<tr>
+																					<th>付款方式</th>
+																					<th>
+																						<label class="mark">
+																						<strong>
+																						{{ adminPayment.payment.name }}
+																						</strong>
+																						</label>
+																					</th>
+																				</tr>
+																				<tr>
+																					<th>戶名</th>
+																					<th>
+																						<label class="mark">
+																						<strong>
+																						{{ adminPayment.username }}
+																						</strong>
+																						</label>
+																					</th>
+																				</tr>
+																				<tr>
+																					<th>帳戶</th>
+																					<th>
+																						<label class="mark">
+																						<strong>
+																						{{ adminPayment.account }}
+																						</strong>
+																						</label>
+																					</th>
+																				</tr>
+																			</tbody>		
+																		</table>												
+																	</center>		
+																	<div style="margin: 20px 0; padding-bottom: 1rem;">
+																		<p class="text-content">匯款完成後，請在下方點入訂單連結，回報匯款資訊</p>
+																		<center>
+																			<p class="callout">前往繳費連結<a href="{{ site.uri.public }}/#!/settle-payment/{{ verification.secretKey }}/{{ verification.secretId }}">按這裡</a></p>
+																		</center>
+																	</div>
+																	
+																	<h4 class="text-caption" style="padding-top: 12px;">訂單明細</h4>
+																	<center>
+																		<table class="list-view" cellpadding="0" cellspacing="0" width="100%">
+																			<thead>
+																				<tr class="list-view-wrap">
+																					<th class="list-view-item text-light">收件人</th>
+																					<th class="list-view-item text-light">收件人電話</th>
+																					<th class="list-view-item text-light">取貨方式</th>
+																					<th class="list-view-item text-light">運費</th>
+																					<th class="list-view-item text-light">付款方式</th>
+																					<th class="list-view-item text-light">總金額</th>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				<tr class="list-view-wrap">
+																					<td class="list-view-item">
+																						<a class="list-view-item-link">{{ logistic.username }}</a>
+																					</td>
+																					<td class="list-view-item">
+																						<a class="list-view-item-link">{{ logistic.phone }}</a>
+																					</td>
+																					<td class="list-view-item">
+																						<a class="list-view-item-link">{{ logistic.name }}</a>
+																					</td>
+																					<td class="list-view-item">
+																						<a class="list-view-item-link">{{ logistic.fee }}</a>
+																					</td>
+																					<td class="list-view-item">
+																						<a class="list-view-item-link">{{ payment.name }}</a>
+																					</td>
+																					<td class="list-view-item">
+																						<a class="link" style="font-weight: 700;">{{ totalPrice }}</a>
+																					</td>					
+																				</tr>
+																			</tbody>				
+																		</table>
+																	</center>
+
+																	<h4 class="text-caption" style="padding-top: 12px;">產品明細</h4>
+																	<center>
+																		<table class="list-view" cellpadding="0" cellspacing="0" width="100%">
+																			<thead>
+																				<tr class="list-view-wrap">
+																					<td class="list-view-item" style="width: 100px;"></td>
+																					<td class="list-view-item product-item">產品</td>
+																					<td class="list-view-item">單價</td>
+																					<td class="list-view-item">數量</td>
+																					<td class="list-view-item">總價</td>
+																				</tr>
+																			</thead>
+																			<tbody>
+																				{% for product in products %}
+																					<tr class="list-view-wrap">
+																						<td class="list-view-item" style="width: 100px;">
+																							<div style="width: auto;">
+																								<img class="img-product" src="{{ site.uri.public }}{{ product.profile }}" alt="">
+																							</div>
+																						</td>
+																						<td class="list-view-item product-item">
+																							<span class="text-content">{{ product.name }}</span>
+																						</td>
+																						<td class="list-view-item">
+																							<span class="list-view-item-link">{{ product.price }}</span>
+																						</td>
+																						<td class="list-view-item">
+																							<span class="list-view-item-link">{{ product.quantity }}</span>
+																						</td>
+																						<td class="list-view-item">
+																							<span class="link">{{ product.totalPrice }}</span>
+																						</td>
+																					</tr>
+																				{% endfor %}									
+																			</tbody>
+																		</table>
+																	</center>
+																</td>
+															</tr>
+														</table>
+													</center>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</center>												
+							</td>
+						</tr>
+					</table>
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" valign="top" width="100%" class="footer">
+				<center>
+					<table cellpadding="0" cellspacing="0" width="600" class="w320">
+						<td style="padding: 25px 0 25px">
+							<p><strong>{{ site.title }}</strong></p>
+							<p>&copy; 2018 AG. All Rights Reserved.</p>
+						</td>
+					</table>
+				</center>
+			</td>
+		</tr>
+	</table>
+{% endblock %}
+

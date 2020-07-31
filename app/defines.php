@@ -8,9 +8,12 @@ define('JingCafe\PHP_MIN_VERSION', '5.6');
 define('JingCafe\NAME', 'JingCafe');
 define('JingCafe\ROOT_DIR', realpath(__DIR__ . '/..'));
 
+
 if (!defined('JingCafe\APP_DIR')) {
 	define('JingCafe\APP_DIR', str_replace(DIRECTORY_SEPARATOR, '/', __DIR__));
 }
+
+define('JingCafe\PUBLIC_PATH', realpath(__DIR__ . '/../public'));
 
 define('JingCafe\APP_DIR_NAME', basename(__DIR__));
 

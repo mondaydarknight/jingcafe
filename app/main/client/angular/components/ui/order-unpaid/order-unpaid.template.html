@@ -1,0 +1,95 @@
+<label class="text-result" style="padding-left: 5px;padding-bottom: 10px;">共{{::$vm.orderQuantity}}筆</label>
+
+<div class="order-container"></div>
+
+<div class="text-center">
+	<div order-pagination items-limit="5" page-index="0"></div>	
+</div>
+
+<!-- <div class="order"> 
+	<div class="order-wrap">
+		<div class="order-header">
+			<div class="order-header-top">
+				<span class="flex1">訂單編號: {{::order.id}}</span>
+				<span class="flex0">訂單日期: {{::order.createdAt}}</span>	
+			</div>
+			<div class="row order-header-bottom">
+				<div class="col-sm-4 col-4 order-column">
+					<label class="item-link">商品</label>
+				</div>
+				<div class="col-sm-2 col-2 order-column">
+					<label class="item-link">單價</label>
+				</div>
+				<div class="col-sm-2 col-2 order-column">
+					<label class="item-link">總金額</label>
+				</div>
+				<div class="col-sm-2 col-2 order-column">
+					<label class="item-link">目前狀態</label>
+				</div>
+				<div class="col-sm-2 col-2 order-column">
+					<label class="item-link">物流方式</label>
+				</div>	
+			</div>
+		</div>
+		<div class="order-content">
+			<div class="order-content-wrap">
+				<div class="row order-content-item" ng-repeat="product in ::order.list">
+					<div class="col-sm-4 col-4 item-fragment item-overview" ui-sref="shop.product.detail({'productId': product.id, 'productKey': product.product_key})">
+						<div class="product-thumbnail" style="background-image: url({{::product.profile}});"></div>
+						<div class="prodcut-list">
+						<span href class="product-name">{{::product.name}}</span>
+						<span class="product-quantity">x{{::product.quantity}}</span>
+							<div class="product-message"></div>
+						</div>
+					</div>
+					<div class="col-sm-2 col-2 item-fragment">
+						<span class="product-price">{{::product.price | currency:'$NT': 0}}</span>
+					</div>
+					<div class="col-sm-2 col-2 item-fragment item-column">
+						<span class="total-price">{{::product.totalPrice | currency:'$NT': 0}}</span>
+						<span class="text-normal">{{::order.userPayment.payment.name}}</span>
+					</div>
+					<div class="col-sm-2 col-2 item-fragment item-column">
+						<span class="status">{{::order.status}}</span>
+						<span class="payment-detail">請在{{::order.expiredAt}}完成付款動作</span>
+					</div>					
+					<div class="col-sm-2 col-2 item-fragment">
+						<label class="text-normal">{{::order.userLogistic.logistic.name}}</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="order-bottom">
+			<div class="order-column flex1">
+				<div class="tag-wrap">
+					<button class="btn btn-sm btn-info" ui-sref="shop.user.order.detail({'orderId': order.id})">查看明細</button>
+					<button class="btn btn-sm btn-danger" ng-click="$vm.cancelOrder($event, order.id)">取消訂單</button>
+				</div>
+			</div>
+			<div class="order-column flex1">
+				<div class="table-container-footer">
+					<table class="table">
+						<tfoot>
+							<tr>
+								<th colspan="4">
+									<div class="row">
+										<div class="col-sm-9 col-9">
+											<label>商品小計 (含稅): </label>
+											<label>運費: </label>
+											<label>商品總金額: </label>
+										</div>
+										<div class="col-sm-3 col-3">
+											<label class="text-normal">{{::order.totalPrice}}</label>
+											<label class="text-normal">40</label>
+											<label class="text-normal">200</label>
+										</div>
+									</div>									
+								</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> -->
